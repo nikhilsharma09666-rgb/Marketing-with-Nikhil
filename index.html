@@ -7,9 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
     body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; scroll-behavior: smooth; }
-
-    /* Header */
-    header { background-color: #111; color: white; padding: 10px 30px; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 1000; height: 70px; transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+    header { background-color: #111; color: white; padding: 10px 30px; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 1000; height: 70px; transition: box-shadow 0.3s ease; }
     header.scrolled { box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     .header-left { display: flex; align-items: center; position: absolute; left: 30px; }
     .logo { width: 60px; height: auto; margin-right: 10px; }
@@ -23,7 +21,6 @@
     .free-audit { position: absolute; right: 30px; background-color: #00cc66; padding: 12px 20px; border-radius: 5px; color: white; font-weight: bold; text-decoration: none; transition: all 0.3s ease; }
     .free-audit:hover { background-color: #00ff88; }
 
-    /* Hero Section */
     .hero { position: relative; background-image: url('digital.jpg'); background-size: cover; background-position: center center; height: 700px; display: flex; justify-content: center; align-items: center; padding: 20px; overflow: hidden; }
     .hero::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1; }
     .hero-content { position: relative; z-index: 2; max-width: 800px; text-align: center; background: rgba(0,0,0,0.4); padding: 30px; border-radius: 10px; opacity: 0; transform: translateY(50px); animation: heroEntrance 1s forwards; }
@@ -34,7 +31,8 @@
     .cta-button:hover { background-color: #e68900; transform: scale(1.05); animation: none; }
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
-    /* Services Section */
+    .section-title { text-align: center; font-size: 2.5em; margin: 50px 0 30px 0; color: #ff9900; }
+
     .service-display { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 50px 80px; background-color: #fff; }
     .service { text-align: center; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 15px; }
     .service:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
@@ -42,7 +40,6 @@
     .service h3 { margin: 10px 0; font-size: 1.3em; color: #333; }
     .service p { color: #555; font-size: 1em; }
 
-    /* Clients Section */
     .clients-section { background-color: #f9f9f9; padding: 60px 20px; text-align: center; }
     .clients-section h2 { font-size: 2.5em; margin-bottom: 40px; }
     .clients-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
@@ -52,7 +49,6 @@
     .client h4 { margin: 10px 0 0 0; font-size: 1.2em; color: #333; }
     .client p { font-style: italic; color: #555; font-size: 0.95em; }
 
-    /* Contact Section */
     .contact-container { max-width: 1000px; margin: 80px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
     .contact-info h2, .contact-form h2 { color: #ff9900; margin-bottom: 20px; }
     .contact-info p { margin: 10px 0; font-size: 1em; color: #333; }
@@ -64,14 +60,27 @@
     button { background-color: #00cc66; color: white; border: none; padding: 12px 25px; border-radius: 25px; font-size: 16px; cursor: pointer; transition: 0.3s; }
     button:hover { background-color: #00ff88; }
 
-    /* Footer */
+    /* About Us Section */
+    .about-us { background-color: #fff; padding: 50px 80px; text-align: center; }
+    .about-us p { max-width: 900px; margin: 20px auto; font-size: 1.1em; color: #555; line-height: 1.8; }
+
+    /* Blog Section */
+    .blog-section { background-color: #f9f9f9; padding: 50px 80px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .blog-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+    .blog-card:hover { transform: translateY(-10px); }
+    .blog-card img { width: 100%; height: 180px; object-fit: cover; }
+    .blog-card-content { padding: 20px; }
+    .blog-card-content h3 { margin: 0 0 10px 0; color: #333; }
+    .blog-card-content p { color: #555; font-size: 0.95em; line-height: 1.5; }
+
     footer { background-color: #111; color: white; text-align: center; padding: 20px; }
     footer a { color: #ff9900; text-decoration: none; }
     footer a:hover { color: #e68900; }
 
-    @media (max-width: 1024px) { .service-display { grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 50px 40px; } }
+    @media (max-width: 1024px) { .service-display, .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 50px 40px; } }
     @media (max-width: 900px) { .contact-container { grid-template-columns: 1fr; padding: 25px; } nav { flex-wrap: wrap; } }
-    @media (max-width: 768px) { .service-display { grid-template-columns: 1fr; padding: 40px 20px; } }
+    @media (max-width: 768px) { .service-display, .blog-grid { grid-template-columns: 1fr; padding: 40px 20px; } .about-us { padding: 40px 20px; } .blog-section { padding: 40px 20px; } }
 </style>
 </head>
 <body>
@@ -85,9 +94,9 @@
     <nav>
         <a href="#hero" class="active">Home</a>
         <a href="#services">Services</a>
-        <a href="#contact">Contact Us</a>
         <a href="#about">About Us</a>
         <a href="#blog">Blog</a>
+        <a href="#contact">Contact Us</a>
     </nav>
     <a href="#contact" class="free-audit">Free Website Audit</a>
 </header>
@@ -103,62 +112,38 @@
 
 <!-- Services Section -->
 <div class="service-display" id="services">
-    <div class="service">
-        <img src="seo.jpg" alt="SEO Service">
-        <h3>Search Engine Optimization</h3>
-        <p>Boost your website visibility and attract organic traffic with expert SEO strategies.</p>
-    </div>
-    <div class="service">
-        <img src="social.jpg" alt="Social Media Marketing">
-        <h3>Social Media Marketing</h3>
-        <p>Engage your audience and grow your brand on platforms like Facebook, Instagram, and LinkedIn.</p>
-    </div>
-    <div class="service">
-        <img src="ads.jpg" alt="Google & Meta Ads">
-        <h3>Google & Meta Ads</h3>
-        <p>Run smart PPC campaigns to target the right audience and increase conversions.</p>
-    </div>
-    <div class="service">
-        <img src="content.jpg" alt="Content Marketing">
-        <h3>Content Marketing</h3>
-        <p>Create engaging, SEO-friendly blogs and content that educate and convert your audience.</p>
-    </div>
-    <div class="service">
-        <img src="logo.png" alt="Branding & Design">
-        <h3>Branding & Design</h3>
-        <p>Professional logos, brand kits, and visual designs to make your business stand out.</p>
-    </div>
-    <div class="service">
-        <img src="website.jpg" alt="Website Design & Development">
-        <h3>Website Design & Development</h3>
-        <p>Mobile-friendly, SEO-optimized websites tailored to your business goals.</p>
-    </div>
+    <div class="service"><img src="seo.jpg" alt="SEO Service"><h3>Search Engine Optimization</h3><p>Boost your website visibility and attract organic traffic with expert SEO strategies.</p></div>
+    <div class="service"><img src="social.jpg" alt="Social Media Marketing"><h3>Social Media Marketing</h3><p>Engage your audience and grow your brand on platforms like Facebook, Instagram, and LinkedIn.</p></div>
+    <div class="service"><img src="ads.jpg" alt="Google & Meta Ads"><h3>Google & Meta Ads</h3><p>Run smart PPC campaigns to target the right audience and increase conversions.</p></div>
+    <div class="service"><img src="content.jpg" alt="Content Marketing"><h3>Content Marketing</h3><p>Create engaging, SEO-friendly blogs and content that educate and convert your audience.</p></div>
+    <div class="service"><img src="logo.png" alt="Branding & Design"><h3>Branding & Design</h3><p>Professional logos, brand kits, and visual designs to make your business stand out.</p></div>
+    <div class="service"><img src="website.jpg" alt="Website Design & Development"><h3>Website Design & Development</h3><p>Mobile-friendly, SEO-optimized websites tailored to your business goals.</p></div>
 </div>
+
+<!-- About Us Section -->
+<section class="about-us" id="about">
+    <h2 class="section-title">About Us</h2>
+    <p>Marketing with Nikhil is your trusted digital marketing partner based in Mohali, Chandigarh. We specialize in SEO, social media marketing, Google & Meta ads, and website development to help businesses grow online. Our mission is to deliver measurable results and ensure your brand stands out in the digital world. We pride ourselves on creativity, reliability, and building long-term relationships with our clients.</p>
+</section>
+
+<!-- Blog Section -->
+<section class="blog-section" id="blog">
+    <h2 class="section-title">Latest Blog Posts</h2>
+    <div class="blog-grid">
+        <div class="blog-card"><img src="blog1.jpg" alt="Blog 1"><div class="blog-card-content"><h3>5 SEO Tips to Boost Your Website</h3><p>Learn actionable SEO strategies to improve your website rankings and attract more traffic organically.</p></div></div>
+        <div class="blog-card"><img src="blog2.jpg" alt="Blog 2"><div class="blog-card-content"><h3>Social Media Marketing Trends 2025</h3><p>Stay ahead with the latest trends in social media marketing that drive engagement and conversions.</p></div></div>
+        <div class="blog-card"><img src="blog3.jpg" alt="Blog 3"><div class="blog-card-content"><h3>Why Google Ads Are Essential</h3><p>Discover how Google Ads can help you reach the right audience and increase your ROI effectively.</p></div></div>
+    </div>
+</section>
 
 <!-- Clients Section -->
 <div class="clients-section" id="clients">
     <h2>Happy Clients</h2>
     <div class="clients-grid">
-        <div class="client">
-            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Rajesh Kumar">
-            <p>"Excellent service!"</p>
-            <h4>Rajesh Kumar</h4>
-        </div>
-        <div class="client">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Sharma">
-            <p>"Highly professional team. Great results."</p>
-            <h4>Priya Sharma</h4>
-        </div>
-        <div class="client">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith">
-            <p>"Amazing digital marketing strategies!"</p>
-            <h4>John Smith</h4>
-        </div>
-        <div class="client">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma Johnson">
-            <p>"My social media presence has grown exponentially."</p>
-            <h4>Emma Johnson</h4>
-        </div>
+        <div class="client"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Rajesh Kumar"><p>"Excellent service!"</p><h4>Rajesh Kumar</h4></div>
+        <div class="client"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Sharma"><p>"Highly professional team. Great results."</p><h4>Priya Sharma</h4></div>
+        <div class="client"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith"><p>"Amazing digital marketing strategies!"</p><h4>John Smith</h4></div>
+        <div class="client"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma Johnson"><p>"My social media presence has grown exponentially."</p><h4>Emma Johnson</h4></div>
     </div>
 </div>
 
@@ -181,44 +166,27 @@
             <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
             <button type="submit">Send Message</button>
         </form>
-        <p id="success-message" style="display:none; color:green; font-weight:bold; margin-top:10px;">
-            ✅ Thank you! Your message has been sent.
-        </p>
+        <p id="success-message" style="display:none; color:green; font-weight:bold; margin-top:10px;">✅ Thank you! Your message has been sent.</p>
     </div>
 </section>
 
 <!-- Footer -->
 <footer id="footer">
     <p>&copy; 2025 Marketing with Nikhil. All Rights Reserved.</p>
-    <p>New Delhi, India</p>
+    <p>Mohali, Chandigarh, Punjab</p>
     <p><a href="mailto:nikhilsharmaseo17@gmail.com">nikhilsharmaseo17@gmail.com</a> | <a href="tel:+919805647008">+91-9805647008</a></p>
 </footer>
 
 <script>
     const header = document.getElementById('header');
-    window.addEventListener('scroll', function() {
-        if(window.scrollY > 50) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
+    window.addEventListener('scroll', function() { if(window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled'); });
 
-    // Form Submission with success message
     const form = document.querySelector("form");
     form.addEventListener("submit", function(e) {
         e.preventDefault();
-        fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if(response.ok){
-                document.getElementById("success-message").style.display = "block";
-                form.reset();
-            } else {
-                alert("Oops! There was a problem submitting your form.");
-            }
-        });
+        fetch(form.action, { method: "POST", body: new FormData(form), headers: { 'Accept': 'application/json' }})
+        .then(response => { if(response.ok){ document.getElementById("success-message").style.display = "block"; form.reset(); } else { alert("Oops! There was a problem submitting your form."); } });
     });
 </script>
-
 </body>
 </html>
