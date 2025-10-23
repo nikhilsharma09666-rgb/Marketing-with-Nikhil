@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing with Nikhil</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; scroll-behavior: smooth; }
+    
+    /* Header */
+    header { background-color: #111; color: white; padding: 10px 30px; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 1000; height: 70px; transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+    header.scrolled { box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    .header-left { display: flex; align-items: center; position: absolute; left: 30px; }
+    .logo { width: 60px; height: auto; margin-right: 10px; }
+    .site-name { font-size: 1.8em; font-weight: 700; color: #ff9900; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); transition: color 0.3s ease, transform 0.3s ease; }
+    .site-name span { color: #00ffcc; }
+    .site-name:hover { color: #00ffcc; transform: scale(1.1); }
+    nav { display: flex; justify-content: center; flex-grow: 1; align-items: center; }
+    nav a { color: white; text-decoration: none; margin: 0 20px; font-size: 1em; padding-bottom: 5px; position: relative; transition: all 0.3s ease; }
+    nav a::after { content: ''; position: absolute; width: 0; height: 2px; display: block; margin-top: 5px; right: 0; background: #00ffcc; transition: width 0.3s ease, right 0.3s ease; }
+    nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
+    .free-audit { position: absolute; right: 30px; background-color: #00cc66; padding: 12px 20px; border-radius: 5px; color: white; font-weight: bold; text-decoration: none; transition: all 0.3s ease; }
+    .free-audit:hover { background-color: #00ff88; }
+
+    /* Hero Section */
+    .hero { position: relative; background-image: url('digital.jpg'); background-size: cover; background-position: center center; height: 700px; display: flex; justify-content: center; align-items: center; padding: 20px; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1; }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; text-align: center; background: rgba(0,0,0,0.4); padding: 30px; border-radius: 10px; opacity: 0; transform: translateY(50px); animation: heroEntrance 1s forwards; }
+    @keyframes heroEntrance { to { opacity: 1; transform: translateY(0); } }
+    .hero h2 { font-size: 3em; margin: 0 0 15px 0; color: #fff; line-height: 1.2; }
+    .hero p { font-size: 1.3em; color: #fff; margin-bottom: 20px; }
+    .cta-button { background-color: #ff9900; padding: 15px 30px; font-size: 1.2em; color: white; border: none; cursor: pointer; text-decoration: none; border-radius: 5px; transition: background 0.3s ease, transform 0.3s ease; animation: pulse 2s infinite; display: inline-block; margin: 10px; }
+    .cta-button:hover { background-color: #e68900; transform: scale(1.05); animation: none; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+    /* Services Section */
+    .service-display { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 50px 80px; background-color: #fff; }
+    .service { text-align: center; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 15px; }
+    .service:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    .service img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+    .service h3 { margin: 10px 0; font-size: 1.3em; color: #333; }
+    .service p { color: #555; font-size: 1em; }
+
+    /* Clients Section */
+    .clients-section { background-color: #f9f9f9; padding: 60px 20px; text-align: center; }
+    .clients-section h2 { font-size: 2.5em; margin-bottom: 40px; }
+    .clients-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
+    .client { background: #fff; padding: 20px; border-radius: 10px; width: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+    .client:hover { transform: translateY(-10px); }
+    .client img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
+    .client h4 { margin: 10px 0 0 0; font-size: 1.2em; color: #333; }
+    .client p { font-style: italic; color: #555; font-size: 0.95em; }
+
+    /* Contact Section */
+    .contact-container {
+        max-width: 1000px;
+        margin: 80px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    .contact-info h2, .contact-form h2 { color: #ff9900; margin-bottom: 20px; }
+    .contact-info p { margin: 10px 0; font-size: 1em; color: #333; }
+    .contact-info a.contact-link { color: #1E90FF; font-weight: 600; text-decoration: none; }
+    .contact-info a.contact-link:hover { color: #104E8B; }
+    .whatsapp-link { display: inline-block; background-color: #25D366; color: white; padding: 12px 25px; border-radius: 50px; font-weight: bold; text-decoration: none; margin-top: 15px; transition: background 0.3s ease, transform 0.3s ease; }
+    .whatsapp-link:hover { background-color: #1ebe5d; transform: scale(1.05); color: white; }
+    form input, form textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 10px; font-size: 16px; font-family: 'Poppins', sans-serif; }
+    button { background-color: #00cc66; color: white; border: none; padding: 12px 25px; border-radius: 25px; font-size: 16px; cursor: pointer; transition: 0.3s; }
+    button:hover { background-color: #00ff88; }
+
+    /* Footer */
+    footer { background-color: #111; color: white; text-align: center; padding: 20px; }
+    footer a { color: #ff9900; text-decoration: none; }
+    footer a:hover { color: #e68900; }
+
+    @media (max-width: 1024px) { .service-display { grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 50px 40px; } }
+    @media (max-width: 900px) { .contact-container { grid-template-columns: 1fr; padding: 25px; } nav { flex-wrap: wrap; } }
+    @media (max-width: 768px) { .service-display { grid-template-columns: 1fr; padding: 40px 20px; } }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+    <div class="header-left">
+        <img src="logo.png" alt="Marketing with Nikhil Logo" class="logo">
+        <div class="site-name">Marketing with <span>Nikhil</span></div>
+    </div>
+    <nav>
+        <a href="#hero" class="active">Home</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#about">About Us</a>
+        <a href="#blog">Blog</a>
+    </nav>
+    <a href="#contact" class="free-audit">Free Website Audit</a>
+</header>
+
+<!-- Hero Section -->
+<div class="hero" id="hero">
+    <div class="hero-content">
+        <h2>Grow Your Business Online</h2>
+        <p>Expert SEO, Social Media Marketing, Google & Meta Ads, and more to boost your brand visibility.</p>
+        <a href="#contact" class="cta-button">Get Free Website Audit</a>
+    </div>
+</div>
+
+<!-- Services Section -->
+<div class="service-display" id="services">
+    <!-- Repeat your service boxes here -->
+    <div class="service">
+        <img src="seo.jpg" alt="SEO Service">
+        <h3>Search Engine Optimization</h3>
+        <p>Boost your website visibility and attract organic traffic with expert SEO strategies.</p>
+    </div>
+    <div class="service">
+        <img src="social.jpg" alt="Social Media Marketing">
+        <h3>Social Media Marketing</h3>
+        <p>Engage your audience and grow your brand on platforms like Facebook, Instagram, and LinkedIn.</p>
+    </div>
+    <div class="service">
+        <img src="ads.jpg" alt="Google & Meta Ads">
+        <h3>Google & Meta Ads</h3>
+        <p>Run smart PPC campaigns to target the right audience and increase conversions.</p>
+    </div>
+    <div class="service">
+        <img src="content.jpg" alt="Content Marketing">
+        <h3>Content Marketing</h3>
+        <p>Create engaging, SEO-friendly blogs and content that educate and convert your audience.</p>
+    </div>
+    <div class="service">
+        <img src="logo.png" alt="Branding & Design">
+        <h3>Branding & Design</h3>
+        <p>Professional logos, brand kits, and visual designs to make your business stand out.</p>
+    </div>
+    <div class="service">
+        <img src="website.jpg" alt="Website Design & Development">
+        <h3>Website Design & Development</h3>
+        <p>Mobile-friendly, SEO-optimized websites tailored to your business goals.</p>
+    </div>
+</div>
+
+<!-- Clients Section -->
+<div class="clients-section" id="clients">
+    <h2>Happy Clients</h2>
+    <div class="clients-grid">
+        <div class="client">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Rajesh Kumar">
+            <p>"Excellent service!"</p>
+            <h4>Rajesh Kumar</h4>
+        </div>
+        <div class="client">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Sharma">
+            <p>"Highly professional team. Great results."</p>
+            <h4>Priya Sharma</h4>
+        </div>
+        <div class="client">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith">
+            <p>"Amazing digital marketing strategies!"</p>
+            <h4>John Smith</h4>
+        </div>
+        <div class="client">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma Johnson">
+            <p>"My social media presence has grown exponentially."</p>
+            <h4>Emma Johnson</h4>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<section class="contact-container" id="contact">
+    <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p>📍 <strong>Address:</strong> Mohali, Chandigarh, Punjab</p>
+        <p>📧 <strong>Email:</strong> <a href="mailto:nikhilsharmaseo17@gmail.com" class="contact-link">nikhilsharmaseo17@gmail.com</a></p>
+        <p>📞 <strong>Phone:</strong> <a href="tel:+919805647008" class="contact-link">+91 9805647008</a></p>
+        <a class="whatsapp-link" href="https://wa.me/919805647008" target="_blank">💬 Chat on WhatsApp</a>
+    </div>
+
+    <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <form action="https://formspree.io/f/mdkwbkna" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+            <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p id="success-message" style="display:none; color:green; font-weight:bold; margin-top:10px;">
+            ✅ Thank you! Your message has been sent.
+        </p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <p>&copy; 2025 Marketing with Nikhil. All Rights Reserved.</p>
+    <p>New Delhi, India</p>
+    <p><a href="mailto:nikhilsharmaseo17@gmail.com">nikhilsharmaseo17@gmail.com</a> | <a href="tel:+919805647008">+91-9805647008</a></p>
+</footer>
+
+<script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', function() {
+        if(window.scrollY > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+
+    // Form Submission with success message
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if(response.ok){
+                document.getElementById("success-message").style.display = "block";
+                form.reset();
+            } else {
+                alert("Oops! There was a problem submitting your form.");
+            }
+        });
+    });
+</script>
+</body>
+</html>
