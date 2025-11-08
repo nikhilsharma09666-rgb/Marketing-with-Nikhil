@@ -46,7 +46,7 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
 .cta-button:hover { background-color: #e68900; transform: scale(1.05); animation: none; }
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
-/* Services Section */
+/* Services */
 .service-display { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 60px 80px; background-color: #fff; }
 .service { text-align: center; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 15px; }
 .service:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
@@ -63,6 +63,16 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
 .client img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
 .client h4 { margin: 10px 0 0 0; font-size: 1.2em; color: #333; }
 .client p { font-style: italic; color: #555; font-size: 0.95em; }
+
+/* Team Section */
+.team-section { background: #fff; padding: 80px 20px; text-align: center; }
+.team-section h2 { font-size: 2.5em; margin-bottom: 40px; color: #ff9900; }
+.team-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
+.team-member { background: #f9f9f9; border-radius: 10px; padding: 25px; width: 260px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+.team-member:hover { transform: translateY(-8px); }
+.team-member img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
+.team-member h4 { font-size: 1.3em; color: #333; margin-bottom: 5px; }
+.team-member p { color: #555; font-size: 1em; }
 
 /* Contact */
 .contact-container { max-width: 1000px; margin: 80px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -97,7 +107,7 @@ footer a:hover { color: #00ffcc; }
   <nav>
     <a href="#hero" class="active">Home</a>
     <a href="#services">Services</a>
-    <a href="#clients">Clients</a>
+    <a href="#team">Our Team</a>
     <a href="#contact">Contact</a>
   </nav>
   <a href="#contact" class="free-audit">Free Website Audit</a>
@@ -115,19 +125,34 @@ footer a:hover { color: #00ffcc; }
 <!-- Services -->
 <section class="service-display" id="services">
   <div class="service">
-    <img src="Images/seo.jpg" alt="SEO Service">
+    <img src="Images/seo.jpg" alt="SEO">
     <h3>Search Engine Optimization</h3>
-    <p>Boost your website visibility and attract organic traffic.</p>
+    <p>Boost your visibility and rank higher on Google.</p>
   </div>
   <div class="service">
-    <img src="Images/social.jpg" alt="Social Media Marketing">
+    <img src="Images/smm.jpg" alt="Social Media Marketing">
     <h3>Social Media Marketing</h3>
-    <p>Engage your audience on Facebook, Instagram & LinkedIn.</p>
+    <p>Engage and grow your audience across all platforms.</p>
   </div>
   <div class="service">
-    <img src="Images/ads.jpg" alt="Google & Meta Ads">
+    <img src="Images/ads.jpg" alt="Ads">
     <h3>Google & Meta Ads</h3>
-    <p>Target the right audience with powerful ad campaigns.</p>
+    <p>Run profitable ad campaigns to maximize ROI.</p>
+  </div>
+  <div class="service">
+    <img src="Images/web.jpg" alt="Web Design">
+    <h3>Website Design</h3>
+    <p>Modern, mobile-friendly and SEO-optimized websites.</p>
+  </div>
+  <div class="service">
+    <img src="Images/content.jpg" alt="Content Marketing">
+    <h3>Content Marketing</h3>
+    <p>Create content that builds trust and converts leads.</p>
+  </div>
+  <div class="service">
+    <img src="Images/email.jpg" alt="Email Marketing">
+    <h3>Email Marketing</h3>
+    <p>Automated campaigns that nurture and retain customers.</p>
   </div>
 </section>
 
@@ -145,6 +170,38 @@ footer a:hover { color: #00ffcc; }
       <p>"Highly professional team. Amazing results!"</p>
       <h4>Priya Sharma</h4>
     </div>
+    <div class="client">
+      <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Client">
+      <p>"They transformed our online presence completely."</p>
+      <h4>Vikas Mehta</h4>
+    </div>
+    <div class="client">
+      <img src="https://randomuser.me/api/portraits/women/15.jpg" alt="Client">
+      <p>"One of the best agencies I've worked with."</p>
+      <h4>Neha Singh</h4>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="team-section" id="team">
+  <h2>Our Team</h2>
+  <div class="team-grid">
+    <div class="team-member">
+      <img src="Images/team1.jpg" alt="Nikhil Sharma">
+      <h4>Nikhil Sharma</h4>
+      <p>Founder & Digital Marketing Expert</p>
+    </div>
+    <div class="team-member">
+      <img src="Images/team2.jpg" alt="Amanpreet Kaur">
+      <h4>Amanpreet Kaur</h4>
+      <p>SEO Specialist</p>
+    </div>
+    <div class="team-member">
+      <img src="Images/team3.jpg" alt="Rahul Verma">
+      <h4>Rahul Verma</h4>
+      <p>Google Ads Expert</p>
+    </div>
   </div>
 </section>
 
@@ -152,9 +209,9 @@ footer a:hover { color: #00ffcc; }
 <section class="contact-container" id="contact">
   <div class="contact-info">
     <h2>Contact Us</h2>
-    <p><strong>Location:</strong> New Delhi, India</p>
+    <p><strong>Location:</strong> Mohali, Chandigarh</p>
     <p><strong>Email:</strong> <a href="mailto:nikhilsharmaseo17@gmail.com">nikhilsharmaseo17@gmail.com</a></p>
-    <p><strong>Phone:</strong> <a href="tel:+919805647008" class="contact-link">+91-9805647008</a></p>
+    <p><strong>Phone:</strong> <a href="tel:+919805647008">+91-9805647008</a></p>
     <a href="https://wa.me/919805647008" class="whatsapp-link" target="_blank">Chat on WhatsApp</a>
   </div>
   <div class="contact-form">
@@ -168,7 +225,6 @@ footer a:hover { color: #00ffcc; }
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <p>&copy; 2025 Marketing with Nikhil. All Rights Reserved.</p>
 </footer>
@@ -178,6 +234,5 @@ window.addEventListener("scroll", function() {
   document.querySelector("header").classList.toggle("scrolled", window.scrollY > 10);
 });
 </script>
-
 </body>
 </html>
