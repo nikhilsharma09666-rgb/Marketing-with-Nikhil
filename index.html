@@ -54,16 +54,6 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
 .service h3 { margin: 10px 0; font-size: 1.3em; color: #ff9900; }
 .service p { color: #555; font-size: 1em; }
 
-/* Clients */
-.clients-section { background-color: #f9f9f9; padding: 60px 20px; text-align: center; }
-.clients-section h2 { font-size: 2.5em; margin-bottom: 40px; color: #111; }
-.clients-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
-.client { background: #fff; padding: 20px; border-radius: 10px; width: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
-.client:hover { transform: translateY(-10px); }
-.client img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
-.client h4 { margin: 10px 0 0 0; font-size: 1.2em; color: #333; }
-.client p { font-style: italic; color: #555; font-size: 0.95em; }
-
 /* Team Section */
 .team-section { background: #fff; padding: 80px 20px; text-align: center; }
 .team-section h2 { font-size: 2.5em; margin-bottom: 40px; color: #ff9900; }
@@ -156,33 +146,6 @@ footer a:hover { color: #00ffcc; }
   </div>
 </section>
 
-<!-- Clients -->
-<section class="clients-section" id="clients">
-  <h2>Our Happy Clients</h2>
-  <div class="clients-grid">
-    <div class="client">
-      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client">
-      <p>"Excellent service and great ROI!"</p>
-      <h4>Rajesh Kumar</h4>
-    </div>
-    <div class="client">
-      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client">
-      <p>"Highly professional team. Amazing results!"</p>
-      <h4>Priya Sharma</h4>
-    </div>
-    <div class="client">
-      <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Client">
-      <p>"They transformed our online presence completely."</p>
-      <h4>Vikas Mehta</h4>
-    </div>
-    <div class="client">
-      <img src="https://randomuser.me/api/portraits/women/15.jpg" alt="Client">
-      <p>"One of the best agencies I've worked with."</p>
-      <h4>Neha Singh</h4>
-    </div>
-  </div>
-</section>
-
 <!-- Team -->
 <section class="team-section" id="team">
   <h2>Our Team</h2>
@@ -194,7 +157,7 @@ footer a:hover { color: #00ffcc; }
     </div>
     <div class="team-member">
       <img src="Images/arnav.jpg" alt="Amanpreet Kaur">
-      <h4>Arnav Aditya Singh Patyal </h4>
+      <h4>Arnav Aditya Singh Patyal</h4>
       <p>Full Stack Developer</p>
     </div>
     <div class="team-member">
@@ -216,12 +179,16 @@ footer a:hover { color: #00ffcc; }
   </div>
   <div class="contact-form">
     <h2>Send a Message</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="4" required></textarea>
+    <form action="https://formspree.io/f/mdkwbkna" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="tel" name="phone" placeholder="Your Phone Number" required>
+      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
       <button type="submit">Submit</button>
     </form>
+    <p id="success-message" style="display:none; color:green; font-weight:bold; margin-top:10px;">
+      ✅ Thank you! Your message has been sent.
+    </p>
   </div>
 </section>
 
@@ -232,6 +199,24 @@ footer a:hover { color: #00ffcc; }
 <script>
 window.addEventListener("scroll", function() {
   document.querySelector("header").classList.toggle("scrolled", window.scrollY > 10);
+});
+
+// Form submission success message
+const form = document.querySelector("form");
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if(response.ok){
+      document.getElementById("success-message").style.display = "block";
+      form.reset();
+    } else {
+      alert("Oops! There was a problem submitting your form.");
+    }
+  });
 });
 </script>
 </body>
