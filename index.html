@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Search Console Verification -->
+<meta name="google-site-verification" content="DnSRhPfM4tExL8RcsUQhMQTwRHmD7-NcrMXtGDd15qo" />
+
+<!-- Meta Description for SEO -->
+<meta name="description" content="Marketing with Nikhil - Expert digital marketing agency offering SEO, social media marketing, Google & Meta Ads, and website design.">
+
+<title>Marketing with Nikhil | Digital Marketing Agency</title>
+
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KMZ5GLWG5J"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -10,27 +21,50 @@
   gtag('config', 'G-KMZ5GLWG5J');
 </script>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="DnSRhPfM4tExL8RcsUQhMQTwRHmD7-NcrMXtGDd15qo" />
-<title>Marketing with Nikhil | Digital Marketing Agency</title>
-<meta name="description" content="Marketing with Nikhil: Expert digital marketing strategies, SEO, social media tips, and growth hacks to boost your business online.">
-
-
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+<!-- Styles -->
 <style>
+/* ---------- Body ---------- */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background: linear-gradient(#f4f4f4, #e9f5ff);
   scroll-behavior: smooth;
+  cursor: none; /* Hide default cursor */
+  overflow-x: hidden;
 }
 
-/* Header */
+/* ---------- Custom Cursor ---------- */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px; /* Bigger size */
+  height: 40px; /* Bigger size */
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent */
+  border: 2px solid #00ffcc;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  box-shadow: 0 0 15px #00ffcc, 0 0 30px rgba(0,255,204,0.5);
+}
+
+.cursor.active {
+  transform: translate(-50%, -50%) scale(1.5);
+  box-shadow: 0 0 25px #00ffcc, 0 0 50px rgba(0,255,204,0.7);
+  background: #00ffcc;
+}
+
+/* ---------- Header ---------- */
 header {
-  background-color: #111;
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.75);
   color: white;
   padding: 10px 30px;
   display: flex;
@@ -40,10 +74,13 @@ header {
   top: 0;
   z-index: 1000;
   height: 70px;
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: all 0.3s ease;
   flex-wrap: wrap;
 }
-header.scrolled { box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+header.scrolled {
+  background: rgba(0,0,0,0.9);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
 .header-left {
   display: flex;
   align-items: center;
@@ -51,21 +88,27 @@ header.scrolled { box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
   left: 30px;
 }
 .logo {
-  width: 60px;
-  height: auto;
-  margin-right: 10px;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00ffcc;
+  box-shadow: 0 0 12px rgba(0,255,204,0.5);
+  margin-right: 15px;
 }
 .site-name {
   font-size: 1.8em;
   font-weight: 700;
-  color: #ff9900;
+  background: linear-gradient(45deg, #ff9900, #00ffcc);
+  -webkit-background-clip: text;
+  color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
-.site-name span { color: #00ffcc; }
-.site-name:hover { color: #00ffcc; transform: scale(1.1); }
+.site-name:hover { transform: scale(1.1); }
+
 nav {
   display: flex;
   justify-content: center;
@@ -94,20 +137,21 @@ nav a::after {
   transition: width 0.3s ease, right 0.3s ease;
 }
 nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
+
 .free-audit {
   position: absolute;
   right: 30px;
-  background-color: #00cc66;
+  background: linear-gradient(45deg, #00cc66, #00ff88);
   padding: 12px 20px;
-  border-radius: 5px;
+  border-radius: 50px;
   color: white;
   font-weight: bold;
   text-decoration: none;
   transition: all 0.3s ease;
 }
-.free-audit:hover { background-color: #00ff88; }
+.free-audit:hover { transform: scale(1.08); }
 
-/* Hero Section */
+/* ---------- Hero ---------- */
 .hero {
   position: relative;
   background-image: url('Images/digital.jpg');
@@ -125,7 +169,7 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8));
   z-index: 1;
 }
 .hero-content {
@@ -135,7 +179,7 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
   text-align: center;
   background: rgba(0,0,0,0.4);
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 15px;
   opacity: 0;
   transform: translateY(50px);
   animation: heroEntrance 1s forwards;
@@ -153,27 +197,27 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
   margin-bottom: 20px;
 }
 .cta-button {
-  background-color: #ff9900;
+  background: linear-gradient(45deg, #ff9900, #ff6600);
   padding: 15px 30px;
   font-size: 1.2em;
   color: white;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background 0.3s ease, transform 0.3s ease;
+  border-radius: 50px;
+  transition: all 0.3s ease;
   animation: pulse 2s infinite;
   display: inline-block;
   margin: 10px;
 }
 .cta-button:hover {
-  background-color: #e68900;
-  transform: scale(1.05);
+  transform: scale(1.08);
+  background: linear-gradient(45deg, #ff6600, #ff3300);
   animation: none;
 }
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
-/* Services */
+/* ---------- Services ---------- */
 .service-display {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -183,26 +227,28 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
 }
 .service {
   text-align: center;
-  border-radius: 10px;
+  border-radius: 15px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   padding: 15px;
+  cursor: pointer;
+  background: #f9f9f9;
 }
 .service:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 .service img {
   width: 100%;
   height: 180px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 15px;
   margin-bottom: 15px;
 }
 .service h3 { margin: 10px 0; font-size: 1.3em; color: #ff9900; }
 .service p { color: #555; font-size: 1em; }
 
-/* Team Section */
+/* ---------- Team ---------- */
 .team-section {
   background: #fff;
   padding: 80px 20px;
@@ -221,13 +267,16 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
 }
 .team-member {
   background: #f9f9f9;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 25px;
   width: 260px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.team-member:hover { transform: translateY(-8px); }
+.team-member:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
 .team-member img {
   width: 120px;
   height: 120px;
@@ -238,13 +287,13 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
 .team-member h4 { font-size: 1.3em; color: #333; margin-bottom: 5px; }
 .team-member p { color: #555; font-size: 1em; }
 
-/* Contact */
+/* ---------- Contact ---------- */
 .contact-container {
   max-width: 1000px;
   margin: 80px auto;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   padding: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -256,20 +305,18 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
 .contact-info a:hover { color: #104E8B; }
 .whatsapp-link {
   display: inline-block;
-  background-color: #25D366;
+  background: linear-gradient(45deg, #25D366, #1ebe5d);
   color: white;
   padding: 12px 25px;
   border-radius: 50px;
   font-weight: bold;
   text-decoration: none;
   margin-top: 15px;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
 }
-.whatsapp-link:hover {
-  background-color: #1ebe5d;
-  transform: scale(1.05);
-  color: white;
-}
+.whatsapp-link:hover { transform: scale(1.08); }
+
+/* ---------- Form ---------- */
 form input, form textarea {
   width: 100%;
   padding: 12px;
@@ -280,18 +327,18 @@ form input, form textarea {
   font-family: 'Poppins', sans-serif;
 }
 button {
-  background-color: #00cc66;
+  background: linear-gradient(45deg, #00cc66, #00ff88);
   color: white;
   border: none;
   padding: 12px 25px;
-  border-radius: 25px;
+  border-radius: 50px;
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
 }
-button:hover { background-color: #00ff88; }
+button:hover { transform: scale(1.05); }
 
-/* Footer */
+/* ---------- Footer ---------- */
 footer {
   background-color: #111;
   color: white;
@@ -301,46 +348,58 @@ footer {
 footer a { color: #ff9900; text-decoration: none; }
 footer a:hover { color: #00ffcc; }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .service-display {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    padding: 50px 40px;
-  }
+/* ---------- Floating WhatsApp ---------- */
+.floating-wp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 18px;
+  border-radius: 50%;
+  font-size: 24px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  z-index: 999;
+  transition: 0.3s;
 }
+.floating-wp:hover { transform: scale(1.15); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) { .service-display { grid-template-columns: repeat(2,1fr); gap:30px; padding:50px 40px; } }
 @media (max-width: 900px) {
-  header { height: auto; padding: 15px; justify-content: space-between; }
-  .header-left { position: static; margin-bottom: 10px; }
-  .free-audit { position: static; margin-top: 10px; }
-  nav { flex-direction: column; margin-top: 10px; }
-  nav a { margin: 10px 0; }
-  .contact-container {
-    grid-template-columns: 1fr;
-    padding: 25px;
-  }
+  header { height:auto; padding:15px; justify-content:space-between; }
+  .header-left { position:static; margin-bottom:10px; }
+  .free-audit { position:static; margin-top:10px; }
+  nav { flex-direction:column; margin-top:10px; }
+  nav a { margin:10px 0; }
+  .contact-container { grid-template-columns:1fr; padding:25px; }
 }
 @media (max-width: 768px) {
-  .hero { height: 500px; background-position: center; }
-  .hero h2 { font-size: 2em; }
-  .hero p { font-size: 1em; }
-  .cta-button { font-size: 1em; padding: 12px 20px; }
-  .service-display { grid-template-columns: 1fr; padding: 30px 20px; }
-  .team-member { width: 90%; }
-  .site-name { font-size: 1.4em; }
+  .hero { height:500px; }
+  .hero h2 { font-size:2em; }
+  .hero p { font-size:1em; }
+  .cta-button { font-size:1em; padding:12px 20px; }
+  .service-display { grid-template-columns:1fr; padding:30px 20px; }
+  .team-member { width:90%; }
+  .site-name { font-size:1.4em; }
 }
 @media (max-width: 480px) {
-  .hero { height: 450px; padding: 10px; }
-  .hero-content { padding: 20px; }
-  .hero h2 { font-size: 1.6em; }
-  .hero p { font-size: 0.95em; }
-  .cta-button { padding: 10px 18px; font-size: 0.9em; }
-  nav a { font-size: 0.95em; margin: 8px; }
+  .hero { height:450px; padding:10px; }
+  .hero-content { padding:20px; }
+  .hero h2 { font-size:1.6em; }
+  .hero p { font-size:0.95em; }
+  .cta-button { padding:10px 18px; font-size:0.9em; }
+  nav a { font-size:0.95em; margin:8px; }
 }
 </style>
 </head>
 
 <body>
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+
+<!-- Header -->
 <header id="header">
   <div class="header-left">
     <img src="Images/Logo.png" alt="Marketing with Nikhil Logo" class="logo">
@@ -366,57 +425,21 @@ footer a:hover { color: #00ffcc; }
 
 <!-- Services -->
 <section class="service-display" id="services">
-  <div class="service">
-    <img src="Images/seo.jpg" alt="SEO">
-    <h3>Search Engine Optimization</h3>
-    <p>Boost your visibility and rank higher on Google.</p>
-  </div>
-  <div class="service">
-    <img src="Images/Social.jpg" alt="Social Media Marketing">
-    <h3>Social Media Marketing</h3>
-    <p>Engage and grow your audience across all platforms.</p>
-  </div>
-  <div class="service">
-    <img src="Images/ads.jpg" alt="Ads">
-    <h3>Google & Meta Ads</h3>
-    <p>Run profitable ad campaigns to maximize ROI.</p>
-  </div>
-  <div class="service">
-    <img src="Images/website.jpg" alt="Web Design">
-    <h3>Website Design</h3>
-    <p>Modern, mobile-friendly and SEO-optimized websites.</p>
-  </div>
-  <div class="service">
-    <img src="Images/Content.jpg" alt="Content Marketing">
-    <h3>Content Marketing</h3>
-    <p>Create content that builds trust and converts leads.</p>
-  </div>
-  <div class="service">
-    <img src="Images/Logo.png" alt="Graphic Designing">
-    <h3>Graphic Designing</h3>
-    <p>Automated designs that create, engage, and retain your brand identity.</p>
-  </div>
+  <div class="service"><img src="Images/seo.jpg" alt="SEO"><h3>Search Engine Optimization</h3><p>Boost your visibility and rank higher on Google.</p></div>
+  <div class="service"><img src="Images/Social.jpg" alt="Social Media Marketing"><h3>Social Media Marketing</h3><p>Engage and grow your audience across all platforms.</p></div>
+  <div class="service"><img src="Images/ads.jpg" alt="Ads"><h3>Google & Meta Ads</h3><p>Run profitable ad campaigns to maximize ROI.</p></div>
+  <div class="service"><img src="Images/website.jpg" alt="Web Design"><h3>Website Design</h3><p>Modern, mobile-friendly and SEO-optimized websites.</p></div>
+  <div class="service"><img src="Images/Content.jpg" alt="Content Marketing"><h3>Content Marketing</h3><p>Create content that builds trust and converts leads.</p></div>
+  <div class="service"><img src="Images/Logo.png" alt="Graphic Designing"><h3>Graphic Designing</h3><p>Automated designs that create, engage, and retain your brand identity.</p></div>
 </section>
 
 <!-- Team -->
 <section class="team-section" id="team">
   <h2>Our Team</h2>
   <div class="team-grid">
-    <div class="team-member">
-      <img src="Images/nikhil.jpg" alt="Nikhil Sharma">
-      <h4>Nikhil Sharma</h4>
-      <p>Founder & Digital Marketing Expert</p>
-    </div>
-    <div class="team-member">
-      <img src="Images/arnav.jpg" alt="Arnav Aditya Singh Patyal">
-      <h4>Arnav Aditya Singh Patyal</h4>
-      <p>Project Manager</p>
-    </div>
-    <div class="team-member">
-      <img src="Vivek.jpg" alt="Paramjeet Chandel">
-      <h4>Vivek Sharma </h4>
-      <p>Social Media Manager & Google Ads Expert</p>
-    </div>
+    <div class="team-member"><img src="Images/nikhil.jpg" alt="Nikhil Sharma"><h4>Nikhil Sharma</h4><p>Founder & Digital Marketing Expert</p></div>
+    <div class="team-member"><img src="Images/arnav.jpg" alt="Arnav Aditya Singh Patyal"><h4>Arnav Aditya Singh Patyal</h4><p>Project Manager</p></div>
+    <div class="team-member"><img src="Images/Vivek.jpg" alt="Vivek Sharma"><h4>Vivek Sharma</h4><p>Social Media Manager & Google Ads Expert</p></div>
   </div>
 </section>
 
@@ -444,16 +467,22 @@ footer a:hover { color: #00ffcc; }
   </div>
 </section>
 
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919805647008" class="floating-wp" target="_blank">💬</a>
+
+<!-- Footer -->
 <footer>
   <p>&copy; 2025 Marketing with Nikhil. All Rights Reserved.</p>
 </footer>
 
+<!-- Scripts -->
 <script>
+/* ---------- Sticky Header ---------- */
 window.addEventListener("scroll", function() {
   document.querySelector("header").classList.toggle("scrolled", window.scrollY > 10);
 });
 
-// Form submission success message
+/* ---------- Form Submission ---------- */
 const form = document.querySelector("form");
 form.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -469,6 +498,33 @@ form.addEventListener("submit", function(e) {
       alert("Oops! There was a problem submitting your form.");
     }
   });
+});
+
+/* ---------- Custom Cursor ---------- */
+const cursor = document.getElementById('cursor');
+let mouseX = 0, mouseY = 0;
+let posX = 0, posY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+// Smooth trailing effect
+function animate() {
+  posX += (mouseX - posX) * 0.2;
+  posY += (mouseY - posY) * 0.2;
+  cursor.style.left = posX + 'px';
+  cursor.style.top = posY + 'px';
+  requestAnimationFrame(animate);
+}
+animate();
+
+document.addEventListener('mousedown', () => {
+  cursor.classList.add('active');
+});
+document.addEventListener('mouseup', () => {
+  cursor.classList.remove('active');
 });
 </script>
 </body>
