@@ -18,10 +18,8 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-61LW8EXTNH');
 </script>
-
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -35,7 +33,7 @@ body {
   padding: 0;
   background: linear-gradient(#f4f4f4, #e9f5ff);
   scroll-behavior: smooth;
-  cursor: none; /* Hide default cursor */
+  cursor: none;
   overflow-x: hidden;
 }
 
@@ -44,9 +42,9 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 40px; /* Bigger size */
-  height: 40px; /* Bigger size */
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent */
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.8);
   border: 2px solid #00ffcc;
   border-radius: 50%;
   pointer-events: none;
@@ -217,7 +215,11 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
   background: linear-gradient(45deg, #ff6600, #ff3300);
   animation: none;
 }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+@keyframes pulse { 
+  0% { transform: scale(1); } 
+  50% { transform: scale(1.05); } 
+  100% { transform: scale(1); } 
+}
 
 /* ---------- Services ---------- */
 .service-display {
@@ -286,7 +288,11 @@ nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
   object-fit: cover;
   margin-bottom: 15px;
 }
-.team-member h4 { font-size: 1.3em; color: #333; margin-bottom: 5px; }
+.team-member h4 { 
+  font-size: 1.3em; 
+  color: #333; 
+  margin-bottom: 5px; 
+}
 .team-member p { color: #555; font-size: 1em; }
 
 /* ---------- Contact ---------- */
@@ -366,6 +372,86 @@ footer a:hover { color: #00ffcc; }
   transition: 0.3s;
 }
 .floating-wp:hover { transform: scale(1.15); }
+
+/* ---------- Popup ---------- */
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 380px;
+  max-width: 90%;
+  background: #fff;
+  border-radius: 18px;
+  padding: 0;
+  z-index: 999999;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  display: none;
+  animation: popupIn 0.4s ease forwards;
+}
+
+@keyframes popupIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.popup-header {
+  width: 100%;
+  height: 380px;
+  background: url('Christmas.PNG');
+  background-size: cover;
+  background-position: center;
+  border-radius: 18px 18px 0 0;
+}
+
+.popup-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: #ff3b3b;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.popup-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.popup-content h3 {
+  color: #ff6600;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+}
+
+.popup-content p {
+  color: #444;
+  margin-bottom: 15px;
+  font-size: 1em;
+}
+
+.popup-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #ff9900, #ff6600);
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.popup-btn:hover {
+  transform: scale(1.05);
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) { .service-display { grid-template-columns: repeat(2,1fr); gap:30px; padding:50px 40px; } }
@@ -472,6 +558,18 @@ footer a:hover { color: #00ffcc; }
 <!-- Floating WhatsApp -->
 <a href="https://wa.me/919805647008" class="floating-wp" target="_blank">💬</a>
 
+<!-- Scroll Popup -->
+<div class="popup-container" id="scrollPopup">
+  <div class="popup-header"></div>
+  <div class="popup-close" id="closePopup">✕</div>
+
+  <div class="popup-content">
+    <h3>Christmas Sale — Grab 25% OFF</h3>
+    <p>Boost your business with SEO, SMM & Google Ads.</p>
+    <a href="#contact" class="popup-btn">Claim Now</a>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer>
   <p>&copy; 2025 Marketing with Nikhil. All Rights Reserved.</p>
@@ -528,6 +626,21 @@ document.addEventListener('mousedown', () => {
 document.addEventListener('mouseup', () => {
   cursor.classList.remove('active');
 });
+
+/* ---------- Scroll Popup ---------- */
+let popupShown = false;
+
+window.addEventListener("scroll", function () {
+  if (!popupShown && window.scrollY > window.innerHeight * 0.3) {
+    document.getElementById("scrollPopup").style.display = "block";
+    popupShown = true;
+  }
+});
+
+document.getElementById("closePopup").addEventListener("click", function () {
+  document.getElementById("scrollPopup").style.display = "none";
+});
 </script>
+
 </body>
 </html>
