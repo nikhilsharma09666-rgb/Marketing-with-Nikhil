@@ -536,10 +536,26 @@ footer a:hover { color: #00ffcc; }
 <!-- TOP STATS -->
 <div style="max-width:1400px; margin:auto; text-align:center; display:flex; justify-content:space-around; align-items:center; padding-bottom:60px;">
     
-    <div>
-        <h1 style="font-size:55px; color:#ff2e2e; margin:0;">1000+</h1>
-        <p style="font-size:22px; margin-top:10px;">Happy Clients</p>
-    </div>
+   <div>
+  <h1 id="counter" style="font-size:55px; color:#ff2e2e; margin:0;">0</h1>
+  <p style="font-size:22px; margin-top:10px;">Happy Clients</p>
+</div>
+
+<script>
+  let count = 0;
+  let target = 1000;
+  let speed = 40; // slower animation (was 10)
+
+  let counter = setInterval(() => {
+    count++;
+    document.getElementById("counter").innerText = count + "+";
+
+    if (count >= target) {
+      clearInterval(counter);
+    }
+  }, speed);
+</script>
+
 
     <div>
         <h1 style="font-size:55px; color:#ff2e2e; margin:0;">5+</h1>
@@ -572,6 +588,8 @@ footer a:hover { color: #00ffcc; }
     <div style="width:16%; text-align:center;">
         <img src="Section/upwork.png" 
              style="width:120px; margin-bottom:15px;">
+      <p style="font-size:22px;">(1,15,252+ Hours)</p>
+    </div>
     </div>
 
     <!-- ITEM 2 — Google Certified -->
