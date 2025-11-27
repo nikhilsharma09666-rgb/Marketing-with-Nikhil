@@ -1,234 +1,916 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marketing with Nikhil</title>
+
+<!-- Google Search Console Verification -->
+<meta name="google-site-verification" content="zr-uGSxayEoMG7yN6kxN1Ce1QUH8TPc2T51E_WlspWg" />
+
+<!-- Meta Description for SEO -->
+<meta name="description" content="Marketing with Nikhil - Expert digital marketing agency offering SEO, social media marketing, Google & Meta Ads, and website design.">
+
+<title>Marketing with Nikhil | Digital Marketing Agency</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-61LW8EXTNH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-61LW8EXTNH');
+</script>
+
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Styles -->
 <style>
-    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; scroll-behavior: smooth; }
-    
-    /* Header */
-    header { background-color: #111; color: white; padding: 10px 30px; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 1000; height: 70px; transition: box-shadow 0.3s ease, background-color 0.3s ease; }
-    header.scrolled { box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-    .header-left { display: flex; align-items: center; position: absolute; left: 30px; }
-    .logo { width: 60px; height: auto; margin-right: 10px; }
-    .site-name { font-size: 1.8em; font-weight: 700; color: #ff9900; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); transition: color 0.3s ease, transform 0.3s ease; }
-    .site-name span { color: #00ffcc; }
-    .site-name:hover { color: #00ffcc; transform: scale(1.1); }
-    nav { display: flex; justify-content: center; flex-grow: 1; align-items: center; }
-    nav a { color: white; text-decoration: none; margin: 0 20px; font-size: 1em; padding-bottom: 5px; position: relative; transition: all 0.3s ease; }
-    nav a::after { content: ''; position: absolute; width: 0; height: 2px; display: block; margin-top: 5px; right: 0; background: #00ffcc; transition: width 0.3s ease, right 0.3s ease; }
-    nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
-    .free-audit { position: absolute; right: 30px; background-color: #00cc66; padding: 12px 20px; border-radius: 5px; color: white; font-weight: bold; text-decoration: none; transition: all 0.3s ease; }
-    .free-audit:hover { background-color: #00ff88; }
+/* ---------- Body ---------- */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#f4f4f4, #e9f5ff);
+  scroll-behavior: smooth;
+  cursor: none;
+  overflow-x: hidden;
+}
 
-    /* Hero Section */
-    .hero { position: relative; background-image: url('digital.jpg'); background-size: cover; background-position: center center; height: 700px; display: flex; justify-content: center; align-items: center; padding: 20px; overflow: hidden; }
-    .hero::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1; }
-    .hero-content { position: relative; z-index: 2; max-width: 800px; text-align: center; background: rgba(0,0,0,0.4); padding: 30px; border-radius: 10px; opacity: 0; transform: translateY(50px); animation: heroEntrance 1s forwards; }
-    @keyframes heroEntrance { to { opacity: 1; transform: translateY(0); } }
-    .hero h2 { font-size: 3em; margin: 0 0 15px 0; color: #fff; line-height: 1.2; }
-    .hero p { font-size: 1.3em; color: #fff; margin-bottom: 20px; }
-    .cta-button { background-color: #ff9900; padding: 15px 30px; font-size: 1.2em; color: white; border: none; cursor: pointer; text-decoration: none; border-radius: 5px; transition: background 0.3s ease, transform 0.3s ease; animation: pulse 2s infinite; display: inline-block; margin: 10px; }
-    .cta-button:hover { background-color: #e68900; transform: scale(1.05); animation: none; }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+/* ---------- Custom Cursor ---------- */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #00ffcc;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  box-shadow: 0 0 15px #00ffcc, 0 0 30px rgba(0,255,204,0.5);
+}
 
-    /* Services Section */
-    .service-display { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 50px 80px; background-color: #fff; }
-    .service { text-align: center; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 15px; }
-    .service:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-    .service img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
-    .service h3 { margin: 10px 0; font-size: 1.3em; color: #333; }
-    .service p { color: #555; font-size: 1em; }
+.cursor.active {
+  transform: translate(-50%, -50%) scale(1.5);
+  box-shadow: 0 0 25px #00ffcc, 0 0 50px rgba(0,255,204,0.7);
+  background: #00ffcc;
+}
 
-    /* Clients Section */
-    .clients-section { background-color: #f9f9f9; padding: 60px 20px; text-align: center; }
-    .clients-section h2 { font-size: 2.5em; margin-bottom: 40px; }
-    .clients-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
-    .client { background: #fff; padding: 20px; border-radius: 10px; width: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
-    .client:hover { transform: translateY(-10px); }
-    .client img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
-    .client h4 { margin: 10px 0 0 0; font-size: 1.2em; color: #333; }
-    .client p { font-style: italic; color: #555; font-size: 0.95em; }
+/* ---------- Header ---------- */
+header {
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.75);
+  color: white;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
+  transition: all 0.3s ease;
+  flex-wrap: wrap;
+}
+header.scrolled {
+  background: rgba(0,0,0,0.9);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 30px;
+}
+.logo {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00ffcc;
+  box-shadow: 0 0 12px rgba(0,255,204,0.5);
+  margin-right: 15px;
+}
+.site-name {
+  font-size: 1.8em;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ff9900, #00ffcc);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+.site-name:hover { transform: scale(1.1); }
 
-    /* Contact Section */
-    .contact-container {
-        max-width: 1000px;
-        margin: 80px auto;
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        padding: 40px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-    }
-    .contact-info h2, .contact-form h2 { color: #ff9900; margin-bottom: 20px; }
-    .contact-info p { margin: 10px 0; font-size: 1em; color: #333; }
-    .contact-info a.contact-link { color: #1E90FF; font-weight: 600; text-decoration: none; }
-    .contact-info a.contact-link:hover { color: #104E8B; }
-    .whatsapp-link { display: inline-block; background-color: #25D366; color: white; padding: 12px 25px; border-radius: 50px; font-weight: bold; text-decoration: none; margin-top: 15px; transition: background 0.3s ease, transform 0.3s ease; }
-    .whatsapp-link:hover { background-color: #1ebe5d; transform: scale(1.05); color: white; }
-    form input, form textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 10px; font-size: 16px; font-family: 'Poppins', sans-serif; }
-    button { background-color: #00cc66; color: white; border: none; padding: 12px 25px; border-radius: 25px; font-size: 16px; cursor: pointer; transition: 0.3s; }
-    button:hover { background-color: #00ff88; }
+nav {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 1em;
+  padding-bottom: 5px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: #00ffcc;
+  transition: width 0.3s ease, right 0.3s ease;
+}
+nav a:hover::after, nav a.active::after { width: 100%; right: 0; }
 
-    /* Footer */
-    footer { background-color: #111; color: white; text-align: center; padding: 20px; }
-    footer a { color: #ff9900; text-decoration: none; }
-    footer a:hover { color: #e68900; }
+.free-audit {
+  position: absolute;
+  right: 30px;
+  background: linear-gradient(45deg, #00cc66, #00ff88);
+  padding: 12px 20px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.free-audit:hover { transform: scale(1.08); }
 
-    @media (max-width: 1024px) { .service-display { grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 50px 40px; } }
-    @media (max-width: 900px) { .contact-container { grid-template-columns: 1fr; padding: 25px; } nav { flex-wrap: wrap; } }
-    @media (max-width: 768px) { .service-display { grid-template-columns: 1fr; padding: 40px 20px; } }
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  background-image: url('Images/digital.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  text-align: center;
+  background: rgba(0,0,0,0.4);
+  padding: 30px;
+  border-radius: 15px;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: heroEntrance 1s forwards;
+}
+@keyframes heroEntrance { to { opacity: 1; transform: translateY(0); } }
+.hero h2 {
+  font-size: 3em;
+  margin: 0 0 15px 0;
+  color: #fff;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: 1.3em;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.cta-button {
+  background: linear-gradient(45deg, #ff9900, #ff6600);
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+  display: inline-block;
+  margin: 10px;
+}
+.cta-button:hover {
+  transform: scale(1.08);
+  background: linear-gradient(45deg, #ff6600, #ff3300);
+  animation: none;
+}
+@keyframes pulse { 
+  0% { transform: scale(1); } 
+  50% { transform: scale(1.05); } 
+  100% { transform: scale(1); } 
+}
+
+/* ---------- Services ---------- */
+.service-display {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 60px 80px;
+  background-color: #fff;
+}
+.service {
+  text-align: center;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  padding: 15px;
+  cursor: pointer;
+  background: #f9f9f9;
+}
+.service:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+.service img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+.service h3 { margin: 10px 0; font-size: 1.3em; color: #ff9900; }
+.service p { color: #555; font-size: 1em; }
+
+/* ---------- Team ---------- */
+.team-section {
+  background: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+.team-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #ff9900;
+}
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+.team-member {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 25px;
+  width: 260px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.team-member:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.team-member img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+.team-member h4 { 
+  font-size: 1.3em; 
+  color: #333; 
+  margin-bottom: 5px; 
+}
+.team-member p { color: #555; font-size: 1em; }
+
+/* ---------- Contact ---------- */
+.contact-container {
+  max-width: 1000px;
+  margin: 80px auto;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.contact-info h2, .contact-form h2 { color: #ff9900; margin-bottom: 20px; }
+.contact-info p { margin: 10px 0; font-size: 1em; color: #333; }
+.contact-info a { color: #1E90FF; font-weight: 600; text-decoration: none; }
+.contact-info a:hover { color: #104E8B; }
+.whatsapp-link {
+  display: inline-block;
+  background: linear-gradient(45deg, #25D366, #1ebe5d);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+.whatsapp-link:hover { transform: scale(1.08); }
+
+/* ---------- Form ---------- */
+form input, form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+button {
+  background: linear-gradient(45deg, #00cc66, #00ff88);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover { transform: scale(1.05); }
+
+/* ---------- Footer ---------- */
+footer {
+  background-color: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+footer a { color: #ff9900; text-decoration: none; }
+footer a:hover { color: #00ffcc; }
+
+/* ---------- Floating WhatsApp ---------- */
+.floating-wp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 18px;
+  border-radius: 50%;
+  font-size: 24px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  z-index: 999;
+  transition: 0.3s;
+}
+.floating-wp:hover { transform: scale(1.15); }
+
+/* ---------- Popup ---------- */
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 380px;
+  max-width: 90%;
+  background: #fff;
+  border-radius: 18px;
+  padding: 0;
+  z-index: 999999;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  display: none;
+  animation: popupIn 0.4s ease forwards;
+}
+
+@keyframes popupIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.popup-header {
+  width: 100%;
+  height: 380px;
+  background: url('Christmas.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 18px 18px 0 0;
+}
+
+.popup-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: #ff3b3b;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.popup-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.popup-content h3 {
+  color: #ff6600;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+}
+
+.popup-content p {
+  color: #444;
+  margin-bottom: 15px;
+  font-size: 1em;
+}
+
+.popup-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #ff9900, #ff6600);
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.popup-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) { .service-display { grid-template-columns: repeat(2,1fr); gap:30px; padding:50px 40px; } }
+@media (max-width: 900px) {
+  header { height:auto; padding:15px; justify-content:space-between; }
+  .header-left { position:static; margin-bottom:10px; }
+  .free-audit { position:static; margin-top:10px; }
+  nav { flex-direction:column; margin-top:10px; }
+  nav a { margin:10px 0; }
+  .contact-container { grid-template-columns:1fr; padding:25px; }
+}
+@media (max-width: 768px) {
+  .hero { height:500px; }
+  .hero h2 { font-size:2em; }
+  .hero p { font-size:1em; }
+  .cta-button { font-size:1em; padding:12px 20px; }
+  .service-display { grid-template-columns:1fr; padding:30px 20px; }
+  .team-member { width:90%; }
+  .site-name { font-size:1.4em; }
+}
+@media (max-width: 480px) {
+  .hero { height:450px; padding:10px; }
+  .hero-content { padding:20px; }
+  .hero h2 { font-size:1.6em; }
+  .hero p { font-size:0.95em; }
+  .cta-button { padding:10px 18px; font-size:0.9em; }
+  nav a { font-size:0.95em; margin:8px; }
+}
 </style>
 </head>
+
 <body>
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
 
 <!-- Header -->
 <header id="header">
-    <div class="header-left">
-        <img src="logo.png" alt="Marketing with Nikhil Logo" class="logo">
-        <div class="site-name">Marketing with <span>Nikhil</span></div>
-    </div>
-    <nav>
-        <a href="#hero" class="active">Home</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact Us</a>
-        <a href="#about">About Us</a>
-        <a href="#blog">Blog</a>
-    </nav>
-    <a href="#contact" class="free-audit">Free Website Audit</a>
+  <div class="header-left">
+    <img src="Images/Logo.png" alt="Marketing with Nikhil Logo" class="logo">
+    <div class="site-name">Marketing with <span>Nikhil</span></div>
+  </div>
+  <nav>
+    <a href="#hero" class="active">Home</a>
+    <a href="#services">Services</a>
+    <a href="#team">Our Team</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="free-audit">Free Website Audit</a>
 </header>
 
-<!-- Hero Section -->
-<div class="hero" id="hero">
-    <div class="hero-content">
-        <h2>Grow Your Business Online</h2>
-        <p>Expert SEO, Social Media Marketing, Google & Meta Ads, and more to boost your brand visibility.</p>
-        <a href="#contact" class="cta-button">Get Free Website Audit</a>
-    </div>
-</div>
-
-<!-- Services Section -->
-<div class="service-display" id="services">
-    <!-- Repeat your service boxes here -->
-    <div class="service">
-        <img src="seo.jpg" alt="SEO Service">
-        <h3>Search Engine Optimization</h3>
-        <p>Boost your website visibility and attract organic traffic with expert SEO strategies.</p>
-    </div>
-    <div class="service">
-        <img src="social.jpg" alt="Social Media Marketing">
-        <h3>Social Media Marketing</h3>
-        <p>Engage your audience and grow your brand on platforms like Facebook, Instagram, and LinkedIn.</p>
-    </div>
-    <div class="service">
-        <img src="ads.jpg" alt="Google & Meta Ads">
-        <h3>Google & Meta Ads</h3>
-        <p>Run smart PPC campaigns to target the right audience and increase conversions.</p>
-    </div>
-    <div class="service">
-        <img src="content.jpg" alt="Content Marketing">
-        <h3>Content Marketing</h3>
-        <p>Create engaging, SEO-friendly blogs and content that educate and convert your audience.</p>
-    </div>
-    <div class="service">
-        <img src="logo.png" alt="Branding & Design">
-        <h3>Branding & Design</h3>
-        <p>Professional logos, brand kits, and visual designs to make your business stand out.</p>
-    </div>
-    <div class="service">
-        <img src="website.jpg" alt="Website Design & Development">
-        <h3>Website Design & Development</h3>
-        <p>Mobile-friendly, SEO-optimized websites tailored to your business goals.</p>
-    </div>
-</div>
-
-<!-- Clients Section -->
-<div class="clients-section" id="clients">
-    <h2>Happy Clients</h2>
-    <div class="clients-grid">
-        <div class="client">
-            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Rajesh Kumar">
-            <p>"Excellent service!"</p>
-            <h4>Rajesh Kumar</h4>
-        </div>
-        <div class="client">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Sharma">
-            <p>"Highly professional team. Great results."</p>
-            <h4>Priya Sharma</h4>
-        </div>
-        <div class="client">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith">
-            <p>"Amazing digital marketing strategies!"</p>
-            <h4>John Smith</h4>
-        </div>
-        <div class="client">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma Johnson">
-            <p>"My social media presence has grown exponentially."</p>
-            <h4>Emma Johnson</h4>
-        </div>
-    </div>
-</div>
-
-<!-- Contact Section -->
-<section class="contact-container" id="contact">
-    <div class="contact-info">
-        <h2>Get in Touch</h2>
-        <p>📍 <strong>Address:</strong> Mohali, Chandigarh, Punjab</p>
-        <p>📧 <strong>Email:</strong> <a href="mailto:nikhilsharmaseo17@gmail.com" class="contact-link">nikhilsharmaseo17@gmail.com</a></p>
-        <p>📞 <strong>Phone:</strong> <a href="tel:+919805647008" class="contact-link">+91 9805647008</a></p>
-        <a class="whatsapp-link" href="https://wa.me/919805647008" target="_blank">💬 Chat on WhatsApp</a>
-    </div>
-
-    <div class="contact-form">
-        <h2>Send Us a Message</h2>
-        <form action="https://formspree.io/f/mdkwbkna" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <input type="tel" name="phone" placeholder="Your Phone Number" required>
-            <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-        <p id="success-message" style="display:none; color:green; font-weight:bold; margin-top:10px;">
-            ✅ Thank you! Your message has been sent.
-        </p>
-    </div>
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <h2>Grow Your Business Online</h2>
+    <p>SEO, Social Media Marketing, Google & Meta Ads — all in one place.</p>
+    <a href="#contact" class="cta-button">Get Free Website Audit</a>
+  </div>
 </section>
 
-<!-- Footer -->
-<footer id="footer">
-    <p>&copy; 2025 Marketing with Nikhil. All Rights Reserved.</p>
-    <p>New Delhi, India</p>
-    <p><a href="mailto:nikhilsharmaseo17@gmail.com">nikhilsharmaseo17@gmail.com</a> | <a href="tel:+919805647008">+91-9805647008</a></p>
-</footer>
+<!-- Services -->
+<section class="service-display" id="services">
+  <div class="service"><img src="Images/seo.jpg" alt="SEO"><h3>Search Engine Optimization</h3><p>Boost your visibility and rank higher on Google.</p></div>
+  <div class="service"><img src="Images/Social.jpg" alt="Social Media Marketing"><h3>Social Media Marketing</h3><p>Engage and grow your audience across all platforms.</p></div>
+  <div class="service"><img src="Images/ads.jpg" alt="Ads"><h3>Google & Meta Ads</h3><p>Run profitable ad campaigns to maximize ROI.</p></div>
+  <div class="service"><img src="Images/website.jpg" alt="Web Design"><h3>Website Design</h3><p>Modern, mobile-friendly and SEO-optimized websites.</p></div>
+  <div class="service"><img src="Images/Content.jpg" alt="Content Marketing"><h3>Content Marketing</h3><p>Create content that builds trust and converts leads.</p></div>
+  <div class="service"><img src="Images/Logo.png" alt="Graphic Designing"><h3>Graphic Designing</h3><p>Automated designs that create, engage, and retain your brand identity.</p></div>
+</section>
+
+<!-- Team -->
+<section class="team-section" id="team">
+  <h2>Our Team</h2>
+  <style>
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.team-member img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #000;
+}
+
+.team-member h4 {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.team-member p {
+  font-size: 15px;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+<div class="team-grid">
+
+  <!-- Member 1 -->
+  <div class="team-member">
+    <img src="Images/nikhil.jpg" alt="Nikhil Sharma">
+    <h4>Nikhil Sharma</h4>
+    <p>Founder & Digital Marketing Expert</p>
+  </div>
+
+  <!-- Member 2 -->
+  <div class="team-member">
+    <img src="Images/arnav.jpg" alt="Arnav Aditya Singh Patyal">
+    <h4>Arnav Aditya Singh Patyal</h4>
+    <p>Project Manager</p>
+  </div>
+
+  <!-- Member 3 -->
+  <div class="team-member">
+    <img src="Images/Vivek.jpg" alt="Vivek Sharma">
+    <h4>Vivek Sharma</h4>
+    <p>Social Media Manager & Google Ads Expert</p>
+  </div>
+
+  <!-- Member 4 -->
+  <div class="team-member">
+    <img src="Shivam.jpg" alt="Team Member">
+    <h4>Shivam Sharma</h4>
+    <p>Graphic Designer</p>
+  </div>
+
+  <!-- Member 5 -->
+  <div class="team-member">
+    <img src="Images/param.jpg" alt="Team Member">
+    <h4>Paramjeet Chandel5</h4>
+    <p>SEO Exicutive</p>
+  </div>
+
+  <!-- Member 6 -->
+  <div class="team-member">
+    <img src="prince.jpg" alt="Team Member">
+    <h4>Prince Sharma</h4>
+    <p>Social Media Expert</p>
+  </div>
+
+</div>
+
+<!-- Mobile‑optimized version of the two sections you requested -->
+
+<style>
+/* ===================== MOBILE FIXES FOR STATS SECTIONS ===================== */
+
+/* Top Stats (Happy Clients, Years, Rating) */
+.stats-top {
+    max-width: 1400px;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    width: 30%;
+    min-width: 180px;
+    margin-bottom: 25px;
+}
+
+.stat-box h1 {
+    font-size: 55px;
+    color: #ff2e2e;
+    margin: 0;
+}
+
+.stat-box p {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+/* Bottom Logo Stats */
+.stats-bottom {
+    max-width: 1400px;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo-stat {
+    width: 20%;
+    min-width: 150px;
+    margin-bottom: 30px;
+}
+
+.logo-stat img {
+    width: 110px;
+    margin-bottom: 15px;
+}
+
+.logo-stat p {
+    font-size: 20px;
+}
+
+/* ===================== RESPONSIVE RULES ===================== */
+@media (max-width: 768px) {
+
+    .stats-top {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .stat-box {
+        width: 90%;
+    }
+
+    .stat-box h1 {
+        font-size: 40px;
+    }
+
+    .stat-box p {
+        font-size: 20px;
+    }
+
+    /* Bottom section */
+    .stats-bottom {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .logo-stat {
+        width: 80%;
+    }
+
+    .logo-stat img {
+        width: 100px;
+    }
+
+    .logo-stat p {
+        font-size: 18px;
+    }
+}
+</style>
+
+<!-- ===================== NEW RESPONSIVE TOP STATS ===================== -->
+<section style="background:#000; padding:80px 0; color:#fff; font-family:'Poppins', sans-serif;">
+
+<div class="stats-top">
+    <div class="stat-box">
+        <h1 id="counter">0</h1>
+        <p>Happy Clients</p>
+    </div>
+
+    <div class="stat-box">
+        <h1>5+</h1>
+        <p>Years of Experience</p>
+    </div>
+
+    <div class="stat-box">
+        <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
+            <h1>4.9</h1>
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" style="width:40px; height:40px;">
+        </div>
+        <p>Average Rating</p>
+    </div>
+</div>
+
+<div style="width:100%; height:2px; background:white; margin:30px 0;"></div>
+
+<!-- ===================== NEW RESPONSIVE BOTTOM LOGO STATS ===================== -->
+<div class="stats-bottom">
+
+    <div class="logo-stat">
+        <img src="Section/upwork.png">
+        <p>(1,10,545+ Hours)</p>
+    </div>
+
+    <div class="logo-stat">
+        <img src="Section/google.png">
+        <p>Google Certified</p>
+    </div>
+
+    <div class="logo-stat">
+        <img src="Section/Lead.png">
+        <p>1M+ Leads Generated</p>
+    </div>
+
+    <div class="logo-stat">
+        <img src="Section/Years.png">
+        <p>Trusted & Experienced Team</p>
+    </div>
+
+    <div class="logo-stat">
+        <img src="Section/jobdel.png">
+        <p>500+ Jobs Delivered</p>
+    </div>
+
+</div>
+</section>
 
 <script>
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', function() {
-        if(window.scrollY > 50) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
+// ===================== COUNTER ANIMATION ===================== //
+const counterEl = document.getElementById("counter");
+let target = 1000;
+let duration = 2000; // 2 seconds
+let frameRate = 60;
+let totalFrames = Math.round(duration / (1000 / frameRate));
+let currentFrame = 0;
 
-    // Form Submission with success message
-    const form = document.querySelector("form");
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
-        fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if(response.ok){
-                document.getElementById("success-message").style.display = "block";
-                form.reset();
-            } else {
-                alert("Oops! There was a problem submitting your form.");
-            }
-        });
-    });
+const counterAnimation = setInterval(() => {
+    currentFrame++;
+    const progress = currentFrame / totalFrames;
+    const currentValue = Math.floor(progress * target);
+    counterEl.textContent = currentValue + "+";
+
+    if (currentFrame === totalFrames) {
+        clearInterval(counterAnimation);
+        counterEl.textContent = target + "+";
+    }
+}, 1000 / frameRate);
+</script>
+
+
+<!-- Contact -->
+<section class="contact-container" id="contact">
+  <div class="contact-info">
+    <h2>Contact Us</h2>
+    <p><strong>Location:</strong> Mohali, Chandigarh</p>
+    <p><strong>Email:</strong> <a href="mailto:nikhilsharmaseo17@gmail.com">nikhilsharmaseo17@gmail.com</a></p>
+    <p><strong>Phone:</strong> <a href="tel:+919805647008">+91-9805647008</a></p>
+    <a href="https://wa.me/919805647008" class="whatsapp-link" target="_blank">Chat on WhatsApp</a>
+  </div>
+  <div class="contact-form">
+    <h2>Send a Message</h2>
+    <form action="https://formspree.io/f/mdkwbkna" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="tel" name="phone" placeholder="Your Phone Number" required>
+      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="success-message" style="display:none; color:green; font-weight:bold; margin-top:10px;">
+      ✅ Thank you! Your message has been sent.
+    </p>
+  </div>
+</section>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919805647008" class="floating-wp" target="_blank">💬</a>
+
+<!-- Scroll Popup -->
+<div class="popup-container" id="scrollPopup">
+  <div class="popup-header"></div>
+  <div class="popup-close" id="closePopup">✕</div>
+
+  <div class="popup-content">
+    <h3>25% OFF this Christmas</h3>
+    <p>Boost your business with Marketing Experts.</p>
+    <a href="#contact" class="popup-btn">Claim Now</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Marketing with Nikhil. All Rights Reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+/* ---------- Sticky Header ---------- */
+window.addEventListener("scroll", function() {
+  document.querySelector("header").classList.toggle("scrolled", window.scrollY > 10);
+});
+
+/* ---------- Form Submission ---------- */
+const form = document.querySelector("form");
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if(response.ok){
+      document.getElementById("success-message").style.display = "block";
+      form.reset();
+    } else {
+      alert("Oops! There was a problem submitting your form.");
+    }
+  });
+});
+
+/* ---------- Custom Cursor ---------- */
+const cursor = document.getElementById('cursor');
+let mouseX = 0, mouseY = 0;
+let posX = 0, posY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+// Smooth trailing effect
+function animate() {
+  posX += (mouseX - posX) * 0.2;
+  posY += (mouseY - posY) * 0.2;
+  cursor.style.left = posX + 'px';
+  cursor.style.top = posY + 'px';
+  requestAnimationFrame(animate);
+}
+animate();
+
+document.addEventListener('mousedown', () => {
+  cursor.classList.add('active');
+});
+document.addEventListener('mouseup', () => {
+  cursor.classList.remove('active');
+});
+
+/* ---------- Scroll Popup ---------- */
+let popupShown = false;
+
+window.addEventListener("scroll", function () {
+  if (!popupShown && window.scrollY > window.innerHeight * 0.3) {
+    document.getElementById("scrollPopup").style.display = "block";
+    popupShown = true;
+  }
+});
+
+document.getElementById("closePopup").addEventListener("click", function () {
+  document.getElementById("scrollPopup").style.display = "none";
+});
+/* ---------- Close popup when clicking Claim ---------- */
+document.querySelector(".popup-btn").addEventListener("click", function() {
+  document.getElementById("scrollPopup").style.display = "none";
+});
+
 </script>
 
 </body>
