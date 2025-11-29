@@ -1,14 +1,33 @@
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<head>
+
+<!-- Open Graph Tags -->
+<title>Marketing with Nikhil — Digital Marketing & Growth</title>
+<meta name="title" content="Marketing with Nikhil — Digital Marketing & Growth" />
+<meta name="description" content="SEO, CRO, content & freelance growth strategies for startups and small businesses. Upwork Top Rated Plus & Google Certified." />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Marketing with Nikhil" />
+<meta property="og:title" content="Marketing with Nikhil — Digital Marketing & Growth" />
+<meta property="og:description" content="SEO, CRO, content & freelance growth strategies for startups and small businesses. Upwork Top Rated Plus & Google Certified." />
+<meta property="og:url" content="https://marketingwithnikhil.site/" />
+<meta property="og:image" content="Images/Logo.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Your existing links, CSS, scripts, etc. continue below -->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Google Search Console Verification -->
 <meta name="google-site-verification" content="zr-uGSxayEoMG7yN6kxN1Ce1QUH8TPc2T51E_WlspWg" />
-  <link rel="icon" type="image/jpeg" href="favicon.jpg">
 
 <!-- Meta Description for SEO -->
 <meta name="description" content="Marketing with Nikhil - Expert digital marketing agency offering SEO, social media marketing, Google & Meta Ads, and website design.">
@@ -527,11 +546,96 @@ footer a:hover { color: #00ffcc; }
 <!-- Team -->
 <section class="team-section" id="team">
   <h2>Our Team</h2>
-  <div class="team-grid">
-    <div class="team-member"><img src="Images/nikhil.jpg" alt="Nikhil Sharma"><h4>Nikhil Sharma</h4><p>Founder & Digital Marketing Expert</p></div>
-    <div class="team-member"><img src="Images/arnav.jpg" alt="Arnav Aditya Singh Patyal"><h4>Arnav Aditya Singh Patyal</h4><p>Project Manager</p></div>
-    <div class="team-member"><img src="Vivek.jpg" alt="Vivek Sharma"><h4>Vivek Sharma</h4><p>Social Media Manager & Google Ads Expert</p></div>
+  <style>
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.team-member img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #000;
+}
+
+.team-member h4 {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.team-member p {
+  font-size: 15px;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+<div class="team-grid">
+
+  <!-- Member 1 -->
+  <div class="team-member">
+    <img src="Images/nikhil.jpg" alt="Nikhil Sharma">
+    <h4>Nikhil Sharma</h4>
+    <p>Founder & Digital Marketing Expert</p>
   </div>
+
+  <!-- Member 2 -->
+  <div class="team-member">
+    <img src="Images/arnav.jpg" alt="Arnav Aditya Singh Patyal">
+    <h4>Arnav Aditya Singh Patyal</h4>
+    <p>Project Manager</p>
+  </div>
+
+  <!-- Member 3 -->
+  <div class="team-member">
+    <img src="Images/Vivek.jpg" alt="Vivek Sharma">
+    <h4>Vivek Sharma</h4>
+    <p>Social Media Manager & Google Ads Expert</p>
+  </div>
+
+  <!-- Member 4 -->
+  <div class="team-member">
+    <img src="Shivam.jpg" alt="Team Member">
+    <h4>Shivam Sharma</h4>
+    <p>Graphic Designer</p>
+  </div>
+
+  <!-- Member 5 -->
+  <div class="team-member">
+    <img src="Images/param.jpg" alt="Team Member">
+    <h4>Paramjeet Chandel</h4>
+
+    <p>SEO Exicutive</p>
+  </div>
+
+  <!-- Member 6 -->
+  <div class="team-member">
+    <img src="prince.jpg" alt="Team Member">
+    <h4>Prince Sharma</h4>
+    <p>Social Media Expert</p>
+  </div>
+
+</div>
 
 <!-- Mobile‑optimized version of the two sections you requested -->
 
@@ -639,18 +743,18 @@ footer a:hover { color: #00ffcc; }
 
 <div class="stats-top">
     <div class="stat-box">
-        <h1 id="counter">0</h1>
+        <h2 id="counter">0</h2>
         <p>Happy Clients</p>
     </div>
 
     <div class="stat-box">
-        <h1>5+</h1>
+        <h2>5+</h2>
         <p>Years of Experience</p>
     </div>
 
     <div class="stat-box">
         <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
-            <h1>4.9</h1>
+            <h2>4.9</h2>
             <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" style="width:40px; height:40px;">
         </div>
         <p>Average Rating</p>
