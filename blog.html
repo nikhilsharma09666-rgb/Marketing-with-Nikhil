@@ -147,6 +147,8 @@ nav a.active {
     border-radius:15px;
     transition:.3s;
     cursor:pointer;
+    text-decoration:none;
+    color:white;
 }
 
 .blog-card:hover {
@@ -217,10 +219,9 @@ footer p {
 </head>
 <body>
 
-<!-- Custom Cursor HTML -->
+<!-- Custom Cursor -->
 <div class="cursor"></div>
 
-<!-- HEADER -->
 <header>
     <div class="logo-area">
         <img src="Images/Logo.png" alt="Logo">
@@ -241,36 +242,34 @@ footer p {
 </header>
 
 
-
-<!-- BLOG SECTION -->
+<!-- BLOGS -->
 <div class="blog-container">
     <h1 class="blog-title">Latest Blog Posts</h1>
 
     <div class="blog-grid">
 
-        <div class="blog-card">
+        <a href="blog-seo-2025.html" class="blog-card">
             <img src="blog1.jpg" alt="">
-            <h3>How to improve SEO in 2025</h3>
+            <h3>How to Improve SEO in 2025</h3>
             <p>Learn the latest ranking strategies that actually work without backlinks.</p>
-        </div>
+        </a>
 
-        <div class="blog-card">
+        <a href="blog-cro.html" class="blog-card">
             <img src="blog2.jpg" alt="">
-            <h3>Why your website isn’t converting</h3>
+            <h3>Why Your Website Isn’t Converting</h3>
             <p>Fix these 5 CRO mistakes most businesses overlook.</p>
-        </div>
+        </a>
 
-        <div class="blog-card">
+        <a href="blog-organic-growth.html" class="blog-card">
             <img src="blog3.jpg" alt="">
-            <h3>How to get clients organically</h3>
+            <h3>How to Get Clients Organically</h3>
             <p>Start building traffic and authority without paid ads.</p>
-        </div>
+        </a>
 
     </div>
 </div>
 
 
-<!-- FOOTER -->
 <footer>
     <p>© 2025 Marketing With Nikhil. All rights reserved.</p>
     <div class="footer-social">
@@ -279,7 +278,7 @@ footer p {
     </div>
 </footer>
 
-<!-- Cursor Script -->
+
 <script>
 const cursor = document.querySelector(".cursor");
 
@@ -299,7 +298,3 @@ document.addEventListener("mouseup", () => {
 
 </body>
 </html>
-
-
-
-
