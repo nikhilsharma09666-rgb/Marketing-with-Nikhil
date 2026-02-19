@@ -30,7 +30,7 @@
       "url": "https://marketingwithnikhil.site/",
       "logo": "https://marketingwithnikhil.site/Images/Logo.png",
       "telephone": "+91-9805647008",
-      "email": "marketingwithnikhil17@gmail.com",
+      "email": "info@marketingwithnikhil.site",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Sector 58 SAS Nagar Mohali",
@@ -497,6 +497,27 @@ nav a:hover { color: var(--accent); }
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(255,102,0,0.35);
 }
+.detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.detail-quote-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent;
+  color: var(--orange);
+  border: 2px solid var(--orange);
+  text-decoration: none;
+  padding: 8px 20px; border-radius: 50px;
+  font-size: 0.85em; font-weight: 600;
+  transition: transform 0.3s, background 0.3s, color 0.3s;
+}
+.detail-quote-btn:hover {
+  background: var(--orange);
+  color: #fff;
+  transform: scale(1.04);
+}
 
 /* ===================== TEAM ===================== */
 .team-section { background: var(--white); padding: 80px 20px; text-align: center; }
@@ -833,10 +854,10 @@ button[type="submit"]:hover { transform: scale(1.05); }
 
   <nav id="nav">
     <a href="#hero" class="active">Home</a>
-    <a href="our-services.html">Services</a>
-    <a href="our-team.html">Our Team</a>
+    <a href="https://marketingwithnikhil.site/Our%20Services.html">Services</a>
+    <a href="https://marketingwithnikhil.site/Our%20Team.html">Our Team</a>
     <a href="#contact">Contact</a>
-    <a href="blog.html">Blog</a>
+    <a href="https://marketingwithnikhil.site/blog.html">Blog</a>
   </nav>
 
   <a href="#contact" class="free-audit">Free Website Audit</a>
@@ -878,7 +899,10 @@ button[type="submit"]:hover { transform: scale(1.05); }
           <li>Monthly Reporting & Analytics</li>
         </ul>
         <p class="detail-desc">We use data-driven SEO strategies to consistently move you up in search rankings. More visibility means more traffic, more leads, and more revenue — without paying per click.</p>
-        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Free SEO Audit</a>
+        <div class="detail-actions">
+          <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Free SEO Audit</a>
+          <a href="#contact" class="detail-quote-btn"><i class="fas fa-tag"></i> Get Free Quote</a>
+        </div>
       </div>
     </div>
 
@@ -904,7 +928,10 @@ button[type="submit"]:hover { transform: scale(1.05); }
           <li>Monthly Performance Reports</li>
         </ul>
         <p class="detail-desc">We turn your social media into a powerful sales engine — creating scroll-stopping content, growing your followers, and converting them into loyal customers.</p>
-        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Start Growing Today</a>
+        <div class="detail-actions">
+          <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Start Growing Today</a>
+          <a href="#contact" class="detail-quote-btn"><i class="fas fa-tag"></i> Get Free Quote</a>
+        </div>
       </div>
     </div>
 
@@ -930,7 +957,10 @@ button[type="submit"]:hover { transform: scale(1.05); }
           <li>Weekly Budget & Performance Reports</li>
         </ul>
         <p class="detail-desc">Every rupee of your ad spend is tracked and optimized. We focus on lowering your cost-per-lead while increasing quality traffic that converts into paying customers.</p>
-        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Launch a Campaign</a>
+        <div class="detail-actions">
+          <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Launch a Campaign</a>
+          <a href="#contact" class="detail-quote-btn"><i class="fas fa-tag"></i> Get Free Quote</a>
+        </div>
       </div>
     </div>
 
@@ -956,7 +986,10 @@ button[type="submit"]:hover { transform: scale(1.05); }
           <li>Post-Launch Support & Maintenance</li>
         </ul>
         <p class="detail-desc">Your website is your 24/7 salesperson. We build sites that look professional, load fast, rank on Google, and turn visitors into enquiries and sales.</p>
-        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Free Quote</a>
+        <div class="detail-actions">
+          <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Free Quote</a>
+          <a href="#contact" class="detail-quote-btn"><i class="fas fa-tag"></i> Get Free Quote</a>
+        </div>
       </div>
     </div>
 
@@ -982,7 +1015,10 @@ button[type="submit"]:hover { transform: scale(1.05); }
           <li>Content Performance Tracking</li>
         </ul>
         <p class="detail-desc">Great content is the backbone of every digital strategy. We create content that educates your audience, builds trust, and steadily drives more qualified traffic over time.</p>
-        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Start a Content Strategy</a>
+        <div class="detail-actions">
+          <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Start a Content Strategy</a>
+          <a href="#contact" class="detail-quote-btn"><i class="fas fa-tag"></i> Get Free Quote</a>
+        </div>
       </div>
     </div>
 
@@ -1008,7 +1044,10 @@ button[type="submit"]:hover { transform: scale(1.05); }
           <li>Brand Style Guide</li>
         </ul>
         <p class="detail-desc">First impressions matter. We create compelling visuals that reflect your brand's personality, capture attention, and give your business a consistent, professional look.</p>
-        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Design Quote</a>
+        <div class="detail-actions">
+          <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Design Quote</a>
+          <a href="#contact" class="detail-quote-btn"><i class="fas fa-tag"></i> Get Free Quote</a>
+        </div>
       </div>
     </div>
 
@@ -1134,7 +1173,7 @@ button[type="submit"]:hover { transform: scale(1.05); }
   <div class="contact-info">
     <h2>Contact Us</h2>
     <p><strong>Location:</strong> Mohali, Chandigarh</p>
-    <p><strong>Email:</strong> <a href="mailto:marketingwithnikhil17@gmail.com">marketingwithnikhil17@gmail.com</a></p>
+    <p><strong>Email:</strong> <a href="mailto:info@marketingwithnikhil.site">info@marketingwithnikhil.site</a></p>
     <p><strong>Phone:</strong> <a href="tel:+919805647008">+91-9805647008</a></p>
     <a href="https://wa.me/919805647008" class="whatsapp-link" target="_blank" rel="noopener">Chat on WhatsApp</a>
   </div>
@@ -1184,16 +1223,16 @@ button[type="submit"]:hover { transform: scale(1.05); }
       <h4>Quick Links</h4>
       <ul>
         <li><a href="#hero">Home</a></li>
-        <li><a href="our-services.html">Services</a></li>
-        <li><a href="our-team.html">Our Team</a></li>
-        <li><a href="blog.html">Blog</a></li>
+        <li><a href="https://marketingwithnikhil.site/Our%20Services.html">Services</a></li>
+        <li><a href="https://marketingwithnikhil.site/Our%20Team.html">Our Team</a></li>
+        <li><a href="https://marketingwithnikhil.site/blog.html">Blog</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
       <ul class="footer-contact-list">
         <li><i class="fas fa-map-marker-alt"></i><span>Mohali, Chandigarh</span></li>
-        <li><i class="fas fa-envelope"></i><a href="mailto:marketingwithnikhil17@gmail.com">marketingwithnikhil17@gmail.com</a></li>
+        <li><i class="fas fa-envelope"></i><a href="mailto:info@marketingwithnikhil.site">info@marketingwithnikhil.site</a></li>
         <li><i class="fas fa-phone"></i><a href="tel:+919805647008">+91-9805647008</a></li>
       </ul>
     </div>
@@ -1385,18 +1424,4 @@ function closePopup() {
 window.addEventListener("scroll", () => {
   if (!popupShown && window.scrollY > 600) {
     popupShown = true;
-    if (popup) popup.style.display = "block";
-    if (overlay) overlay.style.display = "block";
-  }
-});
-
-const closePopupBtn = document.getElementById("closePopup");
-if (closePopupBtn) closePopupBtn.addEventListener("click", closePopup);
-if (overlay) overlay.addEventListener("click", closePopup);
-
-const popupClaim = document.getElementById("popupClaim");
-if (popupClaim) popupClaim.addEventListener("click", closePopup);
-
-</script>
-</body>
-</html>
+    if (popup) popup.sty
