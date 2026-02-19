@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
 
-<!-- ✅ FIX: Single clean title (was duplicated) -->
 <title>Marketing with Nikhil — Digital Marketing Agency | SEO, Ads & Web Design</title>
-
-<!-- ✅ FIX: Removed broken <H1> tags from meta name, single clean description -->
 <meta name="description" content="Marketing with Nikhil — Expert digital marketing agency in Mohali offering SEO, Social Media Marketing, Google & Meta Ads, and Website Design. Upwork Top Rated Plus & Google Certified." />
 
 <meta charset="UTF-8">
@@ -17,14 +14,11 @@
 <meta property="og:title" content="Marketing with Nikhil — Digital Marketing & Growth" />
 <meta property="og:description" content="SEO, Social Media, Google & Meta Ads, Web Design for startups and small businesses. Upwork Top Rated Plus & Google Certified." />
 <meta property="og:url" content="https://marketingwithnikhil.site/" />
-<!-- ✅ FIX: og:image needs absolute URL -->
 <meta property="og:image" content="https://marketingwithnikhil.site/Images/Logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 
-<!-- Google Search Console Verification -->
 <meta name="google-site-verification" content="zr-uGSxayEoMG7yN6kxN1Ce1QUH8TPc2T51E_WlspWg" />
 
-<!-- ✅ FIX: Schema.org — removed placeholder "yourwebsite.com", fixed email format, fixed trailing comma in sameAs, fixed URL with spaces -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -72,9 +66,7 @@
   gtag('config', 'G-61LW8EXTNH');
 </script>
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<!-- Font Awesome (moved to head so icons load with the page) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="icon" type="image/jpeg" href="favicon.jpg">
 
@@ -91,18 +83,23 @@
 
 /* ===================== RESET & BASE ===================== */
 *, *::before, *::after { box-sizing: border-box; }
-img { max-width: 100%; height: auto; } /* ✅ FIX: Global image overflow fix */
+img { max-width: 100%; height: auto; }
 
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0; padding: 0;
   background: linear-gradient(#f4f4f4, #e9f5ff);
   scroll-behavior: smooth;
-  cursor: none;
   overflow-x: hidden;
+  /* FIX: cursor:none moved to media query only — no global override */
 }
 
-/* ===================== CUSTOM CURSOR ===================== */
+/* ===================== CUSTOM CURSOR — FIXED ===================== */
+/* Only hide native cursor on true pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+}
+
 .cursor {
   position: fixed;
   top: 0; left: 0;
@@ -114,6 +111,8 @@ body {
   z-index: 99999;
   transition: width 0.15s, height 0.15s;
   box-shadow: 0 0 8px var(--accent), 0 0 20px rgba(0,255,204,0.7);
+  /* Hidden by default — JS will show it only on pointer devices */
+  display: none;
 }
 .cursor-ring {
   position: fixed;
@@ -126,13 +125,10 @@ body {
   z-index: 99998;
   opacity: 0.7;
   transition: width 0.25s, height 0.25s, opacity 0.25s;
+  display: none;
 }
 .cursor.active { width: 8px; height: 8px; background: #fff; }
 .cursor-ring.active { width: 50px; height: 50px; opacity: 1; }
-@media (hover: none) {
-  .cursor, .cursor-ring { display: none; }
-  body { cursor: auto; }
-}
 
 /* ===================== HEADER ===================== */
 header {
@@ -154,7 +150,6 @@ header.scrolled {
   background: rgba(0,0,0,0.92);
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
-
 .header-left {
   display: flex;
   align-items: center;
@@ -180,7 +175,7 @@ header.scrolled {
   white-space: nowrap;
 }
 
-/* ✅ FIX: Hamburger button — was completely missing */
+/* ===================== HAMBURGER — FIXED ===================== */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -246,525 +241,7 @@ nav a:hover { color: var(--accent); }
 }
 .free-audit:hover { transform: scale(1.08); }
 
-/* ===================== HERO ===================== */
-.hero {
-  position: relative;
-  background-image: url('Images/digital.jpg');
-  background-size: cover;
-  background-position: center;
-  min-height: 700px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  overflow: hidden;
-}
-.hero::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8));
-  z-index: 1;
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px; width: 100%;
-  text-align: center;
-  background: rgba(0,0,0,0.4);
-  padding: 30px;
-  border-radius: 15px;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: heroEntrance 1s forwards;
-}
-@keyframes heroEntrance { to { opacity: 1; transform: translateY(0); } }
-/* ✅ FIX: clamp() for responsive font sizes */
-.hero h1 {
-  font-size: clamp(1.8em, 5vw, 3em);
-  margin: 0 0 15px; color: var(--white); line-height: 1.2;
-}
-.hero p {
-  font-size: clamp(0.95em, 2.5vw, 1.3em);
-  color: var(--white); margin-bottom: 20px;
-}
-.cta-button {
-  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
-  padding: 15px 30px;
-  font-size: clamp(0.95em, 2.5vw, 1.2em);
-  color: var(--white); border: none; cursor: pointer;
-  text-decoration: none; border-radius: 50px;
-  transition: all 0.3s ease;
-  animation: pulse 2s infinite;
-  display: inline-block; margin: 10px;
-}
-.cta-button:hover {
-  transform: scale(1.08);
-  background: linear-gradient(45deg, var(--orange-dark), #ff3300);
-  animation: none;
-}
-@keyframes pulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* ===================== SERVICES ===================== */
-.services-wrapper {
-  background: var(--white);
-  padding: 70px 60px;
-}
-.services-wrapper h2 {
-  text-align: center;
-  font-size: clamp(1.8em, 4vw, 2.4em);
-  color: var(--orange);
-  margin: 0 0 50px;
-}
-.service-display {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.service {
-  text-align: center;
-  border-radius: 16px;
-  overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  cursor: pointer;
-  background: #f9f9f9;
-  border: 1px solid #eee;
-  display: flex; flex-direction: column;
-}
-.service:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 35px rgba(0,0,0,0.15);
-}
-.service-img-wrap {
-  width: 100%; height: 200px;
-  overflow: hidden; flex-shrink: 0;
-}
-.service-img-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-.service:hover .service-img-wrap img { transform: scale(1.06); }
-.service-body {
-  padding: 20px 20px 22px;
-  display: flex; flex-direction: column;
-  flex: 1;
-}
-.service-body h3 { margin: 0 0 10px; font-size: 1.15em; color: var(--orange); }
-.service-body p { color: #555; font-size: 0.9em; margin: 0 0 16px; flex: 1; line-height: 1.6; }
-.service-learn-btn {
-  display: inline-block;
-  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
-  color: var(--white); text-decoration: none;
-  padding: 9px 22px; border-radius: 50px;
-  font-size: 0.85em; font-weight: 600;
-  transition: transform 0.3s, box-shadow 0.3s;
-  align-self: center;
-  margin-top: auto;
-}
-.service-learn-btn:hover {
-  transform: scale(1.07);
-  box-shadow: 0 6px 20px rgba(255,153,0,0.4);
-}
-
-/* Service click hint */
-.service-click-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.78em;
-  color: var(--orange);
-  opacity: 0.7;
-  margin-top: auto;
-  padding-top: 10px;
-  transition: opacity 0.2s;
-}
-.service:hover .service-click-hint { opacity: 1; }
-/* Remove old learn btn — no longer used */
-.service-learn-btn { display: none; }
-
-/* Service Modal */
-.service-modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.65); z-index: 99990;
-  align-items: center; justify-content: center;
-  padding: 20px;
-}
-.service-modal-overlay.active { display: flex; }
-.service-modal {
-  background: var(--white); border-radius: 18px;
-  max-width: 560px; width: 100%;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-  overflow: hidden;
-  animation: modalIn 0.3s ease;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-@keyframes modalIn {
-  from { opacity:0; transform: scale(0.88) translateY(24px); }
-  to   { opacity:1; transform: scale(1) translateY(0); }
-}
-.service-modal-imgwrap {
-  position: relative; width: 100%;
-}
-.service-modal-img {
-  width: 100%; height: 230px;
-  object-fit: cover; display: block;
-}
-.service-modal-x {
-  position: absolute; top: 12px; right: 12px;
-  background: rgba(0,0,0,0.55); color: #fff;
-  border: none; width: 34px; height: 34px;
-  border-radius: 50%; font-size: 15px;
-  cursor: pointer; display: flex;
-  align-items: center; justify-content: center;
-  transition: background 0.2s;
-  z-index: 2;
-}
-.service-modal-x:hover { background: #ff3b3b; }
-.service-modal-body { padding: 28px 28px 30px; }
-.service-modal-body h3 { color: var(--orange); font-size: 1.35em; margin: 0 0 12px; }
-.service-modal-body p { color: #444; line-height: 1.8; font-size: 0.95em; margin: 0 0 22px; }
-.service-modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-.service-modal-cta {
-  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
-  color: var(--white); text-decoration: none;
-  padding: 11px 26px; border-radius: 50px;
-  font-weight: 600; font-size: 0.92em; transition: 0.3s;
-}
-.service-modal-cta:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,102,0,0.35); }
-.service-modal-close-btn {
-  background: #f0f0f0; color: #333;
-  border: none; padding: 11px 22px;
-  border-radius: 50px; font-size: 0.92em;
-  cursor: pointer; transition: 0.3s;
-  font-family: 'Poppins', sans-serif;
-}
-.service-modal-close-btn:hover { background: #e0e0e0; }
-
-/* ===================== TEAM ===================== */
-.team-section { background: var(--white); padding: 80px 20px; text-align: center; }
-.team-section > h2 {
-  font-size: clamp(1.8em, 4vw, 2.5em);
-  margin-bottom: 40px; color: var(--orange);
-}
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 35px;
-  justify-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.team-member {
-  background: #f9f9f9; border-radius: 15px;
-  padding: 25px; width: 100%;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.team-member:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-.team-member img {
-  width: 150px; height: 150px;
-  border-radius: 50%; object-fit: cover;
-  border: 3px solid #000; margin-bottom: 10px;
-  background: #ddd; /* ✅ FIX: fallback bg for broken images */
-  display: block; margin-left: auto; margin-right: auto;
-}
-.team-member h4 { font-size: 1.1em; color: #333; margin: 8px 0 4px; }
-.team-member p { color: #555; font-size: 0.9em; margin: 0; }
-
-/* ===================== STATS ===================== */
-.stats-section {
-  background: #000; padding: 70px 30px;
-  color: var(--white); font-family: 'Poppins', sans-serif;
-}
-.stats-top {
-  max-width: 900px; margin: 0 auto 10px;
-  display: flex; justify-content: space-around;
-  align-items: center; flex-wrap: wrap; gap: 30px;
-  text-align: center;
-}
-.stat-box h2 {
-  font-size: clamp(2.2em, 6vw, 3.5em);
-  color: #ff2e2e; margin: 0;
-  display: flex; justify-content: center; align-items: center; gap: 8px;
-}
-.stat-box h2 img { width: 38px; height: 38px; }
-.stat-box p { font-size: clamp(1em, 2.5vw, 1.3em); margin-top: 8px; }
-.stats-divider {
-  width: 80%; max-width: 1100px;
-  height: 1px; background: rgba(255,255,255,0.15);
-  margin: 40px auto;
-}
-/* Infinite auto-scroll badge slider */
-.stats-slider-wrap {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 10px 0;
-}
-/* Fade edges */
-.stats-slider-wrap::before,
-.stats-slider-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 80px;
-  z-index: 2;
-  pointer-events: none;
-}
-.stats-slider-wrap::before { left: 0; background: linear-gradient(to right, #000, transparent); }
-.stats-slider-wrap::after  { right: 0; background: linear-gradient(to left,  #000, transparent); }
-
-.stats-bottom {
-  display: flex;
-  align-items: center;
-  width: max-content;
-  animation: badgeScroll 22s linear infinite;
-}
-.stats-bottom:hover { animation-play-state: paused; }
-
-@keyframes badgeScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.logo-stat {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 0 40px;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-.logo-stat img {
-  width: 85px;
-  height: 85px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.logo-stat-text { display: flex; flex-direction: column; gap: 3px; }
-.logo-stat-text strong {
-  font-size: 1em;
-  color: #fff;
-  font-weight: 600;
-  line-height: 1.3;
-}
-.logo-stat-text span {
-  font-size: 0.85em;
-  color: #aaa;
-}
-.stats-separator {
-  width: 1px;
-  height: 55px;
-  background: rgba(255,255,255,0.18);
-  flex-shrink: 0;
-}
-
-/* ===================== CONTACT ===================== */
-.contact-container {
-  max-width: 1000px; margin: 80px auto;
-  background: var(--white); border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  padding: 40px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-}
-.contact-info h2, .contact-form h2 { color: var(--orange); margin-bottom: 20px; }
-.contact-info p { margin: 10px 0; font-size: 1em; color: #333; }
-.contact-info a { color: #1E90FF; font-weight: 600; text-decoration: none; }
-.contact-info a:hover { color: #104E8B; }
-.whatsapp-link {
-  display: inline-block;
-  background: linear-gradient(45deg, var(--green), #1ebe5d);
-  color: var(--white); padding: 12px 25px;
-  border-radius: 50px; font-weight: bold;
-  text-decoration: none; margin-top: 15px;
-  transition: all 0.3s ease;
-}
-.whatsapp-link:hover { transform: scale(1.08); }
-
-/* ===================== FORM ===================== */
-form input, form textarea {
-  width: 100%; padding: 12px; margin: 8px 0;
-  border: 1px solid #ccc; border-radius: 10px;
-  font-size: 16px; font-family: 'Poppins', sans-serif;
-}
-button[type="submit"] {
-  background: linear-gradient(45deg, #00cc66, #00ff88);
-  color: var(--white); border: none;
-  padding: 12px 25px; border-radius: 50px;
-  font-size: 16px; cursor: pointer;
-  transition: 0.3s; margin-top: 5px;
-}
-button[type="submit"]:hover { transform: scale(1.05); }
-
-/* ===================== FOOTER ===================== */
-.footer-main {
-  background: #111;
-  color: #ccc;
-  padding: 60px 60px 30px;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1.3fr 1fr;
-  gap: 50px;
-  max-width: 1200px;
-  margin: 0 auto 40px;
-}
-.footer-brand .footer-logo-row {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
-}
-.footer-brand .footer-logo-row img {
-  width: 48px; height: 48px; border-radius: 50%;
-  object-fit: cover; border: 2px solid var(--cyan);
-}
-.footer-brand .footer-logo-row span {
-  font-size: 1.05em; font-weight: 700; text-transform: uppercase;
-  background: linear-gradient(90deg, #ff9900, #00ff88);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; letter-spacing: 1px;
-}
-.footer-brand p {
-  font-size: 0.9em; line-height: 1.75; color: #aaa;
-  margin: 0; max-width: 260px;
-}
-.footer-col h4 {
-  color: #fff; font-size: 1em; font-weight: 600;
-  margin: 0 0 18px; letter-spacing: 0.5px;
-}
-.footer-col ul {
-  list-style: none; margin: 0; padding: 0;
-  display: flex; flex-direction: column; gap: 10px;
-}
-.footer-col ul li a {
-  color: #aaa; text-decoration: none;
-  font-size: 0.92em; transition: color 0.3s;
-}
-.footer-col ul li a:hover { color: var(--orange); }
-.footer-contact-list {
-  list-style: none; margin: 0; padding: 0;
-  display: flex; flex-direction: column; gap: 14px;
-}
-.footer-contact-list li {
-  display: flex; align-items: flex-start;
-  gap: 10px; font-size: 0.9em; color: #aaa; line-height: 1.5;
-}
-.footer-contact-list li i {
-  color: var(--orange); margin-top: 2px;
-  flex-shrink: 0; font-size: 1em;
-}
-.footer-contact-list li a { color: #aaa; text-decoration: none; transition: color 0.3s; }
-.footer-contact-list li a:hover { color: var(--orange); }
-.footer-social-list {
-  list-style: none; margin: 0; padding: 0;
-  display: flex; flex-direction: column; gap: 14px;
-}
-.footer-social-list li a {
-  display: flex; align-items: center; gap: 10px;
-  color: #aaa; text-decoration: none; font-size: 0.92em; transition: color 0.3s;
-}
-.footer-social-list li a i { font-size: 1.15em; }
-.footer-social-list li a:hover { color: var(--orange); }
-.footer-divider {
-  border: none; border-top: 1px solid rgba(255,255,255,0.1);
-  margin: 0 auto 20px; max-width: 1200px;
-}
-.footer-bottom {
-  text-align: center; font-size: 0.85em; color: #555;
-  max-width: 1200px; margin: 0 auto; padding-bottom: 10px;
-}
-@media (max-width: 900px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 35px; }
-  .footer-main { padding: 50px 30px 25px; }
-}
-@media (max-width: 500px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .footer-main { padding: 40px 20px 20px; }
-  .footer-brand p { max-width: 100%; }
-}
-
-/* ===================== FLOATING WHATSAPP ===================== */
-.floating-wp {
-  position: fixed;
-  bottom: 20px; right: 20px;
-  background: var(--green);
-  color: var(--white);
-  width: 56px; height: 56px; /* ✅ FIX: proper touch target */
-  border-radius: 50%;
-  font-size: 24px;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  z-index: 998; transition: 0.3s;
-  text-decoration: none;
-}
-.floating-wp:hover { transform: scale(1.15); }
-
-/* ===================== POPUP ===================== */
-.popup-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.5); z-index: 99998;
-}
-.popup-container {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 380px; max-width: 92vw;
-  background: var(--white);
-  border-radius: 18px;
-  z-index: 99999;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-  display: none;
-  overflow: hidden;
-  animation: popupIn 0.4s ease forwards;
-}
-@keyframes popupIn {
-  from { opacity: 0; transform: translate(-50%,-50%) scale(0.7); }
-  to   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
-}
-.popup-header {
-  width: 100%; height: 200px;
-  background: linear-gradient(135deg, var(--orange), var(--accent));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 4em;
-}
-.popup-close {
-  position: absolute; top: 10px; right: 10px;
-  background: #ff3b3b; width: 34px; height: 34px;
-  border-radius: 50%; color: var(--white);
-  font-size: 16px; line-height: 1;
-  display: flex; justify-content: center; align-items: center;
-  cursor: pointer; border: none;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2); z-index: 1;
-}
-.popup-content { padding: 20px; text-align: center; }
-.popup-content h3 { color: var(--orange-dark); margin-bottom: 8px; font-size: 1.25em; }
-.popup-content p { color: #444; margin-bottom: 15px; font-size: 0.95em; }
-.popup-btn {
-  display: inline-block; padding: 12px 25px;
-  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
-  color: var(--white); border-radius: 50px;
-  text-decoration: none; font-weight: 600; transition: 0.3s;
-}
-.popup-btn:hover { transform: scale(1.05); }
-
-/* ===================== RESPONSIVE ===================== */
-
-/* Large tablet */
-@media (max-width: 1024px) {
-  .services-wrapper { padding: 60px 30px; }
-  .service-display { grid-template-columns: repeat(2, 1fr); gap: 25px; }
-  .team-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* Mobile nav — hamburger + fullscreen overlay */
+/* Mobile nav */
 @media (max-width: 900px) {
   .hamburger { display: flex; }
   .free-audit { display: none; }
@@ -808,11 +285,519 @@ button[type="submit"]:hover { transform: scale(1.05); }
     transform: scale(1.03);
   }
   nav a::after { display: none; }
-
-  .contact-container { grid-template-columns: 1fr; padding: 25px; margin: 40px 15px; }
 }
 
-/* Tablet */
+/* ===================== HERO ===================== */
+.hero {
+  position: relative;
+  background-image: url('Images/digital.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px; width: 100%;
+  text-align: center;
+  background: rgba(0,0,0,0.4);
+  padding: 30px;
+  border-radius: 15px;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: heroEntrance 1s forwards;
+}
+@keyframes heroEntrance { to { opacity: 1; transform: translateY(0); } }
+.hero h1 {
+  font-size: clamp(1.8em, 5vw, 3em);
+  margin: 0 0 15px; color: var(--white); line-height: 1.2;
+}
+.hero p {
+  font-size: clamp(0.95em, 2.5vw, 1.3em);
+  color: var(--white); margin-bottom: 20px;
+}
+.cta-button {
+  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
+  padding: 15px 30px;
+  font-size: clamp(0.95em, 2.5vw, 1.2em);
+  color: var(--white); border: none; cursor: pointer;
+  text-decoration: none; border-radius: 50px;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+  display: inline-block; margin: 10px;
+}
+.cta-button:hover {
+  transform: scale(1.08);
+  background: linear-gradient(45deg, var(--orange-dark), #ff3300);
+  animation: none;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ===================== SERVICES — EXPAND STYLE (like services page) ===================== */
+.services-wrapper {
+  background: var(--white);
+  padding: 70px 60px;
+}
+.services-wrapper h2 {
+  text-align: center;
+  font-size: clamp(1.8em, 4vw, 2.4em);
+  color: var(--orange);
+  margin: 0 0 50px;
+}
+.service-display {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Service Card — expand on click like services page */
+.service {
+  background: #f9f9f9;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.service:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.15);
+  border-color: var(--orange);
+}
+.service.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), 0 20px 50px rgba(0,255,204,0.08);
+  transform: none;
+}
+
+.service-img-wrap {
+  width: 100%; height: 200px;
+  overflow: hidden; flex-shrink: 0;
+  position: relative;
+}
+.service-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.service:hover .service-img-wrap img { transform: scale(1.06); }
+
+/* Number badge */
+.card-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--orange); color: #fff;
+  font-size: 0.72em; font-weight: 700;
+  padding: 4px 10px; border-radius: 50px;
+  letter-spacing: 0.5px;
+  z-index: 1;
+}
+
+.service-body {
+  padding: 20px 20px 16px;
+  display: flex; flex-direction: column;
+  flex: 1;
+}
+.service-body h3 { margin: 0 0 10px; font-size: 1.1em; color: #222; font-weight: 600; }
+.service-body p { color: #555; font-size: 0.88em; margin: 0 0 14px; line-height: 1.6; }
+
+/* Click hint */
+.service-click-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78em;
+  color: var(--orange);
+  opacity: 0.6;
+  margin-top: auto;
+  transition: opacity 0.2s;
+}
+.service:hover .service-click-hint,
+.service.active .service-click-hint { opacity: 1; }
+.service.active .service-click-hint { color: var(--accent); }
+.service.active .service-click-hint .hint-text { display: none; }
+.service.active .service-click-hint::before {
+  content: "▲ Click to collapse";
+  font-size: 0.78em;
+  color: var(--accent);
+}
+
+/* Expand panel */
+.service-details {
+  max-height: 0;
+  overflow: hidden;
+  background: #f0fdf8;
+  border-top: 1px solid #ddd;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  padding: 0 22px;
+}
+.service-details.open {
+  max-height: 500px;
+  padding: 20px 22px 22px;
+  animation: detailsIn 0.3s ease;
+}
+@keyframes detailsIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.service-details h4 {
+  color: var(--accent);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0 0 12px;
+  /* use orange for light bg */
+  color: var(--orange-dark);
+}
+.service-details ul {
+  list-style: none; margin: 0 0 16px; padding: 0;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.service-details ul li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.85em; color: #333; line-height: 1.55;
+}
+.service-details ul li::before {
+  content: '✓';
+  color: #00aa77; font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
+}
+.service-details .detail-desc {
+  font-size: 0.85em; color: #555;
+  line-height: 1.7; margin: 0 0 16px;
+}
+.detail-cta {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
+  color: var(--white); text-decoration: none;
+  padding: 9px 22px; border-radius: 50px;
+  font-size: 0.85em; font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.detail-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255,102,0,0.35);
+}
+
+/* ===================== TEAM ===================== */
+.team-section { background: var(--white); padding: 80px 20px; text-align: center; }
+.team-section > h2 {
+  font-size: clamp(1.8em, 4vw, 2.5em);
+  margin-bottom: 40px; color: var(--orange);
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  justify-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.team-member {
+  background: #f9f9f9; border-radius: 15px;
+  padding: 25px; width: 100%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.team-member:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.team-member img {
+  width: 150px; height: 150px;
+  border-radius: 50%; object-fit: cover;
+  border: 3px solid #000; margin-bottom: 10px;
+  background: #ddd;
+  display: block; margin-left: auto; margin-right: auto;
+}
+.team-member h4 { font-size: 1.1em; color: #333; margin: 8px 0 4px; }
+.team-member p { color: #555; font-size: 0.9em; margin: 0; }
+
+/* ===================== STATS ===================== */
+.stats-section {
+  background: #000; padding: 70px 30px;
+  color: var(--white);
+}
+.stats-top {
+  max-width: 900px; margin: 0 auto 10px;
+  display: flex; justify-content: space-around;
+  align-items: center; flex-wrap: wrap; gap: 30px;
+  text-align: center;
+}
+.stat-box h2 {
+  font-size: clamp(2.2em, 6vw, 3.5em);
+  color: #ff2e2e; margin: 0;
+  display: flex; justify-content: center; align-items: center; gap: 8px;
+}
+.stat-box h2 img { width: 38px; height: 38px; }
+.stat-box p { font-size: clamp(1em, 2.5vw, 1.3em); margin-top: 8px; }
+.stats-divider {
+  width: 80%; max-width: 1100px;
+  height: 1px; background: rgba(255,255,255,0.15);
+  margin: 40px auto;
+}
+.stats-slider-wrap {
+  width: 100%; overflow: hidden;
+  position: relative; padding: 10px 0;
+}
+.stats-slider-wrap::before,
+.stats-slider-wrap::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0;
+  width: 80px; z-index: 2; pointer-events: none;
+}
+.stats-slider-wrap::before { left: 0; background: linear-gradient(to right, #000, transparent); }
+.stats-slider-wrap::after  { right: 0; background: linear-gradient(to left, #000, transparent); }
+.stats-bottom {
+  display: flex; align-items: center;
+  width: max-content;
+  animation: badgeScroll 22s linear infinite;
+}
+.stats-bottom:hover { animation-play-state: paused; }
+@keyframes badgeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.logo-stat {
+  display: flex; align-items: center;
+  gap: 14px; padding: 0 40px;
+  flex-shrink: 0; white-space: nowrap;
+}
+.logo-stat img { width: 85px; height: 85px; object-fit: contain; flex-shrink: 0; }
+.logo-stat-text { display: flex; flex-direction: column; gap: 3px; }
+.logo-stat-text strong { font-size: 1em; color: #fff; font-weight: 600; line-height: 1.3; }
+.logo-stat-text span { font-size: 0.85em; color: #aaa; }
+.stats-separator {
+  width: 1px; height: 55px;
+  background: rgba(255,255,255,0.18); flex-shrink: 0;
+}
+
+/* ===================== CONTACT ===================== */
+.contact-container {
+  max-width: 1000px; margin: 80px auto;
+  background: var(--white); border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+}
+.contact-info h2, .contact-form h2 { color: var(--orange); margin-bottom: 20px; }
+.contact-info p { margin: 10px 0; font-size: 1em; color: #333; }
+.contact-info a { color: #1E90FF; font-weight: 600; text-decoration: none; }
+.contact-info a:hover { color: #104E8B; }
+.whatsapp-link {
+  display: inline-block;
+  background: linear-gradient(45deg, var(--green), #1ebe5d);
+  color: var(--white); padding: 12px 25px;
+  border-radius: 50px; font-weight: bold;
+  text-decoration: none; margin-top: 15px;
+  transition: all 0.3s ease;
+}
+.whatsapp-link:hover { transform: scale(1.08); }
+
+/* ===================== FORM ===================== */
+form input, form textarea {
+  width: 100%; padding: 12px; margin: 8px 0;
+  border: 1px solid #ccc; border-radius: 10px;
+  font-size: 16px; font-family: 'Poppins', sans-serif;
+}
+button[type="submit"] {
+  background: linear-gradient(45deg, #00cc66, #00ff88);
+  color: var(--white); border: none;
+  padding: 12px 25px; border-radius: 50px;
+  font-size: 16px; cursor: pointer;
+  transition: 0.3s; margin-top: 5px;
+}
+button[type="submit"]:hover { transform: scale(1.05); }
+
+/* ===================== FOOTER ===================== */
+.footer-main {
+  background: #111; color: #ccc;
+  padding: 60px 60px 30px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.3fr 1fr;
+  gap: 50px;
+  max-width: 1200px; margin: 0 auto 40px;
+}
+.footer-brand .footer-logo-row {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.footer-brand .footer-logo-row img {
+  width: 48px; height: 48px; border-radius: 50%;
+  object-fit: cover; border: 2px solid var(--accent);
+}
+.footer-brand .footer-logo-row span {
+  font-size: 1.05em; font-weight: 700; text-transform: uppercase;
+  background: linear-gradient(90deg, #ff9900, #00ff88);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: 1px;
+}
+.footer-brand p {
+  font-size: 0.9em; line-height: 1.75; color: #aaa;
+  margin: 0; max-width: 260px;
+}
+.footer-col h4 {
+  color: #fff; font-size: 1em; font-weight: 600;
+  margin: 0 0 18px; letter-spacing: 0.5px;
+}
+.footer-col ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.footer-col ul li a {
+  color: #aaa; text-decoration: none;
+  font-size: 0.92em; transition: color 0.3s;
+}
+.footer-col ul li a:hover { color: var(--orange); }
+.footer-contact-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.footer-contact-list li {
+  display: flex; align-items: flex-start;
+  gap: 10px; font-size: 0.9em; color: #aaa; line-height: 1.5;
+}
+.footer-contact-list li i { color: var(--orange); margin-top: 2px; flex-shrink: 0; }
+.footer-contact-list li a { color: #aaa; text-decoration: none; transition: color 0.3s; }
+.footer-contact-list li a:hover { color: var(--orange); }
+.footer-social-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.footer-social-list li a {
+  display: flex; align-items: center; gap: 10px;
+  color: #aaa; text-decoration: none; font-size: 0.92em; transition: color 0.3s;
+}
+.footer-social-list li a i { font-size: 1.15em; }
+.footer-social-list li a:hover { color: var(--orange); }
+.footer-divider {
+  border: none; border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 0 auto 20px; max-width: 1200px;
+}
+.footer-bottom {
+  text-align: center; font-size: 0.85em; color: #555;
+  max-width: 1200px; margin: 0 auto; padding-bottom: 10px;
+}
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 35px; }
+  .footer-main { padding: 50px 25px 25px; }
+}
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .footer-main { padding: 40px 20px 20px; }
+  .footer-brand p { max-width: 100%; }
+  .footer-col.links-col ul {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .footer-col.links-col ul li a {
+    display: block;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 10px 14px;
+    text-align: center; font-size: 0.88em; color: #ccc;
+  }
+  .footer-col.links-col ul li a:hover {
+    background: var(--orange); color: #fff; border-color: var(--orange);
+  }
+  .footer-social-list { flex-direction: row; gap: 14px; flex-wrap: wrap; }
+  .footer-social-list li a {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px; padding: 9px 18px; font-size: 0.88em;
+  }
+  .footer-social-list li a:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .footer-bottom { font-size: 0.8em; padding: 0 10px 10px; }
+}
+
+/* ===================== FLOATING WHATSAPP ===================== */
+.floating-wp {
+  position: fixed;
+  bottom: 20px; right: 20px;
+  background: var(--green);
+  color: var(--white);
+  width: 56px; height: 56px;
+  border-radius: 50%; font-size: 24px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 998; transition: 0.3s; text-decoration: none;
+}
+.floating-wp:hover { transform: scale(1.15); }
+
+/* ===================== POPUP ===================== */
+.popup-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 99998;
+}
+.popup-container {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px; max-width: 92vw;
+  background: var(--white);
+  border-radius: 18px;
+  z-index: 99999;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  display: none;
+  overflow: hidden;
+  animation: popupIn 0.4s ease forwards;
+}
+@keyframes popupIn {
+  from { opacity: 0; transform: translate(-50%,-50%) scale(0.7); }
+  to   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+}
+.popup-header {
+  width: 100%; height: 200px;
+  background: linear-gradient(135deg, var(--orange), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4em;
+}
+.popup-close {
+  position: absolute; top: 10px; right: 10px;
+  background: #ff3b3b; width: 34px; height: 34px;
+  border-radius: 50%; color: var(--white);
+  font-size: 16px; line-height: 1;
+  display: flex; justify-content: center; align-items: center;
+  cursor: pointer; border: none;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2); z-index: 1;
+}
+.popup-close:hover { background: #cc0000; }
+.popup-content { padding: 20px; text-align: center; }
+.popup-content h3 { color: var(--orange-dark); margin-bottom: 8px; font-size: 1.25em; }
+.popup-content p { color: #444; margin-bottom: 15px; font-size: 0.95em; }
+.popup-btn {
+  display: inline-block; padding: 12px 25px;
+  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
+  color: var(--white); border-radius: 50px;
+  text-decoration: none; font-weight: 600; transition: 0.3s;
+}
+.popup-btn:hover { transform: scale(1.05); }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .services-wrapper { padding: 60px 30px; }
+  .service-display { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 768px) {
   .hero { min-height: 480px; }
   .hero-content { padding: 20px; }
@@ -820,77 +805,13 @@ button[type="submit"]:hover { transform: scale(1.05); }
   .service-display { grid-template-columns: 1fr; gap: 20px; }
   .team-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .site-name { font-size: 1em; }
-  .service-modal-body { padding: 20px; }
-  .service-modal-body h3 { font-size: 1.2em; }
+  .contact-container { grid-template-columns: 1fr; padding: 25px; margin: 40px 15px; }
 }
-
-/* Mobile */
 @media (max-width: 500px) {
   .hero { min-height: 400px; }
   .hero-content { padding: 15px; }
   .team-grid { grid-template-columns: 1fr; }
   .stats-top { gap: 20px; }
-  .service-modal { border-radius: 14px; }
-  .service-modal-img { height: 170px; }
-  .service-modal-actions { flex-direction: column; }
-  .service-modal-cta, .service-modal-close-btn { text-align: center; }
-}
-
-/* Footer mobile */
-@media (max-width: 900px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 35px;
-  }
-  .footer-main { padding: 50px 25px 25px; }
-  .footer-brand p { max-width: 100%; }
-}
-@media (max-width: 560px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .footer-main { padding: 40px 20px 20px; }
-
-  /* Quick links as a 2-column pill grid on small phones */
-  .footer-col.links-col ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .footer-col.links-col ul li a {
-    display: block;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 10px 14px;
-    text-align: center;
-    font-size: 0.88em;
-    color: #ccc;
-    transition: background 0.2s, color 0.2s;
-  }
-  .footer-col.links-col ul li a:hover {
-    background: var(--orange);
-    color: #fff;
-    border-color: var(--orange);
-  }
-
-  /* Contact list — keep row layout clean */
-  .footer-contact-list li { font-size: 0.85em; gap: 8px; }
-
-  /* Social icons side by side */
-  .footer-social-list { flex-direction: row; gap: 14px; flex-wrap: wrap; }
-  .footer-social-list li a {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 50px;
-    padding: 9px 18px;
-    font-size: 0.88em;
-  }
-  .footer-social-list li a:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
-
-  .footer-col h4 { font-size: 0.95em; margin-bottom: 14px; }
-  .footer-bottom { font-size: 0.8em; padding: 0 10px 10px; }
 }
 </style>
 </head>
@@ -906,18 +827,16 @@ button[type="submit"]:hover { transform: scale(1.05); }
     <div class="site-name">Marketing with Nikhil</div>
   </div>
 
-  <!-- ✅ FIX: Hamburger — was completely absent from original -->
   <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 
-  <!-- ✅ FIX: Removed rogue <li> tag, clean nav links only, fixed URL spaces -->
   <nav id="nav">
     <a href="#hero" class="active">Home</a>
-    <a href="https://marketingwithnikhil.site/Our%20Services.html">Services</a>
-    <a href="https://marketingwithnikhil.site/Our%20Team.html">Our Team</a>
+    <a href="our-services.html">Services</a>
+    <a href="our-team.html">Our Team</a>
     <a href="#contact">Contact</a>
-    <a href="https://marketingwithnikhil.site/blog.html">Blog</a>
+    <a href="blog.html">Blog</a>
   </nav>
 
   <a href="#contact" class="free-audit">Free Website Audit</a>
@@ -937,78 +856,162 @@ button[type="submit"]:hover { transform: scale(1.05); }
   <h2>Our Services</h2>
   <div class="service-display">
 
-    <div class="service" onclick="openServiceModal(0)" role="button" tabindex="0">
-      <div class="service-img-wrap"><img src="Images/seo.jpg" alt="SEO Service"></div>
+    <!-- 1. SEO -->
+    <div class="service" role="button" tabindex="0">
+      <div class="service-img-wrap">
+        <span class="card-badge">01</span>
+        <img src="Images/seo.jpg" alt="SEO Service" loading="lazy" decoding="async">
+      </div>
       <div class="service-body">
         <h3>Search Engine Optimization</h3>
-        <p>Boost your visibility and rank higher on Google with proven SEO strategies.</p>
-        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
+        <p class="card-summary">Boost your visibility and rank higher on Google with proven SEO strategies.</p>
+        <span class="service-click-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="service-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Technical SEO Audit & Fixes</li>
+          <li>Keyword Research & Strategy</li>
+          <li>On-Page Optimization</li>
+          <li>Off-Page SEO & Link Building</li>
+          <li>Local SEO & Google Business Profile</li>
+          <li>Monthly Reporting & Analytics</li>
+        </ul>
+        <p class="detail-desc">We use data-driven SEO strategies to consistently move you up in search rankings. More visibility means more traffic, more leads, and more revenue — without paying per click.</p>
+        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Free SEO Audit</a>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(1)" role="button" tabindex="0">
-      <div class="service-img-wrap"><img src="Images/Social.jpg" alt="Social Media Marketing"></div>
+    <!-- 2. Social Media -->
+    <div class="service" role="button" tabindex="0">
+      <div class="service-img-wrap">
+        <span class="card-badge">02</span>
+        <img src="Images/Social.jpg" alt="Social Media Marketing" loading="lazy" decoding="async">
+      </div>
       <div class="service-body">
         <h3>Social Media Marketing</h3>
-        <p>Engage and grow your audience across all major platforms.</p>
-        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
+        <p class="card-summary">Engage and grow your audience across all major social platforms.</p>
+        <span class="service-click-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="service-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Profile Setup & Optimization</li>
+          <li>Content Calendar & Strategy</li>
+          <li>Post Design & Copywriting</li>
+          <li>Instagram, Facebook & LinkedIn Management</li>
+          <li>Community Engagement & Growth</li>
+          <li>Monthly Performance Reports</li>
+        </ul>
+        <p class="detail-desc">We turn your social media into a powerful sales engine — creating scroll-stopping content, growing your followers, and converting them into loyal customers.</p>
+        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Start Growing Today</a>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(2)" role="button" tabindex="0">
-      <div class="service-img-wrap"><img src="Images/ads.jpg" alt="Google and Meta Ads"></div>
+    <!-- 3. Ads -->
+    <div class="service" role="button" tabindex="0">
+      <div class="service-img-wrap">
+        <span class="card-badge">03</span>
+        <img src="Images/ads.jpg" alt="Google and Meta Ads" loading="lazy" decoding="async">
+      </div>
       <div class="service-body">
         <h3>Google &amp; Meta Ads</h3>
-        <p>Run profitable ad campaigns designed to maximize your ROI.</p>
-        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
+        <p class="card-summary">Run profitable ad campaigns designed to maximize your ROI.</p>
+        <span class="service-click-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="service-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Campaign Strategy & Setup</li>
+          <li>Audience Targeting & Retargeting</li>
+          <li>Ad Copy & Creative Design</li>
+          <li>A/B Testing & Optimization</li>
+          <li>Conversion Tracking Setup</li>
+          <li>Weekly Budget & Performance Reports</li>
+        </ul>
+        <p class="detail-desc">Every rupee of your ad spend is tracked and optimized. We focus on lowering your cost-per-lead while increasing quality traffic that converts into paying customers.</p>
+        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Launch a Campaign</a>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(3)" role="button" tabindex="0">
-      <div class="service-img-wrap"><img src="Images/website.jpg" alt="Website Design"></div>
+    <!-- 4. Website -->
+    <div class="service" role="button" tabindex="0">
+      <div class="service-img-wrap">
+        <span class="card-badge">04</span>
+        <img src="Images/website.jpg" alt="Website Design" loading="lazy" decoding="async">
+      </div>
       <div class="service-body">
-        <h3>Website Design</h3>
-        <p>Modern, mobile-friendly and SEO-optimized websites that convert.</p>
-        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
+        <h3>Website Design &amp; Development</h3>
+        <p class="card-summary">Modern, mobile-friendly and SEO-optimized websites that convert.</p>
+        <span class="service-click-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="service-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Custom UI/UX Design</li>
+          <li>Mobile-First Responsive Build</li>
+          <li>SEO-Optimized Code & Structure</li>
+          <li>Speed & Performance Optimization</li>
+          <li>Contact Forms & Lead Capture</li>
+          <li>Post-Launch Support & Maintenance</li>
+        </ul>
+        <p class="detail-desc">Your website is your 24/7 salesperson. We build sites that look professional, load fast, rank on Google, and turn visitors into enquiries and sales.</p>
+        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Free Quote</a>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(4)" role="button" tabindex="0">
-      <div class="service-img-wrap"><img src="Images/Content.jpg" alt="Content Marketing"></div>
+    <!-- 5. Content -->
+    <div class="service" role="button" tabindex="0">
+      <div class="service-img-wrap">
+        <span class="card-badge">05</span>
+        <img src="Images/Content.jpg" alt="Content Marketing" loading="lazy" decoding="async">
+      </div>
       <div class="service-body">
         <h3>Content Marketing</h3>
-        <p>Create content that builds trust, authority, and converts leads.</p>
-        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
+        <p class="card-summary">Create content that builds trust, authority, and converts leads.</p>
+        <span class="service-click-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="service-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Blog Writing & SEO Articles</li>
+          <li>Email Newsletter Campaigns</li>
+          <li>Video Script & Reel Content</li>
+          <li>Case Studies & Whitepapers</li>
+          <li>Content Calendar Management</li>
+          <li>Content Performance Tracking</li>
+        </ul>
+        <p class="detail-desc">Great content is the backbone of every digital strategy. We create content that educates your audience, builds trust, and steadily drives more qualified traffic over time.</p>
+        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Start a Content Strategy</a>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(5)" role="button" tabindex="0">
-      <div class="service-img-wrap"><img src="Images/graphic.jpg" alt="Graphic Designing" onerror="this.src='Images/ads.jpg'"></div>
+    <!-- 6. Graphic -->
+    <div class="service" role="button" tabindex="0">
+      <div class="service-img-wrap">
+        <span class="card-badge">06</span>
+        <img src="Images/graphic.jpg" alt="Graphic Designing" loading="lazy" decoding="async" onerror="this.src='Images/ads.jpg'">
+      </div>
       <div class="service-body">
         <h3>Graphic Designing</h3>
-        <p>Creative designs that engage audiences and strengthen your brand identity.</p>
-        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
+        <p class="card-summary">Creative designs that engage audiences and strengthen your brand identity.</p>
+        <span class="service-click-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="service-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Logo & Brand Identity Design</li>
+          <li>Social Media Graphics & Templates</li>
+          <li>Banner & Ad Creative Design</li>
+          <li>Brochures, Flyers & Print Materials</li>
+          <li>Presentation & Pitch Deck Design</li>
+          <li>Brand Style Guide</li>
+        </ul>
+        <p class="detail-desc">First impressions matter. We create compelling visuals that reflect your brand's personality, capture attention, and give your business a consistent, professional look.</p>
+        <a href="#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Design Quote</a>
       </div>
     </div>
 
-  </div>
-</div>
-
-<!-- Service Detail Modal -->
-<div class="service-modal-overlay" id="serviceModalOverlay" onclick="closeServiceModal()">
-  <div class="service-modal" onclick="event.stopPropagation()">
-    <div class="service-modal-imgwrap">
-      <img src="" alt="" class="service-modal-img" id="modalImg">
-      <button class="service-modal-x" onclick="closeServiceModal()" aria-label="Close">✕</button>
-    </div>
-    <div class="service-modal-body">
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc"></p>
-      <div class="service-modal-actions">
-        <a href="#contact" class="service-modal-cta" onclick="closeServiceModal()">Get a Free Quote</a>
-        <button class="service-modal-close-btn" onclick="closeServiceModal()">Close</button>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -1016,49 +1019,36 @@ button[type="submit"]:hover { transform: scale(1.05); }
 <section class="team-section" id="team">
   <h2>Our Team</h2>
   <div class="team-grid">
-
     <div class="team-member">
-      <!-- ✅ FIX: .pg → .png -->
       <img src="Images/nikhil.png" alt="Nikhil Sharma" onerror="this.src='Images/Logo.png'">
       <h4>Nikhil Sharma</h4>
       <p>Founder & Digital Marketing Expert</p>
     </div>
-
     <div class="team-member">
       <img src="Images/arnav.jpg" alt="Arnav Aditya Singh Patyal">
       <h4>Arnav Aditya Singh Patyal</h4>
       <p>Project Manager</p>
     </div>
-
     <div class="team-member">
-      <!-- ✅ FIX: Added Images/ prefix -->
       <img src="Images/Sahil.PNG" alt="Sahil Sharma" onerror="this.src='Images/Logo.png'">
-      <!-- ✅ FIX: Capitalized "Sharma" -->
       <h4>Sahil Sharma</h4>
       <p>Social Media Manager & Google Ads Expert</p>
     </div>
-
     <div class="team-member">
-      <!-- ✅ FIX: Added Images/ prefix -->
       <img src="Images/Shivam.jpg" alt="Shivam Sharma" onerror="this.src='Images/Logo.png'">
       <h4>Shivam Sharma</h4>
       <p>Graphic Designer</p>
     </div>
-
     <div class="team-member">
       <img src="Images/param.jpg" alt="Paramjeet Chandel">
       <h4>Paramjeet Chandel</h4>
-      <!-- ✅ FIX: "Exicutive" → "Executive" -->
       <p>SEO Executive</p>
     </div>
-
     <div class="team-member">
-      <!-- ✅ FIX: Added Images/ prefix -->
       <img src="Images/prince.jpg" alt="Prince Sharma" onerror="this.src='Images/Logo.png'">
       <h4>Prince Sharma</h4>
       <p>Social Media Expert</p>
     </div>
-
   </div>
 </section>
 
@@ -1066,8 +1056,7 @@ button[type="submit"]:hover { transform: scale(1.05); }
 <section class="stats-section">
   <div class="stats-top">
     <div class="stat-box">
-      <!-- ✅ FIX: Counter was stuck at 0 — now uses IntersectionObserver -->
-      <h2 id="counter">1000+</h2>
+      <h2 id="counter">0+</h2>
       <p>Happy Clients</p>
     </div>
     <div class="stat-box">
@@ -1084,83 +1073,58 @@ button[type="submit"]:hover { transform: scale(1.05); }
 
   <div class="stats-slider-wrap">
     <div class="stats-bottom" id="statsSlider">
-
       <!-- Set 1 -->
       <div class="logo-stat">
         <img src="Section/upwork.png" alt="Upwork Top Rated Plus">
-        <div class="logo-stat-text">
-          <strong>Upwork Top Rated Plus</strong>
-          <span>1,000+ Hours</span>
-        </div>
+        <div class="logo-stat-text"><strong>Upwork Top Rated Plus</strong><span>1,000+ Hours</span></div>
       </div>
       <div class="stats-separator"></div>
       <div class="logo-stat">
         <img src="Section/google.png" alt="Google Certified">
-        <div class="logo-stat-text">
-          <strong>Google Certified</strong>
-        </div>
+        <div class="logo-stat-text"><strong>Google Certified</strong></div>
       </div>
       <div class="stats-separator"></div>
       <div class="logo-stat">
         <img src="Section/Lead.png" alt="Lead Generation">
-        <div class="logo-stat-text">
-          <strong>1K+ Leads Generated</strong>
-        </div>
+        <div class="logo-stat-text"><strong>1K+ Leads Generated</strong></div>
       </div>
       <div class="stats-separator"></div>
       <div class="logo-stat">
         <img src="Section/Years.png" alt="Experience">
-        <div class="logo-stat-text">
-          <strong>Trusted &amp; Experienced Team</strong>
-        </div>
+        <div class="logo-stat-text"><strong>Trusted &amp; Experienced Team</strong></div>
       </div>
       <div class="stats-separator"></div>
       <div class="logo-stat">
         <img src="Section/jobdel.png" alt="Jobs Delivered">
-        <div class="logo-stat-text">
-          <strong>500+ Jobs Delivered</strong>
-        </div>
+        <div class="logo-stat-text"><strong>500+ Jobs Delivered</strong></div>
       </div>
       <div class="stats-separator"></div>
-
-      <!-- Set 2 — exact duplicate for seamless loop -->
+      <!-- Set 2 — duplicate for seamless loop -->
       <div class="logo-stat">
         <img src="Section/upwork.png" alt="Upwork Top Rated Plus">
-        <div class="logo-stat-text">
-          <strong>Upwork Top Rated Plus</strong>
-          <span>1,000+ Hours</span>
-        </div>
+        <div class="logo-stat-text"><strong>Upwork Top Rated Plus</strong><span>1,000+ Hours</span></div>
       </div>
       <div class="stats-separator"></div>
       <div class="logo-stat">
         <img src="Section/google.png" alt="Google Certified">
-        <div class="logo-stat-text">
-          <strong>Google Certified</strong>
-        </div>
+        <div class="logo-stat-text"><strong>Google Certified</strong></div>
       </div>
       <div class="stats-separator"></div>
       <div class="logo-stat">
         <img src="Section/Lead.png" alt="Lead Generation">
-        <div class="logo-stat-text">
-          <strong>1K+ Leads Generated</strong>
-        </div>
+        <div class="logo-stat-text"><strong>1K+ Leads Generated</strong></div>
       </div>
       <div class="stats-separator"></div>
       <div class="logo-stat">
         <img src="Section/Years.png" alt="Experience">
-        <div class="logo-stat-text">
-          <strong>Trusted &amp; Experienced Team</strong>
-        </div>
+        <div class="logo-stat-text"><strong>Trusted &amp; Experienced Team</strong></div>
       </div>
       <div class="stats-separator"></div>
       <div class="logo-stat">
         <img src="Section/jobdel.png" alt="Jobs Delivered">
-        <div class="logo-stat-text">
-          <strong>500+ Jobs Delivered</strong>
-        </div>
+        <div class="logo-stat-text"><strong>500+ Jobs Delivered</strong></div>
       </div>
       <div class="stats-separator"></div>
-
     </div>
   </div>
 </section>
@@ -1170,8 +1134,7 @@ button[type="submit"]:hover { transform: scale(1.05); }
   <div class="contact-info">
     <h2>Contact Us</h2>
     <p><strong>Location:</strong> Mohali, Chandigarh</p>
-    <!-- ✅ Fixed email display -->
-    <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#3b52555d547b565a49505e4f52555c4c524f535552505352571548524f5e"><span class="__cf_email__" data-cfemail="d4bdbab2bb94b9b5a6bfb1a0bdbab3a3bda0bcbabdbfbcbdb8faa7bda0b1">[email&#160;protected]</span></a></p>
+    <p><strong>Email:</strong> <a href="mailto:marketingwithnikhil17@gmail.com">marketingwithnikhil17@gmail.com</a></p>
     <p><strong>Phone:</strong> <a href="tel:+919805647008">+91-9805647008</a></p>
     <a href="https://wa.me/919805647008" class="whatsapp-link" target="_blank" rel="noopener">Chat on WhatsApp</a>
   </div>
@@ -1210,8 +1173,6 @@ button[type="submit"]:hover { transform: scale(1.05); }
 <!-- ===================== FOOTER ===================== -->
 <footer class="footer-main">
   <div class="footer-grid">
-
-    <!-- Brand -->
     <div class="footer-brand">
       <div class="footer-logo-row">
         <img src="Images/Logo.png" alt="Marketing with Nikhil Logo">
@@ -1219,38 +1180,23 @@ button[type="submit"]:hover { transform: scale(1.05); }
       </div>
       <p>Helping businesses grow online with SEO, paid ads, web design, and data-driven digital marketing strategies.</p>
     </div>
-
-    <!-- Quick Links -->
     <div class="footer-col links-col">
       <h4>Quick Links</h4>
       <ul>
         <li><a href="#hero">Home</a></li>
-        <li><a href="https://marketingwithnikhil.site/Our%20Services.html">Services</a></li>
-        <li><a href="https://marketingwithnikhil.site/Our%20Team.html">Our Team</a></li>
-        <li><a href="https://marketingwithnikhil.site/blog.html">Blog</a></li>
+        <li><a href="our-services.html">Services</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="blog.html">Blog</a></li>
       </ul>
     </div>
-
-    <!-- Contact -->
     <div class="footer-col">
       <h4>Contact</h4>
       <ul class="footer-contact-list">
-        <li>
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Mohali, Chandigarh</span>
-        </li>
-        <li>
-          <i class="fas fa-envelope"></i>
-          <a href="/cdn-cgi/l/email-protection#ef86818980af828e9d848a9b86818898869b87818684878683c19c869b8a"><span class="__cf_email__" data-cfemail="177e797178577a76657c72637e7970607e637f797e7c7f7e7b39647e6372">[email&#160;protected]</span></a>
-        </li>
-        <li>
-          <i class="fas fa-phone"></i>
-          <a href="tel:+919805647008">+91-9805647008</a>
-        </li>
+        <li><i class="fas fa-map-marker-alt"></i><span>Mohali, Chandigarh</span></li>
+        <li><i class="fas fa-envelope"></i><a href="mailto:marketingwithnikhil17@gmail.com">marketingwithnikhil17@gmail.com</a></li>
+        <li><i class="fas fa-phone"></i><a href="tel:+919805647008">+91-9805647008</a></li>
       </ul>
     </div>
-
-    <!-- Follow Us -->
     <div class="footer-col">
       <h4>Follow Us</h4>
       <ul class="footer-social-list">
@@ -1266,29 +1212,31 @@ button[type="submit"]:hover { transform: scale(1.05); }
         </li>
       </ul>
     </div>
-
   </div>
-
   <hr class="footer-divider">
   <p class="footer-bottom">© 2026 Marketing with Nikhil — All Rights Reserved</p>
 </footer>
 
 <!-- ===================== SCRIPTS ===================== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ===== Sticky Header =====
+<script>
+
+// ===== FIX 1: STICKY HEADER =====
 window.addEventListener("scroll", () => {
   document.getElementById("header").classList.toggle("scrolled", window.scrollY > 10);
 });
 
-// ===== Hamburger =====
+// ===== FIX 2: HAMBURGER NAV =====
 const hamburger = document.getElementById("hamburger");
 const nav = document.getElementById("nav");
+
 hamburger.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("open");
   hamburger.classList.toggle("open", isOpen);
-  hamburger.setAttribute("aria-expanded", isOpen);
+  hamburger.setAttribute("aria-expanded", String(isOpen));
   document.body.style.overflow = isOpen ? "hidden" : "";
 });
+
+// Close nav when any link is clicked
 nav.querySelectorAll("a").forEach(link => {
   link.addEventListener("click", () => {
     nav.classList.remove("open");
@@ -1298,16 +1246,28 @@ nav.querySelectorAll("a").forEach(link => {
   });
 });
 
-// ===== Custom Cursor (dot + ring, desktop only) =====
-const cursor = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursorRing');
-if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+// ===== FIX 3: CUSTOM CURSOR =====
+// Only activate on true pointer/hover devices (not touch screens)
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+
+  // Show the cursor elements
+  cursor.style.display = 'block';
+  cursorRing.style.display = 'block';
+
   let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  // Dot snaps instantly; ring follows with lag
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX;
+    my = e.clientY;
+  });
+
   function animateCursor() {
+    // Dot follows instantly
     cursor.style.left = mx + 'px';
     cursor.style.top  = my + 'px';
+    // Ring follows with smooth lag
     rx += (mx - rx) * 0.15;
     ry += (my - ry) * 0.15;
     cursorRing.style.left = rx + 'px';
@@ -1315,29 +1275,84 @@ if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     requestAnimationFrame(animateCursor);
   }
   animateCursor();
-  document.addEventListener('mousedown', () => { cursor.classList.add('active'); cursorRing.classList.add('active'); });
-  document.addEventListener('mouseup',   () => { cursor.classList.remove('active'); cursorRing.classList.remove('active'); });
+
+  document.addEventListener('mousedown', () => {
+    cursor.classList.add('active');
+    cursorRing.classList.add('active');
+  });
+  document.addEventListener('mouseup', () => {
+    cursor.classList.remove('active');
+    cursorRing.classList.remove('active');
+  });
 }
 
-// ===== Form Submission =====
-const form = document.querySelector("form");
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
-  fetch(form.action, {
-    method: "POST",
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  }).then(res => {
-    if (res.ok) {
-      document.getElementById("success-message").style.display = "block";
-      form.reset();
-    } else {
-      alert("Oops! There was a problem. Please try again.");
+// ===== FIX 4: SERVICE CARD EXPAND/COLLAPSE (like services page) =====
+function toggleServiceCard(card) {
+  const details = card.querySelector('.service-details');
+  const isOpen = card.classList.contains('active');
+
+  // Close all cards first
+  document.querySelectorAll('.service').forEach(c => {
+    c.classList.remove('active');
+    const d = c.querySelector('.service-details');
+    if (d) d.classList.remove('open');
+  });
+
+  // If this card wasn't open, open it
+  if (!isOpen) {
+    card.classList.add('active');
+    details.classList.add('open');
+    // Smooth scroll on mobile
+    if (window.innerWidth < 768) {
+      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     }
-  }).catch(() => alert("Network error. Please check your connection."));
+  }
+}
+
+// Attach events to all service cards
+document.querySelectorAll('.service').forEach(card => {
+  card.addEventListener('click', () => toggleServiceCard(card));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleServiceCard(card);
+    }
+  });
 });
 
-// ===== Counter — animates to 1000+ when scrolled into view =====
+// Escape key closes all
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.service').forEach(c => {
+      c.classList.remove('active');
+      const d = c.querySelector('.service-details');
+      if (d) d.classList.remove('open');
+    });
+    closePopup();
+  }
+});
+
+// ===== FORM SUBMISSION =====
+const form = document.querySelector("form");
+if (form) {
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(res => {
+      if (res.ok) {
+        document.getElementById("success-message").style.display = "block";
+        form.reset();
+      } else {
+        alert("Oops! There was a problem. Please try again.");
+      }
+    }).catch(() => alert("Network error. Please check your connection."));
+  });
+}
+
+// ===== COUNTER ANIMATION =====
 const counterEl = document.getElementById("counter");
 let counterDone = false;
 const counterObs = new IntersectionObserver(entries => {
@@ -1357,66 +1372,31 @@ const counterObs = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 counterObs.observe(counterEl);
 
-// ===== Service Modal =====
-const serviceData = [
-  {
-    title: "Search Engine Optimization",
-    img: "Images/seo.jpg",
-    desc: "We help your business rank on the first page of Google through technical SEO, on-page optimization, keyword research, link building, and content strategy. Higher rankings mean more organic traffic, more leads, and sustainable growth without paying per click."
-  },
-  {
-    title: "Social Media Marketing",
-    img: "Images/Social.jpg",
-    desc: "We manage and grow your brand presence on Instagram, Facebook, LinkedIn, and more. From content creation to community management and paid social campaigns, we turn your followers into loyal customers."
-  },
-  {
-    title: "Google & Meta Ads",
-    img: "Images/ads.jpg",
-    desc: "We create and manage high-converting ad campaigns on Google Search, Display, YouTube, Facebook, and Instagram. Every rupee of your budget is optimized to deliver the best possible ROI through data-driven targeting and ongoing A/B testing."
-  },
-  {
-    title: "Website Design",
-    img: "Images/website.jpg",
-    desc: "We build fast, beautiful, mobile-responsive websites that not only look great but are built to convert visitors into clients. Every site we deliver is SEO-optimized, speed-optimized, and designed with your business goals in mind."
-  },
-  {
-    title: "Content Marketing",
-    img: "Images/Content.jpg",
-    desc: "From blog articles and case studies to video scripts and email sequences, we create content that builds trust, establishes authority, and drives qualified leads to your business consistently over time."
-  },
-  {
-    title: "Graphic Designing",
-    img: "Images/graphic.jpg",
-    desc: "We design compelling visuals including logos, brand identities, social media graphics, banners, and ad creatives that make your brand stand out and leave a lasting impression on your audience."
-  }
-];
-
-function openServiceModal(index) {
-  const d = serviceData[index];
-  document.getElementById("modalTitle").textContent = d.title;
-  document.getElementById("modalDesc").textContent = d.desc;
-  const img = document.getElementById("modalImg");
-  img.src = d.img;
-  img.alt = d.title;
-  document.getElementById("serviceModalOverlay").classList.add("active");
-  document.body.style.overflow = "hidden";
-}
-function closeServiceModal() {
-  document.getElementById("serviceModalOverlay").classList.remove("active");
-  document.body.style.overflow = "";
-}
-// Keyboard support for service cards
-document.querySelectorAll('.service').forEach((card, i) => {
-  card.addEventListener('keydown', e => { if (e.key === 'Enter') openServiceModal(i); });
-});
-document.addEventListener("keydown", e => { if (e.key === "Escape") { closeServiceModal(); closePopup(); } });
-
-// ===== Scroll Popup =====
+// ===== SCROLL POPUP =====
 let popupShown = false;
 const popup = document.getElementById("scrollPopup");
 const overlay = document.getElementById("popupOverlay");
+
 function closePopup() {
-  popup.style.display = "none";
-  overlay.style.display = "none";
+  if (popup) popup.style.display = "none";
+  if (overlay) overlay.style.display = "none";
 }
-window.addEventListe
+
+window.addEventListener("scroll", () => {
+  if (!popupShown && window.scrollY > 600) {
+    popupShown = true;
+    if (popup) popup.style.display = "block";
+    if (overlay) overlay.style.display = "block";
+  }
+});
+
+const closePopupBtn = document.getElementById("closePopup");
+if (closePopupBtn) closePopupBtn.addEventListener("click", closePopup);
+if (overlay) overlay.addEventListener("click", closePopup);
+
+const popupClaim = document.getElementById("popupClaim");
+if (popupClaim) popupClaim.addEventListener("click", closePopup);
+
+</script>
+</body>
+</html>
