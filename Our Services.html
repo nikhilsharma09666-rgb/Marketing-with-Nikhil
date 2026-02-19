@@ -1,418 +1,913 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Marketing Services – Grow Your Business | Marketing With Nikhil</title>
-<meta name="description" content="Professional digital marketing services to boost traffic, leads & sales. Get SEO, content, social media, and paid ads that actually grow your business.">
+<title>Our Services — Marketing with Nikhil | SEO, Ads, Web Design & More</title>
+<meta name="description" content="Professional digital marketing services — SEO, Social Media Marketing, Google & Meta Ads, Website Design, Content Marketing & Graphic Design. Grow your business with Marketing with Nikhil.">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- OG Tags -->
+<meta property="og:title" content="Our Services — Marketing with Nikhil" />
+<meta property="og:description" content="SEO, Social Media, Google & Meta Ads, Web Design, Content & Graphic Design. Expert digital marketing in Mohali." />
+<meta property="og:url" content="https://marketingwithnikhil.site/Our%20Services.html" />
+<meta property="og:image" content="https://marketingwithnikhil.site/Images/Logo.png" />
+
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-61LW8EXTNH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-61LW8EXTNH');
+</script>
 
 <style>
-/* ------------ GLOBAL ----------- */
-body {
-    margin:0;
-    font-family: 'Poppins', sans-serif;
-    background:black;
-    color:white;
-    scroll-behavior: smooth;
+/* ===== Variables ===== */
+:root {
+  --accent: #00ffcc;
+  --orange: #ff9900;
+  --orange-dark: #ff6600;
+  --green: #25D366;
+  --dark: #111;
+  --white: #fff;
 }
 
-/* ---------- Custom Cursor ---------- */
+/* ===== Reset ===== */
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; height: auto; }
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0; padding: 0;
+  background: #0a0a0a;
+  color: var(--white);
+  scroll-behavior: smooth;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* ===== Custom Cursor ===== */
 .cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid #00ffcc;
+  position: fixed; top: 0; left: 0;
+  width: 12px; height: 12px;
+  background: var(--accent);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, 
-  box-shadow 0.2s ease, transform 0.15s ease;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  box-shadow: 0 0 15px #00ffcc, 0 0 30px rgba(0,255,204,0.5);
+  z-index: 99999;
+  transition: width 0.15s, height 0.15s;
+  box-shadow: 0 0 8px var(--accent), 0 0 20px rgba(0,255,204,0.7);
 }
-
-.cursor.active {
-  transform: translate(-50%, -50%) scale(1.5);
-  box-shadow: 0 0 25px #00ffcc, 0 0 50px rgba(0,255,204,0.7);
-  background: #00ffcc;
+.cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 38px; height: 38px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 99998; opacity: 0.7;
+  transition: width 0.25s, height 0.25s, opacity 0.25s;
 }
+.cursor.active { width: 8px; height: 8px; background: #fff; }
+.cursor-ring.active { width: 50px; height: 50px; opacity: 1; }
+@media (hover: none) { .cursor, .cursor-ring { display: none; } body { cursor: auto; } }
 
-/* ------------ HEADER (from blog) ----------- */
+/* ===== HEADER (identical to index) ===== */
 header {
-    background:#3e3e3e;
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:15px 25px;
-    position:sticky;
-    top:0;
-    z-index:999;
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.75);
+  color: var(--white);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0; z-index: 1000;
+  min-height: 70px;
+  transition: all 0.3s ease;
+  gap: 10px;
+}
+header.scrolled {
+  background: rgba(0,0,0,0.92);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.header-left {
+  display: flex; align-items: center;
+  gap: 10px; flex-shrink: 0;
+}
+.logo {
+  width: 52px; height: 52px;
+  border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 12px rgba(0,255,204,0.5);
+}
+.site-name {
+  font-size: clamp(0.95em, 2.5vw, 1.4em);
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--orange), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
 }
 
-.logo-area {
-    display:flex;
-    align-items:center;
-    gap:15px;
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px; cursor: pointer;
+  padding: 8px; background: none;
+  border: none; z-index: 1002; flex-shrink: 0;
 }
-
-.logo-area img {
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    border:4px solid #00ffa6;
-    object-fit:cover;
+.hamburger span {
+  display: block; width: 26px; height: 2px;
+  background: var(--white); border-radius: 2px;
+  transition: all 0.3s ease;
 }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.logo-area span {
-    font-size:32px;
-    font-weight:700;
-    background:linear-gradient(90deg, #ff9500, #00ff9d);
-    -webkit-background-clip:text;
-    color:transparent;
+/* Desktop nav */
+nav {
+  display: flex; align-items: center;
+  justify-content: center;
+  gap: 4px; flex-grow: 1;
 }
-
-nav ul {
-    list-style:none;
-    display:flex;
-    gap:45px;
-    margin:0;
-    padding:0;
-}
-
 nav a {
-    text-decoration:none;
-    color:white;
-    font-size:18px;
-    transition:.3s;
-    padding-bottom:6px;
+  color: var(--white); text-decoration: none;
+  font-size: 0.92em; padding: 6px 12px;
+  position: relative; transition: color 0.3s;
+  white-space: nowrap;
+}
+nav a::after {
+  content: ''; position: absolute;
+  width: 0; height: 2px; bottom: 0; left: 0;
+  background: var(--accent); transition: width 0.3s ease;
+}
+nav a:hover::after, nav a.active::after { width: 100%; }
+nav a:hover { color: var(--accent); }
+
+.free-audit {
+  background: linear-gradient(45deg, #00cc66, #00ff88);
+  padding: 9px 16px; border-radius: 50px;
+  color: var(--white); font-weight: bold;
+  text-decoration: none; transition: all 0.3s ease;
+  white-space: nowrap; flex-shrink: 0; font-size: 0.88em;
+}
+.free-audit:hover { transform: scale(1.08); }
+
+/* Mobile nav */
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .free-audit { display: none; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100vh;
+    background: #000;
+    flex-direction: column;
+    justify-content: center; align-items: center;
+    gap: 10px;
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+    z-index: 1001;
+    padding: 80px 30px 40px;
+  }
+  nav.open { transform: translateX(0); }
+  nav a {
+    display: block; width: 100%; max-width: 320px;
+    text-align: center; font-size: 1.25em; font-weight: 600;
+    color: #ffffff !important; padding: 16px 24px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    letter-spacing: 0.5px;
+  }
+  nav a:hover, nav a.active {
+    background: var(--orange); color: #fff !important;
+    border-color: var(--orange); transform: scale(1.03);
+  }
+  nav a::after { display: none; }
 }
 
-nav a:hover,
-nav a.active {
-    border-bottom:3px solid #00eaff;
+/* ===== HERO BANNER ===== */
+.page-hero {
+  position: relative;
+  background: url('Images/digital.jpg') center/cover no-repeat;
+  height: 340px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(20,20,40,0.85) 100%);
+}
+.page-hero-content {
+  position: relative; z-index: 1;
+  text-align: center; padding: 20px;
+}
+.page-hero-content h1 {
+  font-size: clamp(2em, 5vw, 3.2em);
+  color: var(--white); margin: 0 0 12px;
+  font-weight: 700; line-height: 1.2;
+}
+.page-hero-content h1 span {
+  background: linear-gradient(90deg, var(--orange), var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-hero-content p {
+  font-size: clamp(0.95em, 2vw, 1.2em);
+  color: rgba(255,255,255,0.8); margin: 0;
 }
 
-.audit-btn {
-    background:#00ff80;
-    padding:14px 34px;
-    font-size:18px;
-    font-weight:600;
-    color:black;
-    border-radius:40px;
-    text-decoration:none;
-    transition:.3s;
-    margin-right:40px;
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+  background: #111; padding: 12px 40px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.85em; color: #888; flex-wrap: wrap;
 }
+.breadcrumb a { color: var(--orange); text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { color: #555; }
 
-.audit-btn:hover {
-    opacity:.8;
-    transform:scale(1.03);
-}
-
-@media(max-width:768px){
-    nav ul {display:none;}
-    header {padding:15px 20px;}
-    .logo-area span {font-size:22px;}
-    .audit-btn {font-size:14px; padding:10px 20px;}
-}
-
-/* ------------ HERO SECTION ----------- */
-.hero {
-    background: url('Images/digital.jpg') center/cover no-repeat;
-    height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.hero::before {
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.6);
-}
-
-.hero-content {
-    position:relative;
-    text-align:center;
-}
-
-.hero-content h1 {
-    font-size: 3em;
-    color:#fff;
-}
-
-.hero-content p {
-    font-size: 1.2em;
-    margin-top:10px;
-}
-
-/* ------------ SERVICES SECTION ----------- */
+/* ===== SERVICES SECTION ===== */
 .services-section {
-    padding:60px 20px;
-    text-align:center;
+  padding: 70px 30px;
+  background: #0f0f0f;
+  min-height: 60vh;
+}
+.services-section .section-header {
+  text-align: center; margin-bottom: 55px;
+}
+.services-section .section-header h2 {
+  font-size: clamp(1.8em, 4vw, 2.6em);
+  background: linear-gradient(90deg, var(--orange), var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin: 0 0 14px;
+}
+.services-section .section-header p {
+  color: #888; font-size: 1em; max-width: 520px; margin: 0 auto;
+  line-height: 1.7;
 }
 
-.services-section h2 {
-    font-size:2.5em;
-    background:linear-gradient(90deg,#ff9500,#00ff9d);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
+/* Service Grid */
 .service-grid {
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:30px;
-    margin-top:30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Service Card */
 .service-card {
-    background:#1a1a1a;
-    padding:25px;
-    border-radius:10px;
-    flex:1 1 calc(33.33% - 40px);
-    max-width:300px;
-    cursor:pointer;
-    transition:0.3s;
+  background: #1a1a1a;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #2a2a2a;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.3s;
+  display: flex; flex-direction: column;
+  position: relative;
 }
-
-.service-card img {
-    width:100%;
-    height:180px;
-    border-radius:10px;
-    object-fit:cover;
-    margin-bottom:15px;
-}
-
 .service-card:hover {
-    transform:translateY(-7px);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border-color: var(--orange);
+}
+.service-card.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), 0 20px 50px rgba(0,255,204,0.1);
 }
 
-.service-card h3 {
-    color:#00ff80;
+/* Card Image */
+.card-img-wrap {
+  width: 100%; height: 210px;
+  overflow: hidden; position: relative; flex-shrink: 0;
+}
+.card-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.4s ease;
+}
+.service-card:hover .card-img-wrap img { transform: scale(1.07); }
+
+/* Card number badge */
+.card-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--orange); color: #fff;
+  font-size: 0.72em; font-weight: 700;
+  padding: 4px 10px; border-radius: 50px;
+  letter-spacing: 0.5px;
 }
 
-.details {
-    display:none;
+/* Card body */
+.card-body {
+  padding: 22px 22px 16px;
+  display: flex; flex-direction: column; flex: 1;
+}
+.card-body h3 {
+  font-size: 1.1em; color: var(--white);
+  margin: 0 0 10px; font-weight: 600;
+  line-height: 1.4;
+}
+.card-body .card-summary {
+  color: #999; font-size: 0.88em;
+  line-height: 1.6; margin: 0 0 16px;
 }
 
-.details p {
-    text-align:left;
-    margin-bottom:10px;
-    color:#ddd;
+/* Click hint */
+.card-hint {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.78em; color: var(--orange);
+  opacity: 0.6; margin-top: auto;
+  transition: opacity 0.2s;
+}
+.service-card:hover .card-hint,
+.service-card.active .card-hint { opacity: 1; }
+.service-card.active .card-hint { color: var(--accent); }
+.service-card.active .card-hint .hint-text { display: none; }
+.service-card.active .card-hint::before { content: "▲ Click to collapse"; font-size: 0.78em; color: var(--accent); }
+
+/* ===== Expanded Details Panel ===== */
+.card-details {
+  display: none;
+  background: #141414;
+  border-top: 1px solid #2a2a2a;
+  padding: 0 22px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.card-details.open {
+  display: block;
+  max-height: 600px;
+  padding: 22px 22px 24px;
+  animation: detailsIn 0.3s ease;
+}
+@keyframes detailsIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card-details h4 {
+  color: var(--accent); font-size: 0.92em;
+  margin: 0 0 12px; text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.card-details ul {
+  list-style: none; margin: 0 0 18px; padding: 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.card-details ul li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.88em; color: #ccc; line-height: 1.55;
+}
+.card-details ul li::before {
+  content: '✓';
+  color: var(--accent); font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
+}
+.card-details .detail-desc {
+  font-size: 0.88em; color: #aaa;
+  line-height: 1.7; margin: 0 0 20px;
+}
+.detail-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
+  color: var(--white); text-decoration: none;
+  padding: 10px 24px; border-radius: 50px;
+  font-size: 0.88em; font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.detail-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255,102,0,0.4);
 }
 
-.cta-center button {
-    background:#00ff80;
-    border:none;
-    color:black;
-    padding:10px 20px;
-    border-radius:5px;
-    cursor:pointer;
-    font-weight:600;
-    transition:.3s;
+/* ===== CTA STRIP ===== */
+.cta-strip {
+  background: linear-gradient(135deg, #1a0a00, #0a1a10);
+  border-top: 1px solid #2a2a2a;
+  border-bottom: 1px solid #2a2a2a;
+  padding: 60px 30px;
+  text-align: center;
+}
+.cta-strip h2 {
+  font-size: clamp(1.6em, 3.5vw, 2.2em);
+  color: var(--white); margin: 0 0 14px;
+}
+.cta-strip h2 span { color: var(--orange); }
+.cta-strip p { color: #999; font-size: 1em; margin: 0 0 28px; line-height: 1.7; }
+.cta-strip-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.cta-strip-btns a {
+  padding: 13px 30px; border-radius: 50px;
+  font-size: 0.95em; font-weight: 600;
+  text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+}
+.btn-primary {
+  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
+  color: var(--white);
+}
+.btn-primary:hover { transform: scale(1.06); box-shadow: 0 8px 25px rgba(255,102,0,0.35); }
+.btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+.btn-secondary:hover { background: var(--accent); color: #000; transform: scale(1.06); }
+
+/* ===== FLOATING WHATSAPP ===== */
+.floating-wp {
+  position: fixed; bottom: 20px; right: 20px;
+  background: var(--green); color: var(--white);
+  width: 56px; height: 56px;
+  border-radius: 50%; font-size: 24px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  z-index: 998; transition: 0.3s; text-decoration: none;
+}
+.floating-wp:hover { transform: scale(1.15); }
+
+/* ===== FOOTER (identical to index) ===== */
+.footer-main {
+  background: #111; color: #ccc;
+  padding: 60px 60px 30px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.3fr 1fr;
+  gap: 50px; max-width: 1200px; margin: 0 auto 40px;
+}
+.footer-brand .footer-logo-row {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.footer-brand .footer-logo-row img {
+  width: 48px; height: 48px; border-radius: 50%;
+  object-fit: cover; border: 2px solid var(--accent);
+}
+.footer-brand .footer-logo-row span {
+  font-size: 1.05em; font-weight: 700; text-transform: uppercase;
+  background: linear-gradient(90deg, #ff9900, #00ff88);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: 1px;
+}
+.footer-brand p {
+  font-size: 0.9em; line-height: 1.75; color: #aaa;
+  margin: 0; max-width: 260px;
+}
+.footer-col h4 {
+  color: #fff; font-size: 1em; font-weight: 600;
+  margin: 0 0 18px; letter-spacing: 0.5px;
+}
+.footer-col ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.footer-col ul li a {
+  color: #aaa; text-decoration: none;
+  font-size: 0.92em; transition: color 0.3s;
+}
+.footer-col ul li a:hover { color: var(--orange); }
+.footer-contact-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.footer-contact-list li {
+  display: flex; align-items: flex-start;
+  gap: 10px; font-size: 0.9em; color: #aaa; line-height: 1.5;
+}
+.footer-contact-list li i { color: var(--orange); margin-top: 2px; flex-shrink: 0; }
+.footer-contact-list li a { color: #aaa; text-decoration: none; transition: color 0.3s; }
+.footer-contact-list li a:hover { color: var(--orange); }
+.footer-social-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.footer-social-list li a {
+  display: flex; align-items: center; gap: 10px;
+  color: #aaa; text-decoration: none; font-size: 0.92em; transition: color 0.3s;
+}
+.footer-social-list li a:hover { color: var(--orange); }
+.footer-divider {
+  border: none; border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 0 auto 20px; max-width: 1200px;
+}
+.footer-bottom {
+  text-align: center; font-size: 0.85em; color: #555;
+  max-width: 1200px; margin: 0 auto; padding-bottom: 10px;
 }
 
-.cta-center button:hover {
-    transform:scale(1.05);
+/* Footer Mobile */
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 35px; }
+  .footer-main { padding: 50px 25px 25px; }
+}
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .footer-main { padding: 40px 20px 20px; }
+  .footer-brand p { max-width: 100%; }
+  .footer-col.links-col ul {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .footer-col.links-col ul li a {
+    display: block;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 10px 14px;
+    text-align: center; font-size: 0.88em; color: #ccc;
+  }
+  .footer-col.links-col ul li a:hover {
+    background: var(--orange); color: #fff; border-color: var(--orange);
+  }
+  .footer-social-list { flex-direction: row; gap: 14px; flex-wrap: wrap; }
+  .footer-social-list li a {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px; padding: 9px 18px; font-size: 0.88em;
+  }
+  .footer-social-list li a:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
 }
 
-/* ------------ FOOTER ----------- */
-footer {
-    background:#000;
-    padding:20px 40px;
-    border-top:1px solid #333;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
-    align-items:center;
+/* ===== SERVICE GRID RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .service-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
-footer p {
-    font-size:16px;
-    color:white;
-    margin:5px 0;
+@media (max-width: 600px) {
+  .service-grid { grid-template-columns: 1fr; }
+  .services-section { padding: 50px 16px; }
+  .card-img-wrap { height: 180px; }
+  .card-details.open { padding: 16px 18px 20px; }
 }
-
-.footer-social {
-    display:flex;
-    gap:15px;
-}
-
-.footer-social a {
-    color:white;
-    font-size:18px;
-    text-decoration:none;
-    transition:.3s;
-}
-
-.footer-social a:hover {
-    color:#00ff80;
-}
-
-@media(max-width:600px){
-    footer {
-        flex-direction:column;
-        text-align:center;
-        gap:10px;
-    }
+@media (max-width: 400px) {
+  .page-hero { height: 260px; }
+  .breadcrumb { padding: 10px 20px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Custom Cursor HTML -->
-<div class="cursor"></div>
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<!-- HEADER -->
-<header>
-    <div class="logo-area">
-        <img src="Images/Logo.png" alt="Logo">
-        <span>MARKETING WITH NIKHIL</span>
-    </div>
+<!-- ===== HEADER (same as index) ===== -->
+<header id="header">
+  <div class="header-left">
+    <img src="Images/Logo.png" alt="Marketing with Nikhil Logo" class="logo">
+    <div class="site-name">Marketing with Nikhil</div>
+  </div>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a class="active" href="Our Services.html">Services</a></li>
-            <li><a href="Our Team.html">Our Team</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-            <li><a href="blog.html">Blog</a></li>
-        </ul>
-    </nav>
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 
-    <a href="index.html#contact" class="audit-btn">Free Website Audit</a>
+  <nav id="nav">
+    <a href="index.html">Home</a>
+    <a href="https://marketingwithnikhil.site/Our%20Services.html" class="active">Services</a>
+    <a href="https://marketingwithnikhil.site/Our%20Team.html">Our Team</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://marketingwithnikhil.site/blog.html">Blog</a>
+  </nav>
+
+  <a href="index.html#contact" class="free-audit">Free Website Audit</a>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>Our Services</h1>
-        <p>Helping your business grow through powerful digital marketing solutions</p>
-    </div>
+<!-- ===== HERO ===== -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1>Our <span>Services</span></h1>
+    <p>Helping your business grow through powerful digital marketing solutions</p>
+  </div>
 </section>
 
-<!-- SERVICES SECTION -->
+<!-- ===== BREADCRUMB ===== -->
+<div class="breadcrumb">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <span>›</span>
+  <span>Services</span>
+</div>
+
+<!-- ===== SERVICES ===== -->
 <section class="services-section">
+  <div class="section-header">
     <h2>What We Offer</h2>
+    <p>Click any service below to see what's included and how we can help grow your business.</p>
+  </div>
 
-    <div class="service-grid">
+  <div class="service-grid">
 
-        <div class="service-card">
-            <img src="Images/seo.jpg">
-            <h3>Search Engine Optimization</h3>
-            <div class="details">
-                <p>Advanced on-page, off-page & technical SEO to rank higher.</p>
-                <div class="cta-center"><button class="open-modal">Want to Know More?</button></div>
-            </div>
-        </div>
-
-        <div class="service-card">
-            <img src="Images/Social.jpg">
-            <h3>Social Media Marketing</h3>
-            <div class="details">
-                <p>Engage your audience through strategic SMM campaigns.</p>
-                <div class="cta-center"><button class="open-modal">Want to Know More?</button></div>
-            </div>
-        </div>
-
-        <div class="service-card">
-            <img src="Images/ads.jpg">
-            <h3>Google & Meta Ads</h3>
-            <div class="details">
-                <p>Run high-ROI PPC campaigns on Google & Meta platforms.</p>
-                <div class="cta-center"><button class="open-modal">Want to Know More?</button></div>
-            </div>
-        </div>
-
-        <div class="service-card">
-            <img src="Images/Content.jpg">
-            <h3>Content Marketing</h3>
-            <div class="details">
-                <p>Blogs, articles & social content that converts.</p>
-                <div class="cta-center"><button class="open-modal">Want to Know More?</button></div>
-            </div>
-        </div>
-
-        <div class="service-card">
-            <img src="Images/Logo.png">
-            <h3>Branding & Design</h3>
-            <div class="details">
-                <p>Logos, brand kits & full visual identity design.</p>
-                <div class="cta-center"><button class="open-modal">Want to Know More?</button></div>
-            </div>
-        </div>
-
-        <div class="service-card">
-            <img src="Images/website.jpg">
-            <h3>Website Design & Development</h3>
-            <div class="details">
-                <p>Fast, responsive, SEO-friendly business websites.</p>
-                <div class="cta-center"><button class="open-modal">Want to Know More?</button></div>
-            </div>
-        </div>
-
+    <!-- 1. SEO -->
+    <div class="service-card" onclick="toggleCard(this)" role="button" tabindex="0">
+      <div class="card-img-wrap">
+        <span class="card-badge">01</span>
+        <img src="Images/seo.jpg" alt="Search Engine Optimization">
+      </div>
+      <div class="card-body">
+        <h3>Search Engine Optimization</h3>
+        <p class="card-summary">Rank higher on Google and drive organic traffic that converts into real customers.</p>
+        <span class="card-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="card-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Technical SEO Audit & Fixes</li>
+          <li>Keyword Research & Strategy</li>
+          <li>On-Page Optimization (meta, headings, schema)</li>
+          <li>Off-Page SEO & Link Building</li>
+          <li>Local SEO & Google Business Profile</li>
+          <li>Monthly Reporting & Analytics</li>
+        </ul>
+        <p class="detail-desc">We use data-driven SEO strategies to consistently move you up in search rankings. More visibility means more traffic, more leads, and more revenue — without paying per click.</p>
+        <a href="index.html#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Free SEO Audit</a>
+      </div>
     </div>
+
+    <!-- 2. Social Media -->
+    <div class="service-card" onclick="toggleCard(this)" role="button" tabindex="0">
+      <div class="card-img-wrap">
+        <span class="card-badge">02</span>
+        <img src="Images/Social.jpg" alt="Social Media Marketing">
+      </div>
+      <div class="card-body">
+        <h3>Social Media Marketing</h3>
+        <p class="card-summary">Build your brand presence and engage your audience across all major social platforms.</p>
+        <span class="card-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="card-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Profile Setup & Optimization</li>
+          <li>Content Calendar & Strategy</li>
+          <li>Post Design & Copywriting</li>
+          <li>Instagram, Facebook & LinkedIn Management</li>
+          <li>Community Engagement & Growth</li>
+          <li>Monthly Performance Reports</li>
+        </ul>
+        <p class="detail-desc">We turn your social media into a powerful sales engine — creating scroll-stopping content, growing your followers, and converting them into loyal customers.</p>
+        <a href="index.html#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Start Growing Today</a>
+      </div>
+    </div>
+
+    <!-- 3. Google & Meta Ads -->
+    <div class="service-card" onclick="toggleCard(this)" role="button" tabindex="0">
+      <div class="card-img-wrap">
+        <span class="card-badge">03</span>
+        <img src="Images/ads.jpg" alt="Google and Meta Ads">
+      </div>
+      <div class="card-body">
+        <h3>Google &amp; Meta Ads</h3>
+        <p class="card-summary">Run high-converting paid ad campaigns on Google, Facebook & Instagram to maximize ROI.</p>
+        <span class="card-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="card-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Campaign Strategy & Setup</li>
+          <li>Audience Targeting & Retargeting</li>
+          <li>Ad Copy & Creative Design</li>
+          <li>A/B Testing & Optimization</li>
+          <li>Conversion Tracking Setup</li>
+          <li>Weekly Budget & Performance Reports</li>
+        </ul>
+        <p class="detail-desc">Every rupee of your ad spend is tracked and optimized. We focus on lowering your cost-per-lead while increasing quality traffic that actually converts into paying customers.</p>
+        <a href="index.html#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Launch a Campaign</a>
+      </div>
+    </div>
+
+    <!-- 4. Website Design -->
+    <div class="service-card" onclick="toggleCard(this)" role="button" tabindex="0">
+      <div class="card-img-wrap">
+        <span class="card-badge">04</span>
+        <img src="Images/website.jpg" alt="Website Design">
+      </div>
+      <div class="card-body">
+        <h3>Website Design &amp; Development</h3>
+        <p class="card-summary">Fast, beautiful, mobile-first websites built to convert visitors into paying customers.</p>
+        <span class="card-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="card-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Custom UI/UX Design</li>
+          <li>Mobile-First Responsive Build</li>
+          <li>SEO-Optimized Code & Structure</li>
+          <li>Speed & Performance Optimization</li>
+          <li>Contact Forms & Lead Capture</li>
+          <li>Post-Launch Support & Maintenance</li>
+        </ul>
+        <p class="detail-desc">Your website is your 24/7 salesperson. We build sites that look professional, load fast, rank on Google, and are designed to turn visitors into enquiries and sales.</p>
+        <a href="index.html#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Free Quote</a>
+      </div>
+    </div>
+
+    <!-- 5. Content Marketing -->
+    <div class="service-card" onclick="toggleCard(this)" role="button" tabindex="0">
+      <div class="card-img-wrap">
+        <span class="card-badge">05</span>
+        <img src="Images/Content.jpg" alt="Content Marketing">
+      </div>
+      <div class="card-body">
+        <h3>Content Marketing</h3>
+        <p class="card-summary">Create valuable content that builds authority, earns trust, and drives qualified leads.</p>
+        <span class="card-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="card-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Blog Writing & SEO Articles</li>
+          <li>Email Newsletter Campaigns</li>
+          <li>Video Script & Reel Content</li>
+          <li>Case Studies & Whitepapers</li>
+          <li>Content Calendar Management</li>
+          <li>Content Performance Tracking</li>
+        </ul>
+        <p class="detail-desc">Great content is the backbone of every digital strategy. We create content that educates your audience, builds trust in your brand, and steadily drives more qualified traffic over time.</p>
+        <a href="index.html#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Start a Content Strategy</a>
+      </div>
+    </div>
+
+    <!-- 6. Graphic Design -->
+    <div class="service-card" onclick="toggleCard(this)" role="button" tabindex="0">
+      <div class="card-img-wrap">
+        <span class="card-badge">06</span>
+        <img src="Images/graphic.jpg" alt="Graphic Designing" onerror="this.src='Images/ads.jpg'">
+      </div>
+      <div class="card-body">
+        <h3>Graphic Designing</h3>
+        <p class="card-summary">Eye-catching visuals and brand identity design that make your business stand out.</p>
+        <span class="card-hint"><i class="fas fa-chevron-down"></i> <span class="hint-text">Click to see details</span></span>
+      </div>
+      <div class="card-details">
+        <h4>What's Included</h4>
+        <ul>
+          <li>Logo & Brand Identity Design</li>
+          <li>Social Media Graphics & Templates</li>
+          <li>Banner & Ad Creative Design</li>
+          <li>Brochures, Flyers & Print Materials</li>
+          <li>Presentation & Pitch Deck Design</li>
+          <li>Brand Style Guide</li>
+        </ul>
+        <p class="detail-desc">First impressions matter. We create compelling visuals that reflect your brand's personality, capture attention, and give your business a consistent, professional look across every touchpoint.</p>
+        <a href="index.html#contact" class="detail-cta"><i class="fas fa-arrow-right"></i> Get a Design Quote</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-    <p>© 2025 Marketing With Nikhil. All rights reserved.</p>
-    <div class="footer-social">
-        <a href="https://www.facebook.com/share/1CK67vfqqX/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/marketingwithnikhil.site" target="_blank"><i class="fab fa-instagram"></i></a>
+<!-- ===== CTA STRIP ===== -->
+<section class="cta-strip">
+  <h2>Ready to <span>Grow Your Business?</span></h2>
+  <p>Get a free consultation and let us build a custom digital marketing strategy for you.</p>
+  <div class="cta-strip-btns">
+    <a href="index.html#contact" class="btn-primary">Get Free Consultation</a>
+    <a href="https://wa.me/919805647008" target="_blank" rel="noopener" class="btn-secondary"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER (identical to index) ===== -->
+<footer class="footer-main">
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <div class="footer-logo-row">
+        <img src="Images/Logo.png" alt="Marketing with Nikhil Logo">
+        <span>Marketing with Nikhil</span>
+      </div>
+      <p>Helping businesses grow online with SEO, paid ads, web design, and data-driven digital marketing strategies.</p>
     </div>
+
+    <div class="footer-col links-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://marketingwithnikhil.site/Our%20Services.html">Services</a></li>
+        <li><a href="https://marketingwithnikhil.site/Our%20Team.html">Our Team</a></li>
+        <li><a href="https://marketingwithnikhil.site/blog.html">Blog</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul class="footer-contact-list">
+        <li><i class="fas fa-map-marker-alt"></i><span>Mohali, Chandigarh</span></li>
+        <li><i class="fas fa-envelope"></i><a href="mailto:info@marketingwithnikhil.site">info@marketingwithnikhil.site</a></li>
+        <li><i class="fas fa-phone"></i><a href="tel:+919805647008">+91-9805647008</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <ul class="footer-social-list">
+        <li>
+          <a href="https://www.instagram.com/marketingwithnikhil.site" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/share/1CK67vfqqX/?mibextid=wwXIfr" target="_blank" rel="noopener">
+            <i class="fab fa-facebook"></i> Facebook
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <hr class="footer-divider">
+  <p class="footer-bottom">© 2026 Marketing with Nikhil — All Rights Reserved</p>
 </footer>
 
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919805647008" class="floating-wp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
 <script>
-// Custom Cursor Script
-const cursor = document.querySelector(".cursor");
-
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
+// ===== Sticky Header =====
+window.addEventListener("scroll", () => {
+  document.getElementById("header").classList.toggle("scrolled", window.scrollY > 10);
 });
 
-document.addEventListener("mousedown", () => {
-  cursor.classList.add("active");
+// ===== Hamburger =====
+const hamburger = document.getElementById("hamburger");
+const nav = document.getElementById("nav");
+hamburger.addEventListener("click", () => {
+  const isOpen = nav.classList.toggle("open");
+  hamburger.classList.toggle("open", isOpen);
+  hamburger.setAttribute("aria-expanded", isOpen);
+  document.body.style.overflow = isOpen ? "hidden" : "";
+});
+nav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("open");
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  });
 });
 
-document.addEventListener("mouseup", () => {
-  cursor.classList.remove("active");
-});
+// ===== Custom Cursor =====
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+    cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.addEventListener('mousedown', () => { cursor.classList.add('active'); cursorRing.classList.add('active'); });
+  document.addEventListener('mouseup',   () => { cursor.classList.remove('active'); cursorRing.classList.remove('active'); });
+}
 
-// Card Toggle
+// ===== Service Card Toggle =====
+function toggleCard(card) {
+  const details = card.querySelector('.card-details');
+  const isOpen = card.classList.contains('active');
+
+  // Close all cards
+  document.querySelectorAll('.service-card').forEach(c => {
+    c.classList.remove('active');
+    c.querySelector('.card-details').classList.remove('open');
+  });
+
+  // If this card wasn't open, open it
+  if (!isOpen) {
+    card.classList.add('active');
+    details.classList.add('open');
+    // Smooth scroll to card on mobile
+    if (window.innerWidth < 768) {
+      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  }
+}
+
+// Keyboard support
 document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('click', () => {
-        const d = card.querySelector('.details');
-        d.style.display = d.style.display === 'block' ? 'none' : 'block';
-    });
+  card.addEventListener('keydown', e => { if (e.key === 'Enter') toggleCard(card); });
 });
 
-// Redirect Want To Know More to Contact Section
-document.querySelectorAll(".open-modal").forEach(btn => {
-    btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        window.location.href = "index.html#contact";
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.service-card').forEach(c => {
+      c.classList.remove('active');
+      c.querySelector('.card-details').classList.remove('open');
     });
+  }
 });
 </script>
-
 </body>
 </html>
-
-
-
-
-
