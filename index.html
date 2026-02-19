@@ -372,10 +372,26 @@ nav a:hover { color: var(--accent); }
   box-shadow: 0 6px 20px rgba(255,153,0,0.4);
 }
 
+/* Service click hint */
+.service-click-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78em;
+  color: var(--orange);
+  opacity: 0.7;
+  margin-top: auto;
+  padding-top: 10px;
+  transition: opacity 0.2s;
+}
+.service:hover .service-click-hint { opacity: 1; }
+/* Remove old learn btn — no longer used */
+.service-learn-btn { display: none; }
+
 /* Service Modal */
 .service-modal-overlay {
   display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.6); z-index: 99990;
+  background: rgba(0,0,0,0.65); z-index: 99990;
   align-items: center; justify-content: center;
   padding: 20px;
 }
@@ -383,38 +399,53 @@ nav a:hover { color: var(--accent); }
 .service-modal {
   background: var(--white); border-radius: 18px;
   max-width: 560px; width: 100%;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
   overflow: hidden;
   animation: modalIn 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 @keyframes modalIn {
-  from { opacity:0; transform: scale(0.85) translateY(20px); }
+  from { opacity:0; transform: scale(0.88) translateY(24px); }
   to   { opacity:1; transform: scale(1) translateY(0); }
 }
+.service-modal-imgwrap {
+  position: relative; width: 100%;
+}
 .service-modal-img {
-  width: 100%; height: 220px;
+  width: 100%; height: 230px;
   object-fit: cover; display: block;
 }
-.service-modal-body { padding: 28px 30px 30px; }
-.service-modal-body h3 { color: var(--orange); font-size: 1.4em; margin: 0 0 12px; }
-.service-modal-body p { color: #444; line-height: 1.75; font-size: 0.95em; margin: 0 0 22px; }
-.service-modal-actions {
-  display: flex; gap: 12px; flex-wrap: wrap;
+.service-modal-x {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(0,0,0,0.55); color: #fff;
+  border: none; width: 34px; height: 34px;
+  border-radius: 50%; font-size: 15px;
+  cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background 0.2s;
+  z-index: 2;
 }
+.service-modal-x:hover { background: #ff3b3b; }
+.service-modal-body { padding: 28px 28px 30px; }
+.service-modal-body h3 { color: var(--orange); font-size: 1.35em; margin: 0 0 12px; }
+.service-modal-body p { color: #444; line-height: 1.8; font-size: 0.95em; margin: 0 0 22px; }
+.service-modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .service-modal-cta {
   background: linear-gradient(45deg, var(--orange), var(--orange-dark));
   color: var(--white); text-decoration: none;
-  padding: 11px 24px; border-radius: 50px;
+  padding: 11px 26px; border-radius: 50px;
   font-weight: 600; font-size: 0.92em; transition: 0.3s;
 }
-.service-modal-cta:hover { transform: scale(1.05); }
+.service-modal-cta:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,102,0,0.35); }
 .service-modal-close-btn {
-  background: #eee; color: #333;
-  border: none; padding: 11px 20px;
+  background: #f0f0f0; color: #333;
+  border: none; padding: 11px 22px;
   border-radius: 50px; font-size: 0.92em;
-  cursor: pointer; transition: 0.3s; font-family: 'Poppins', sans-serif;
+  cursor: pointer; transition: 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
-.service-modal-close-btn:hover { background: #ddd; }
+.service-modal-close-btn:hover { background: #e0e0e0; }
 
 /* ===================== TEAM ===================== */
 .team-section { background: var(--white); padding: 80px 20px; text-align: center; }
@@ -473,33 +504,69 @@ nav a:hover { color: var(--accent); }
   height: 1px; background: rgba(255,255,255,0.15);
   margin: 40px auto;
 }
-/* One horizontal line for bottom badges */
-.stats-bottom {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: nowrap;
-  gap: 20px; text-align: center;
-  overflow-x: auto;
-  padding-bottom: 4px;
+/* Infinite auto-scroll badge slider */
+.stats-slider-wrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
 }
+/* Fade edges */
+.stats-slider-wrap::before,
+.stats-slider-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.stats-slider-wrap::before { left: 0; background: linear-gradient(to right, #000, transparent); }
+.stats-slider-wrap::after  { right: 0; background: linear-gradient(to left,  #000, transparent); }
+
+.stats-bottom {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: badgeScroll 22s linear infinite;
+}
+.stats-bottom:hover { animation-play-state: paused; }
+
+@keyframes badgeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .logo-stat {
-  display: flex; align-items: center; gap: 12px;
-  flex-shrink: 0; white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 40px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .logo-stat img {
-  width: 70px; height: 70px;
-  object-fit: contain; flex-shrink: 0;
-}
-.logo-stat p { font-size: clamp(0.78em, 1.5vw, 0.92em); margin: 0; color: #ccc; }
-.stats-separator {
-  width: 1px; height: 50px;
-  background: rgba(255,255,255,0.2);
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
   flex-shrink: 0;
 }
-@media (max-width: 900px) {
-  .stats-bottom { flex-wrap: wrap; justify-content: center; overflow-x: visible; }
-  .stats-separator { display: none; }
-  .logo-stat { flex-direction: column; gap: 6px; text-align: center; }
+.logo-stat-text { display: flex; flex-direction: column; gap: 3px; }
+.logo-stat-text strong {
+  font-size: 1em;
+  color: #fff;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.logo-stat-text span {
+  font-size: 0.85em;
+  color: #aaa;
+}
+.stats-separator {
+  width: 1px;
+  height: 55px;
+  background: rgba(255,255,255,0.18);
+  flex-shrink: 0;
 }
 
 /* ===================== CONTACT ===================== */
@@ -690,52 +757,140 @@ button[type="submit"]:hover { transform: scale(1.05); }
 
 /* ===================== RESPONSIVE ===================== */
 
-/* ✅ Large tablet */
+/* Large tablet */
 @media (max-width: 1024px) {
-  .service-display { grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 50px 40px; }
+  .services-wrapper { padding: 60px 30px; }
+  .service-display { grid-template-columns: repeat(2, 1fr); gap: 25px; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ✅ FIX: Mobile nav — hamburger + fullscreen overlay */
+/* Mobile nav — hamburger + fullscreen overlay */
 @media (max-width: 900px) {
   .hamburger { display: flex; }
   .free-audit { display: none; }
 
   nav {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.97);
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100vh;
+    background: #000;
     flex-direction: column;
-    justify-content: center; align-items: center;
-    gap: 28px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     transform: translateX(-100%);
     transition: transform 0.35s ease;
     z-index: 1001;
+    padding: 80px 30px 40px;
   }
   nav.open { transform: translateX(0); }
-  nav a { font-size: 1.4em; padding: 12px 24px; }
 
-  .contact-container {
-    grid-template-columns: 1fr;
-    padding: 25px; margin: 40px 15px;
+  nav a {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #ffffff !important;
+    padding: 16px 24px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    letter-spacing: 0.5px;
+    text-decoration: none;
   }
+  nav a:hover, nav a.active {
+    background: var(--orange);
+    color: #fff !important;
+    border-color: var(--orange);
+    transform: scale(1.03);
+  }
+  nav a::after { display: none; }
+
+  .contact-container { grid-template-columns: 1fr; padding: 25px; margin: 40px 15px; }
 }
 
-/* ✅ Tablet */
+/* Tablet */
 @media (max-width: 768px) {
   .hero { min-height: 480px; }
   .hero-content { padding: 20px; }
-  .service-display { grid-template-columns: 1fr; padding: 30px 20px; }
+  .services-wrapper { padding: 40px 16px; }
+  .service-display { grid-template-columns: 1fr; gap: 20px; }
   .team-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .site-name { font-size: 1em; }
+  .service-modal-body { padding: 20px; }
+  .service-modal-body h3 { font-size: 1.2em; }
 }
 
-/* ✅ Mobile */
+/* Mobile */
 @media (max-width: 500px) {
   .hero { min-height: 400px; }
   .hero-content { padding: 15px; }
   .team-grid { grid-template-columns: 1fr; }
-  footer { flex-direction: column; text-align: center; }
   .stats-top { gap: 20px; }
+  .service-modal { border-radius: 14px; }
+  .service-modal-img { height: 170px; }
+  .service-modal-actions { flex-direction: column; }
+  .service-modal-cta, .service-modal-close-btn { text-align: center; }
+}
+
+/* Footer mobile */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
+  .footer-main { padding: 50px 25px 25px; }
+  .footer-brand p { max-width: 100%; }
+}
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .footer-main { padding: 40px 20px 20px; }
+
+  /* Quick links as a 2-column pill grid on small phones */
+  .footer-col.links-col ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .footer-col.links-col ul li a {
+    display: block;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+    font-size: 0.88em;
+    color: #ccc;
+    transition: background 0.2s, color 0.2s;
+  }
+  .footer-col.links-col ul li a:hover {
+    background: var(--orange);
+    color: #fff;
+    border-color: var(--orange);
+  }
+
+  /* Contact list — keep row layout clean */
+  .footer-contact-list li { font-size: 0.85em; gap: 8px; }
+
+  /* Social icons side by side */
+  .footer-social-list { flex-direction: row; gap: 14px; flex-wrap: wrap; }
+  .footer-social-list li a {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px;
+    padding: 9px 18px;
+    font-size: 0.88em;
+  }
+  .footer-social-list li a:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+  .footer-col h4 { font-size: 0.95em; margin-bottom: 14px; }
+  .footer-bottom { font-size: 0.8em; padding: 0 10px 10px; }
 }
 </style>
 </head>
@@ -782,57 +937,57 @@ button[type="submit"]:hover { transform: scale(1.05); }
   <h2>Our Services</h2>
   <div class="service-display">
 
-    <div class="service" onclick="openServiceModal(0)">
+    <div class="service" onclick="openServiceModal(0)" role="button" tabindex="0">
       <div class="service-img-wrap"><img src="Images/seo.jpg" alt="SEO Service"></div>
       <div class="service-body">
         <h3>Search Engine Optimization</h3>
         <p>Boost your visibility and rank higher on Google with proven SEO strategies.</p>
-        <a href="#contact" class="service-learn-btn" onclick="event.stopPropagation()">Learn More</a>
+        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(1)">
+    <div class="service" onclick="openServiceModal(1)" role="button" tabindex="0">
       <div class="service-img-wrap"><img src="Images/Social.jpg" alt="Social Media Marketing"></div>
       <div class="service-body">
         <h3>Social Media Marketing</h3>
         <p>Engage and grow your audience across all major platforms.</p>
-        <a href="#contact" class="service-learn-btn" onclick="event.stopPropagation()">Learn More</a>
+        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(2)">
+    <div class="service" onclick="openServiceModal(2)" role="button" tabindex="0">
       <div class="service-img-wrap"><img src="Images/ads.jpg" alt="Google and Meta Ads"></div>
       <div class="service-body">
         <h3>Google &amp; Meta Ads</h3>
         <p>Run profitable ad campaigns designed to maximize your ROI.</p>
-        <a href="#contact" class="service-learn-btn" onclick="event.stopPropagation()">Learn More</a>
+        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(3)">
+    <div class="service" onclick="openServiceModal(3)" role="button" tabindex="0">
       <div class="service-img-wrap"><img src="Images/website.jpg" alt="Website Design"></div>
       <div class="service-body">
         <h3>Website Design</h3>
         <p>Modern, mobile-friendly and SEO-optimized websites that convert.</p>
-        <a href="#contact" class="service-learn-btn" onclick="event.stopPropagation()">Learn More</a>
+        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(4)">
+    <div class="service" onclick="openServiceModal(4)" role="button" tabindex="0">
       <div class="service-img-wrap"><img src="Images/Content.jpg" alt="Content Marketing"></div>
       <div class="service-body">
         <h3>Content Marketing</h3>
         <p>Create content that builds trust, authority, and converts leads.</p>
-        <a href="#contact" class="service-learn-btn" onclick="event.stopPropagation()">Learn More</a>
+        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
       </div>
     </div>
 
-    <div class="service" onclick="openServiceModal(5)">
+    <div class="service" onclick="openServiceModal(5)" role="button" tabindex="0">
       <div class="service-img-wrap"><img src="Images/graphic.jpg" alt="Graphic Designing" onerror="this.src='Images/ads.jpg'"></div>
       <div class="service-body">
         <h3>Graphic Designing</h3>
         <p>Creative designs that engage audiences and strengthen your brand identity.</p>
-        <a href="#contact" class="service-learn-btn" onclick="event.stopPropagation()">Learn More</a>
+        <span class="service-click-hint"><i class="fas fa-info-circle"></i> Click to learn more</span>
       </div>
     </div>
 
@@ -842,7 +997,10 @@ button[type="submit"]:hover { transform: scale(1.05); }
 <!-- Service Detail Modal -->
 <div class="service-modal-overlay" id="serviceModalOverlay" onclick="closeServiceModal()">
   <div class="service-modal" onclick="event.stopPropagation()">
-    <img src="" alt="" class="service-modal-img" id="modalImg">
+    <div class="service-modal-imgwrap">
+      <img src="" alt="" class="service-modal-img" id="modalImg">
+      <button class="service-modal-x" onclick="closeServiceModal()" aria-label="Close">✕</button>
+    </div>
     <div class="service-modal-body">
       <h3 id="modalTitle"></h3>
       <p id="modalDesc"></p>
@@ -924,30 +1082,85 @@ button[type="submit"]:hover { transform: scale(1.05); }
 
   <div class="stats-divider"></div>
 
-  <div class="stats-bottom">
-    <div class="logo-stat">
-      <img src="Section/upwork.png" alt="Upwork Top Rated Plus">
-      <p>Upwork Top Rated Plus<br>1,000+ Hours</p>
-    </div>
-    <div class="stats-separator"></div>
-    <div class="logo-stat">
-      <img src="Section/google.png" alt="Google Certified">
-      <p>Google Certified</p>
-    </div>
-    <div class="stats-separator"></div>
-    <div class="logo-stat">
-      <img src="Section/Lead.png" alt="Lead Generation">
-      <p>1K+ Leads Generated</p>
-    </div>
-    <div class="stats-separator"></div>
-    <div class="logo-stat">
-      <img src="Section/Years.png" alt="Experience">
-      <p>Trusted &amp; Experienced Team</p>
-    </div>
-    <div class="stats-separator"></div>
-    <div class="logo-stat">
-      <img src="Section/jobdel.png" alt="Jobs Delivered">
-      <p>500+ Jobs Delivered</p>
+  <div class="stats-slider-wrap">
+    <div class="stats-bottom" id="statsSlider">
+
+      <!-- Set 1 -->
+      <div class="logo-stat">
+        <img src="Section/upwork.png" alt="Upwork Top Rated Plus">
+        <div class="logo-stat-text">
+          <strong>Upwork Top Rated Plus</strong>
+          <span>1,000+ Hours</span>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+      <div class="logo-stat">
+        <img src="Section/google.png" alt="Google Certified">
+        <div class="logo-stat-text">
+          <strong>Google Certified</strong>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+      <div class="logo-stat">
+        <img src="Section/Lead.png" alt="Lead Generation">
+        <div class="logo-stat-text">
+          <strong>1K+ Leads Generated</strong>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+      <div class="logo-stat">
+        <img src="Section/Years.png" alt="Experience">
+        <div class="logo-stat-text">
+          <strong>Trusted &amp; Experienced Team</strong>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+      <div class="logo-stat">
+        <img src="Section/jobdel.png" alt="Jobs Delivered">
+        <div class="logo-stat-text">
+          <strong>500+ Jobs Delivered</strong>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+
+      <!-- Set 2 — exact duplicate for seamless loop -->
+      <div class="logo-stat">
+        <img src="Section/upwork.png" alt="Upwork Top Rated Plus">
+        <div class="logo-stat-text">
+          <strong>Upwork Top Rated Plus</strong>
+          <span>1,000+ Hours</span>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+      <div class="logo-stat">
+        <img src="Section/google.png" alt="Google Certified">
+        <div class="logo-stat-text">
+          <strong>Google Certified</strong>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+      <div class="logo-stat">
+        <img src="Section/Lead.png" alt="Lead Generation">
+        <div class="logo-stat-text">
+          <strong>1K+ Leads Generated</strong>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+      <div class="logo-stat">
+        <img src="Section/Years.png" alt="Experience">
+        <div class="logo-stat-text">
+          <strong>Trusted &amp; Experienced Team</strong>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+      <div class="logo-stat">
+        <img src="Section/jobdel.png" alt="Jobs Delivered">
+        <div class="logo-stat-text">
+          <strong>500+ Jobs Delivered</strong>
+        </div>
+      </div>
+      <div class="stats-separator"></div>
+
     </div>
   </div>
 </section>
@@ -958,7 +1171,7 @@ button[type="submit"]:hover { transform: scale(1.05); }
     <h2>Contact Us</h2>
     <p><strong>Location:</strong> Mohali, Chandigarh</p>
     <!-- ✅ Fixed email display -->
-    <p><strong>Email:</strong> <a href="mailto:info@marketingwithnikhil.site">info@marketingwithnikhil.site</a></p>
+    <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#3b52555d547b565a49505e4f52555c4c524f535552505352571548524f5e"><span class="__cf_email__" data-cfemail="d4bdbab2bb94b9b5a6bfb1a0bdbab3a3bda0bcbabdbfbcbdb8faa7bda0b1">[email&#160;protected]</span></a></p>
     <p><strong>Phone:</strong> <a href="tel:+919805647008">+91-9805647008</a></p>
     <a href="https://wa.me/919805647008" class="whatsapp-link" target="_blank" rel="noopener">Chat on WhatsApp</a>
   </div>
@@ -1008,7 +1221,7 @@ button[type="submit"]:hover { transform: scale(1.05); }
     </div>
 
     <!-- Quick Links -->
-    <div class="footer-col">
+    <div class="footer-col links-col">
       <h4>Quick Links</h4>
       <ul>
         <li><a href="#hero">Home</a></li>
@@ -1028,7 +1241,7 @@ button[type="submit"]:hover { transform: scale(1.05); }
         </li>
         <li>
           <i class="fas fa-envelope"></i>
-          <a href="mailto:info@marketingwithnikhil.site">info@marketingwithnikhil.site</a>
+          <a href="/cdn-cgi/l/email-protection#ef86818980af828e9d848a9b86818898869b87818684878683c19c869b8a"><span class="__cf_email__" data-cfemail="177e797178577a76657c72637e7970607e637f797e7c7f7e7b39647e6372">[email&#160;protected]</span></a>
         </li>
         <li>
           <i class="fas fa-phone"></i>
@@ -1061,7 +1274,7 @@ button[type="submit"]:hover { transform: scale(1.05); }
 </footer>
 
 <!-- ===================== SCRIPTS ===================== -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===== Sticky Header =====
 window.addEventListener("scroll", () => {
   document.getElementById("header").classList.toggle("scrolled", window.scrollY > 10);
@@ -1192,6 +1405,10 @@ function closeServiceModal() {
   document.getElementById("serviceModalOverlay").classList.remove("active");
   document.body.style.overflow = "";
 }
+// Keyboard support for service cards
+document.querySelectorAll('.service').forEach((card, i) => {
+  card.addEventListener('keydown', e => { if (e.key === 'Enter') openServiceModal(i); });
+});
 document.addEventListener("keydown", e => { if (e.key === "Escape") { closeServiceModal(); closePopup(); } });
 
 // ===== Scroll Popup =====
@@ -1202,16 +1419,4 @@ function closePopup() {
   popup.style.display = "none";
   overlay.style.display = "none";
 }
-window.addEventListener("scroll", () => {
-  if (!popupShown && window.scrollY > window.innerHeight * 0.4) {
-    popup.style.display = "block";
-    overlay.style.display = "block";
-    popupShown = true;
-  }
-});
-document.getElementById("closePopup").addEventListener("click", closePopup);
-document.getElementById("popupClaim").addEventListener("click", closePopup);
-overlay.addEventListener("click", closePopup);
-</script>
-</body>
-</html>
+window.addEventListe
