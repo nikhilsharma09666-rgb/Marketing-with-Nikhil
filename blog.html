@@ -1,307 +1,852 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grow Your Business with Digital Marketing | Marketing With Nikhil</title>
-  <meta name="description" content="Actionable digital marketing guides to increase traffic, leads & sales. Learn SEO, content, social media & ads from Marketing With Nikhil.">
-  <!-- Other meta tags, CSS, etc. -->
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Marketing with Nikhil | Digital Marketing Insights</title>
+<meta name="description" content="Actionable digital marketing guides to increase traffic, leads & sales. Learn SEO, content, social media & ads from Marketing with Nikhil.">
+
+<meta property="og:title" content="Blog — Marketing with Nikhil" />
+<meta property="og:description" content="Actionable digital marketing guides on SEO, Social Media, Google Ads & Web Design." />
+<meta property="og:url" content="https://marketingwithnikhil.site/blog.html" />
+<meta property="og:image" content="https://marketingwithnikhil.site/Images/Logo.png" />
+
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* ------------ GLOBAL ----------- */
+/* ===== VARIABLES ===== */
+:root {
+  --accent: #00ffcc;
+  --orange: #ff9900;
+  --orange-dark: #ff6600;
+  --green: #25D366;
+  --bg: #0a0a0a;
+  --surface: #111;
+  --card: #161616;
+  --border: #222;
+  --white: #fff;
+  --muted: #888;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; height: auto; }
 body {
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:black;
-    color:white;
+  font-family: 'Poppins', sans-serif;
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--white);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* ---------- Custom Cursor ---------- */
+/* ===== CURSOR ===== */
+@media (hover: hover) and (pointer: fine) { body { cursor: none; } }
 .cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid #00ffcc;
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  box-shadow: 0 0 15px #00ffcc, 0 0 30px rgba(0,255,204,0.5);
+  position: fixed; top: 0; left: 0;
+  width: 12px; height: 12px;
+  background: var(--accent); border-radius: 50%;
+  pointer-events: none; transform: translate(-50%,-50%);
+  z-index: 99999; display: none;
+  box-shadow: 0 0 8px var(--accent), 0 0 20px rgba(0,255,204,0.7);
 }
-
-.cursor.active {
-  transform: translate(-50%, -50%) scale(1.5);
-  box-shadow: 0 0 25px #00ffcc, 0 0 50px rgba(0,255,204,0.7);
-  background: #00ffcc;
+.cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 38px; height: 38px;
+  border: 2px solid var(--accent); border-radius: 50%;
+  pointer-events: none; transform: translate(-50%,-50%);
+  z-index: 99998; opacity: 0.7; display: none;
 }
+.cursor.active  { width: 8px; height: 8px; background: #fff; }
+.cursor-ring.active { width: 50px; height: 50px; opacity: 1; }
 
-/* ------------ HEADER ----------- */
+/* ===== HEADER ===== */
 header {
-    background:#3e3e3e;
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:15px 25px;
-    position:sticky;
-    top:0;
-    z-index:999;
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.75);
+  padding: 10px 20px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  position: sticky; top: 0; z-index: 1000;
+  min-height: 70px; transition: all 0.3s ease; gap: 10px;
 }
-
-.logo-area {
-    display:flex;
-    align-items:center;
-    gap:15px;
+header.scrolled {
+  background: rgba(0,0,0,0.92);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
-
-.logo-area img {
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    border:4px solid #00ffa6;
-    object-fit:cover;
+.header-left { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.logo {
+  width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 12px rgba(0,255,204,0.5);
 }
-
-.logo-area span {
-    font-size:32px;
-    font-weight:700;
-    background:linear-gradient(90deg, #ff9500, #00ff9d);
-    -webkit-background-clip:text;
-    color:transparent;
+.site-name {
+  font-size: clamp(0.95em, 2.5vw, 1.4em); font-weight: 700;
+  background: linear-gradient(45deg, var(--orange), var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;
 }
-
-nav ul {
-    list-style:none;
-    display:flex;
-    gap:45px;
-    margin:0;
-    padding:0;
+.hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; cursor: pointer; padding: 8px;
+  background: none; border: none; z-index: 1002; flex-shrink: 0;
 }
-
+.hamburger span {
+  display: block; width: 26px; height: 2px;
+  background: var(--white); border-radius: 2px; transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+nav {
+  display: flex; align-items: center; justify-content: center;
+  gap: 4px; flex-grow: 1;
+}
 nav a {
-    text-decoration:none;
-    color:white;
-    font-size:18px;
-    transition:.3s;
-    padding-bottom:6px;
+  color: var(--white); text-decoration: none; font-size: 0.92em;
+  padding: 6px 12px; position: relative; transition: color 0.3s; white-space: nowrap;
+}
+nav a::after {
+  content: ''; position: absolute; width: 0; height: 2px;
+  bottom: 0; left: 0; background: var(--accent); transition: width 0.3s ease;
+}
+nav a:hover::after, nav a.active::after { width: 100%; }
+nav a:hover { color: var(--accent); }
+.free-audit {
+  background: linear-gradient(45deg, #00cc66, #00ff88);
+  padding: 9px 16px; border-radius: 50px; color: var(--white);
+  font-weight: bold; text-decoration: none; transition: all 0.3s ease;
+  white-space: nowrap; flex-shrink: 0; font-size: 0.88em;
+}
+.free-audit:hover { transform: scale(1.08); }
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .free-audit { display: none; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100vh; background: #000;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 10px; transform: translateX(-100%);
+    transition: transform 0.35s ease; z-index: 1001; padding: 80px 30px 40px;
+  }
+  nav.open { transform: translateX(0); }
+  nav a {
+    display: block; width: 100%; max-width: 320px; text-align: center;
+    font-size: 1.25em; font-weight: 600; color: #fff !important;
+    padding: 16px 24px; border-radius: 12px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    transition: background 0.2s, color 0.2s, transform 0.2s; letter-spacing: 0.5px;
+  }
+  nav a:hover, nav a.active {
+    background: var(--orange); color: #fff !important;
+    border-color: var(--orange); transform: scale(1.03);
+  }
+  nav a::after { display: none; }
 }
 
-nav a:hover,
-nav a.active {
-    border-bottom:3px solid #00eaff;
+/* ===== HERO BANNER ===== */
+.blog-hero {
+  position: relative;
+  min-height: 420px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: var(--bg);
+}
+/* Animated grid background */
+.blog-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,204,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,204,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridDrift 20s linear infinite;
+}
+@keyframes gridDrift {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(60px); }
+}
+/* Radial glow */
+.blog-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%,
+    rgba(255,153,0,0.12) 0%,
+    rgba(0,255,204,0.06) 50%,
+    transparent 100%);
+  pointer-events: none;
+}
+.blog-hero-content {
+  position: relative; z-index: 2;
+  text-align: center; padding: 40px 20px;
+  animation: fadeUp 0.9s ease forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow {
+  font-size: 0.75em; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent);
+  margin: 0 0 16px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; display: block; width: 40px; height: 1px;
+  background: var(--accent); opacity: 0.5;
+}
+.blog-hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4em, 6vw, 4em);
+  margin: 0 0 16px; line-height: 1.15; font-weight: 700;
+}
+.blog-hero-content h1 em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--orange), var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.blog-hero-content p {
+  font-size: clamp(0.95em, 2vw, 1.15em);
+  color: var(--muted); margin: 0 auto 28px; max-width: 520px; line-height: 1.7;
+}
+/* Search bar */
+.search-wrap {
+  display: flex; align-items: center; gap: 0;
+  max-width: 480px; margin: 0 auto;
+  background: #1a1a1a; border: 1px solid #2a2a2a;
+  border-radius: 50px; overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.search-wrap:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,255,204,0.1);
+}
+.search-wrap input {
+  flex: 1; background: none; border: none; outline: none;
+  padding: 14px 20px; color: var(--white);
+  font-family: 'Poppins', sans-serif; font-size: 0.9em;
+}
+.search-wrap input::placeholder { color: #555; }
+.search-wrap button {
+  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
+  border: none; padding: 14px 22px; cursor: pointer;
+  color: var(--white); font-size: 0.9em; transition: opacity 0.2s;
+}
+.search-wrap button:hover { opacity: 0.85; }
+
+/* ===== FILTER TABS ===== */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  justify-content: center; padding: 28px 20px 0;
+}
+.filter-btn {
+  padding: 7px 18px; border-radius: 50px;
+  border: 1px solid var(--border);
+  background: var(--card); color: var(--muted);
+  font-family: 'Poppins', sans-serif; font-size: 0.82em;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--white); }
+.filter-btn.active {
+  background: var(--orange); color: #fff;
+  border-color: var(--orange); font-weight: 600;
 }
 
-.audit-btn {
-    background:#00ff80;
-    padding:14px 34px;
-    font-size:18px;
-    font-weight:600;
-    color:black;
-    border-radius:40px;
-    text-decoration:none;
-    transition:.3s;
-    margin-right:40px;
+/* ===== BLOG GRID SECTION ===== */
+.blog-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
 }
 
-.audit-btn:hover {
-    opacity:.8;
-    transform:scale(1.03);
+/* Featured post — full width hero card */
+.featured-post {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 48px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  text-decoration: none; color: inherit;
+}
+.featured-post:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.featured-img {
+  position: relative; overflow: hidden; min-height: 320px;
+}
+.featured-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block; transition: transform 0.5s ease;
+}
+.featured-post:hover .featured-img img { transform: scale(1.05); }
+.featured-label {
+  position: absolute; top: 16px; left: 16px;
+  background: var(--orange); color: #fff;
+  font-size: 0.68em; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 5px 12px; border-radius: 50px;
+}
+.featured-body {
+  padding: 40px 36px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.post-meta {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.75em; color: var(--muted); margin-bottom: 14px; flex-wrap: wrap;
+}
+.post-meta .tag {
+  background: rgba(0,255,204,0.08);
+  border: 1px solid rgba(0,255,204,0.2);
+  color: var(--accent); border-radius: 50px;
+  padding: 3px 10px; font-size: 0.9em; font-weight: 600;
+}
+.post-meta .dot { color: #333; }
+.featured-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4em, 2.5vw, 1.9em);
+  margin: 0 0 14px; line-height: 1.3; font-weight: 700;
+  color: var(--white);
+}
+.featured-body p {
+  color: var(--muted); font-size: 0.9em; line-height: 1.75;
+  margin: 0 0 24px;
+}
+.read-more {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--orange); font-size: 0.88em; font-weight: 600;
+  text-decoration: none; transition: gap 0.2s;
+}
+.read-more:hover { gap: 14px; }
+.read-more i { font-size: 0.8em; }
+
+/* ===== GRID LABEL ===== */
+.grid-label {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 0.75em; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 24px;
+}
+.grid-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
 }
 
-@media(max-width:768px){
-    nav ul {display:none;}
-    header {padding:15px 20px;}
-    .logo-area span {font-size:22px;}
-    .audit-btn {font-size:14px; padding:10px 20px;}
-}
-
-/* ------------ BLOG SECTION ----------- */
-.blog-container {
-    max-width:1100px;
-    margin:auto;
-    padding:40px 20px;
-}
-
-.blog-title {
-    font-size:40px;
-    font-weight:700;
-    text-align:center;
-    background:linear-gradient(90deg,#ff9500,#00ff9d);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
+/* ===== STANDARD BLOG GRID ===== */
 .blog-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
-    margin-top:50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
+/* Blog Card */
 .blog-card {
-    background:#1a1a1a;
-    padding:20px;
-    border-radius:15px;
-    transition:.3s;
-    cursor:pointer;
-    text-decoration:none;
-    color:white;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+  position: relative;
 }
-
 .blog-card:hover {
-    transform:translateY(-7px);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  border-color: #333;
+}
+.card-img-wrap {
+  width: 100%; height: 196px; overflow: hidden; position: relative; flex-shrink: 0;
+}
+.card-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block; transition: transform 0.4s ease;
+}
+.blog-card:hover .card-img-wrap img { transform: scale(1.07); }
+.card-category {
+  position: absolute; bottom: 12px; left: 12px;
+  font-size: 0.65em; font-weight: 700; letter-spacing: 0.8px;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 50px;
+  backdrop-filter: blur(8px);
+}
+.cat-seo    { background: rgba(255,153,0,0.85); color: #fff; }
+.cat-social { background: rgba(0,120,255,0.85); color: #fff; }
+.cat-ads    { background: rgba(220,40,40,0.85); color: #fff; }
+.cat-web    { background: rgba(120,40,220,0.85); color: #fff; }
+.cat-local  { background: rgba(0,180,100,0.85); color: #fff; }
+.cat-tips   { background: rgba(0,200,200,0.85); color: #000; }
+
+.card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+.card-meta {
+  font-size: 0.72em; color: var(--muted);
+  margin-bottom: 10px; display: flex; gap: 8px; align-items: center;
+}
+.card-meta .dot { color: #333; }
+.card-body h3 {
+  font-size: 1em; font-weight: 700; color: var(--white);
+  margin: 0 0 10px; line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+.card-body p {
+  font-size: 0.82em; color: var(--muted);
+  line-height: 1.65; margin: 0 0 16px; flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+.card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: auto; padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.card-footer .read-link {
+  font-size: 0.78em; font-weight: 600; color: var(--orange);
+  text-decoration: none; display: flex; align-items: center; gap: 6px;
+  transition: gap 0.2s;
+}
+.card-footer .read-link:hover { gap: 10px; }
+.card-footer .read-time {
+  font-size: 0.72em; color: #555;
+  display: flex; align-items: center; gap: 5px;
 }
 
-.blog-card img {
-    width:100%;
-    border-radius:10px;
+
+
+/* ===== NEWSLETTER STRIP ===== */
+.newsletter-strip {
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a0e00 50%, #0a1208 100%);
+  border-top: 1px solid #1e1e1e; border-bottom: 1px solid #1e1e1e;
+  padding: 60px 24px; text-align: center;
+}
+.newsletter-strip h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5em, 3vw, 2em);
+  margin: 0 0 10px; color: var(--white);
+}
+.newsletter-strip h3 span { color: var(--orange); font-style: italic; }
+.newsletter-strip p { color: var(--muted); font-size: 0.9em; margin: 0 0 24px; }
+.newsletter-form {
+  display: flex; gap: 0; max-width: 440px; margin: 0 auto;
+  background: #1a1a1a; border: 1px solid #2a2a2a;
+  border-radius: 50px; overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.newsletter-form:focus-within {
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,255,204,0.1);
+}
+.newsletter-form input {
+  flex: 1; background: none; border: none; outline: none;
+  padding: 14px 20px; color: var(--white);
+  font-family: 'Poppins', sans-serif; font-size: 0.88em;
+}
+.newsletter-form input::placeholder { color: #555; }
+.newsletter-form button {
+  background: linear-gradient(45deg, var(--orange), var(--orange-dark));
+  border: none; padding: 14px 22px; cursor: pointer;
+  color: #fff; font-family: 'Poppins', sans-serif;
+  font-size: 0.85em; font-weight: 600; transition: opacity 0.2s;
+}
+.newsletter-form button:hover { opacity: 0.88; }
+
+/* ===== CTA STRIP ===== */
+.cta-strip {
+  background: linear-gradient(135deg, #1a0a00, #0a1a10);
+  border-top: 1px solid #2a2a2a; padding: 60px 30px; text-align: center;
+}
+.cta-strip h2 { font-size: clamp(1.6em, 3.5vw, 2.2em); color: var(--white); margin: 0 0 14px; }
+.cta-strip h2 span { color: var(--orange); }
+.cta-strip p { color: #999; font-size: 1em; margin: 0 0 28px; line-height: 1.7; }
+.cta-strip-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.cta-strip-btns a {
+  padding: 13px 30px; border-radius: 50px; font-size: 0.95em; font-weight: 600;
+  text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+}
+.btn-primary { background: linear-gradient(45deg, var(--orange), var(--orange-dark)); color: var(--white); }
+.btn-primary:hover { transform: scale(1.06); box-shadow: 0 8px 25px rgba(255,102,0,0.35); }
+.btn-secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+.btn-secondary:hover { background: var(--accent); color: #000; transform: scale(1.06); }
+
+/* ===== FLOATING WHATSAPP ===== */
+.floating-wp {
+  position: fixed; bottom: 20px; right: 20px;
+  background: var(--green); color: var(--white);
+  width: 56px; height: 56px; border-radius: 50%; font-size: 24px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  z-index: 998; transition: 0.3s; text-decoration: none;
+}
+.floating-wp:hover { transform: scale(1.15); }
+
+/* ===== FOOTER ===== */
+.footer-main { background: #111; color: #ccc; padding: 60px 60px 30px; }
+.footer-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1.3fr 1fr;
+  gap: 50px; max-width: 1200px; margin: 0 auto 40px;
+}
+.footer-brand .footer-logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.footer-brand .footer-logo-row img {
+  width: 48px; height: 48px; border-radius: 50%;
+  object-fit: cover; border: 2px solid var(--accent);
+}
+.footer-brand .footer-logo-row span {
+  font-size: 1.05em; font-weight: 700; text-transform: uppercase;
+  background: linear-gradient(90deg, #ff9900, #00ff88);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: 1px;
+}
+.footer-brand p { font-size: 0.9em; line-height: 1.75; color: #aaa; margin: 0; max-width: 260px; }
+.footer-col h4 { color: #fff; font-size: 1em; font-weight: 600; margin: 0 0 18px; letter-spacing: 0.5px; }
+.footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { color: #aaa; text-decoration: none; font-size: 0.92em; transition: color 0.3s; }
+.footer-col ul li a:hover { color: var(--orange); }
+.footer-contact-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.footer-contact-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9em; color: #aaa; line-height: 1.5; }
+.footer-contact-list li i { color: var(--orange); margin-top: 2px; flex-shrink: 0; }
+.footer-contact-list li a { color: #aaa; text-decoration: none; transition: color 0.3s; }
+.footer-contact-list li a:hover { color: var(--orange); }
+.footer-social-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.footer-social-list li a { display: flex; align-items: center; gap: 10px; color: #aaa; text-decoration: none; font-size: 0.92em; transition: color 0.3s; }
+.footer-social-list li a:hover { color: var(--orange); }
+.footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 0 auto 20px; max-width: 1200px; }
+.footer-bottom { text-align: center; font-size: 0.85em; color: #555; max-width: 1200px; margin: 0 auto; padding-bottom: 10px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 35px; }
+  .footer-main { padding: 50px 25px 25px; }
+}
+@media (max-width: 768px) {
+  .featured-post { grid-template-columns: 1fr; }
+  .featured-img { min-height: 220px; }
+  .featured-body { padding: 24px; }
+  .blog-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .footer-main { padding: 40px 20px 20px; }
+  .footer-brand p { max-width: 100%; }
+  .footer-col.links-col ul { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .footer-col.links-col ul li a {
+    display: block; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+    padding: 10px 14px; text-align: center; font-size: 0.88em; color: #ccc;
+  }
+  .footer-col.links-col ul li a:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
+  .footer-social-list { flex-direction: row; gap: 14px; flex-wrap: wrap; }
+  .footer-social-list li a {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px; padding: 9px 18px; font-size: 0.88em;
+  }
+  .footer-social-list li a:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
 }
 
-.blog-card h3 {
-    font-size:22px;
-    margin-top:15px;
-}
-
-.blog-card p {
-    margin-top:10px;
-    color:#d2d2d2;
-}
-
-/* ------------ FOOTER ----------- */
-footer {
-    background:#000;
-    padding:20px 40px;
-    border-top:1px solid #333;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
-    align-items:center;
-}
-
-footer p {
-    font-size:16px;
-    color:white;
-    margin:5px 0;
-}
-
-.footer-social {
-    display:flex;
-    gap:15px;
-}
-
-.footer-social a {
-    text-decoration:none;
-    color:white;
-    font-size:18px;
-    transition:.3s;
-}
-
-.footer-social a:hover {
-    color:#00ff80;
-}
-
-@media(max-width:600px){
-    footer {
-        flex-direction:column;
-        text-align:center;
-        gap:10px;
-    }
-    .footer-social {
-        justify-content:center;
-    }
-}
+/* ===== SEARCH FILTER HIDE/SHOW ===== */
+.blog-card[data-cat] { transition: opacity 0.3s, transform 0.3s; }
+.blog-card.hidden { display: none; }
+.featured-post.hidden { display: none; }
 </style>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<!-- Custom Cursor -->
-<div class="cursor"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<header>
-    <div class="logo-area">
-        <img src="Images/Logo.png" alt="Logo">
-        <span>MARKETING WITH NIKHIL</span>
-    </div>
-
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="Our Services.html">Services</a></li>
-            <li><a href="Our Team.html">Our Team</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-            <li><a class="active" href="blog.html">Blog</a></li>
-        </ul>
-    </nav>
-
-   <a href="index.html#contact" class="audit-btn">Free Website Audit</a>
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="header-left">
+    <img src="Images/Logo.png" alt="Marketing with Nikhil Logo" class="logo">
+    <div class="site-name">Marketing with Nikhil</div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="nav">
+    <a href="index.html">Home</a>
+    <a href="https://marketingwithnikhil.site/Our%20Services.html">Services</a>
+    <a href="https://marketingwithnikhil.site/Our%20Team.html">Our Team</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://marketingwithnikhil.site/blog.html" class="active">Blog</a>
+  </nav>
+  <a href="index.html#contact" class="free-audit">Free Website Audit</a>
 </header>
 
-
-<!-- BLOGS -->
-<div class="blog-container">
-    <h2 class="blog-title">Latest Blog Posts</h2>
-
-    <div class="blog-grid">
-
-        <a href="blog-seo-2025.html" class="blog-card">
-            <img src="blog1.jpg" alt="">
-            <h3>How to Improve SEO in 2025</h3>
-            <p>Learn the latest ranking strategies that actually work without backlinks.</p>
-        </a>
-
-        <a href="Best-Social_Media-Marketing-in-Mohali.html" class="blog-card">
-            <img src="blog2.jpg" alt="">
-            <h3>Best Social Media Marketing Agency in Mohali | Marketing With Nikhil</h3>
-            <p>Top-rated social media marketing agency in Mohali helping businesses grow on Instagram, Facebook & LinkedIn. Get a free consultation today!.</p>
-        </a>
-
-        <a href="best-digitalmarketing-in-himachal-pradesh.html" class="blog-card">
-            <img src="blog3.jpg" alt="">
-            <h3>Best Digital Marketing Agency in Himachal Pradesh | Marketing with Nikhil</h3>
-            <p>Grow your business with Marketing with Nikhil.</p>
-        </a>
-
+<!-- ===== HERO ===== -->
+<section class="blog-hero">
+  <div class="blog-hero-content">
+    <p class="hero-eyebrow">Knowledge Hub</p>
+    <h1>Digital Marketing<br><em>Insights & Guides</em></h1>
+    <p>Actionable strategies on SEO, Social Media, Google Ads & Web Design<br>to grow your business online.</p>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Search articles..." autocomplete="off">
+      <button onclick="doSearch()"><i class="fas fa-search"></i></button>
     </div>
+  </div>
+</section>
+
+<!-- ===== FILTER TABS ===== -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" onclick="filterPosts('all', this)">All Posts</button>
+  <button class="filter-btn" onclick="filterPosts('seo', this)">SEO</button>
+  <button class="filter-btn" onclick="filterPosts('social', this)">Social Media</button>
+  <button class="filter-btn" onclick="filterPosts('ads', this)">Paid Ads</button>
+  <button class="filter-btn" onclick="filterPosts('web', this)">Web Design</button>
+  <button class="filter-btn" onclick="filterPosts('local', this)">Local Marketing</button>
 </div>
 
+<!-- ===== BLOG POSTS ===== -->
+<div class="blog-section">
 
-<footer>
-    <p>© 2025 Marketing With Nikhil. All rights reserved.</p>
-    <div class="footer-social">
-        <a href="https://www.facebook.com/share/1CK67vfqqX/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/marketingwithnikhil.site" target="_blank"><i class="fab fa-instagram"></i></a>
+  <!-- FEATURED POST -->
+  <a href="blog-seo-2025.html" class="featured-post" data-cat="seo" id="featuredPost">
+    <div class="featured-img">
+      <span class="featured-label">✦ Featured</span>
+      <img src="blog1.jpg" alt="How to Improve SEO in 2025" loading="lazy"
+           onerror="this.style.background='linear-gradient(135deg,#1a0e00,#0f1a0a)';this.style.minHeight='320px';this.removeAttribute('onerror')">
     </div>
+    <div class="featured-body">
+      <div class="post-meta">
+        <span class="tag">SEO</span>
+        <span class="dot">·</span>
+        <span>5 min read</span>
+        <span class="dot">·</span>
+        <span>Jan 2025</span>
+      </div>
+      <h2>How to Improve SEO in 2025 — Ranking Strategies That Actually Work</h2>
+      <p>Discover the latest Google algorithm updates and proven techniques to climb search rankings without relying solely on backlinks. From technical fixes to content strategy, this guide covers it all.</p>
+      <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
+    </div>
+  </a>
+
+  <!-- GRID LABEL -->
+  <div class="grid-label">More Articles</div>
+
+  <!-- BLOG GRID -->
+  <div class="blog-grid" id="blogGrid">
+
+    <!-- Card 2 -->
+    <a href="Best-Social_Media-Marketing-in-Mohali.html" class="blog-card" data-cat="social">
+      <div class="card-img-wrap">
+        <img src="blog2.jpg" alt="Social Media Marketing Mohali" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#001833,#001a33)';this.style.display='none'">
+        <span class="card-category cat-social">Social Media</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span>Local</span><span class="dot">·</span><span>Feb 2025</span></div>
+        <h3>Best Social Media Marketing Agency in Mohali</h3>
+        <p>Top-rated social media marketing in Mohali helping businesses grow on Instagram, Facebook & LinkedIn. Get a free consultation today.</p>
+        <div class="card-footer">
+          <span class="read-link">Read More <i class="fas fa-arrow-right"></i></span>
+          <span class="read-time"><i class="far fa-clock"></i> 4 min</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="best-digitalmarketing-in-himachal-pradesh.html" class="blog-card" data-cat="local">
+      <div class="card-img-wrap">
+        <img src="blog3.jpg" alt="Digital Marketing Himachal Pradesh" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#0a1a00,#001a0a)';this.style.display='none'">
+        <span class="card-category cat-local">Local Marketing</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><span>Agency</span><span class="dot">·</span><span>Mar 2025</span></div>
+        <h3>Best Digital Marketing Agency in Himachal Pradesh</h3>
+        <p>Grow your business with Marketing with Nikhil — the most trusted digital marketing partner in Himachal Pradesh.</p>
+        <div class="card-footer">
+          <span class="read-link">Read More <i class="fas fa-arrow-right"></i></span>
+          <span class="read-time"><i class="far fa-clock"></i> 3 min</span>
+        </div>
+      </div>
+    </a>
+
+  </div><!-- end blog-grid -->
+
+
+
+</div><!-- end blog-section -->
+
+<!-- ===== NEWSLETTER ===== -->
+<div class="newsletter-strip">
+  <h3>Get <span>Marketing Tips</span> in Your Inbox</h3>
+  <p>Weekly insights on SEO, ads & social media. No spam. Unsubscribe anytime.</p>
+  <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+    <input type="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
+
+<!-- ===== CTA STRIP ===== -->
+<section class="cta-strip">
+  <h2>Ready to <span>Grow Your Business?</span></h2>
+  <p>Get a free consultation and let us build a custom digital marketing strategy for you.</p>
+  <div class="cta-strip-btns">
+    <a href="index.html#contact" class="btn-primary">Get Free Consultation</a>
+    <a href="https://wa.me/919805647008" target="_blank" rel="noopener" class="btn-secondary">
+      <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-main">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-row">
+        <img src="Images/Logo.png" alt="Marketing with Nikhil Logo">
+        <span>Marketing with Nikhil</span>
+      </div>
+      <p>Helping businesses grow online with SEO, paid ads, web design, and data-driven digital marketing strategies.</p>
+    </div>
+    <div class="footer-col links-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://marketingwithnikhil.site/Our%20Services.html">Services</a></li>
+        <li><a href="https://marketingwithnikhil.site/Our%20Team.html">Our Team</a></li>
+        <li><a href="https://marketingwithnikhil.site/blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul class="footer-contact-list">
+        <li><i class="fas fa-map-marker-alt"></i><span>Mohali, Chandigarh</span></li>
+        <li><i class="fas fa-envelope"></i><a href="mailto:info@marketingwithnikhil.site">info@marketingwithnikhil.site</a></li>
+        <li><i class="fas fa-phone"></i><a href="tel:+919805647008">+91-9805647008</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <ul class="footer-social-list">
+        <li><a href="https://www.instagram.com/marketingwithnikhil.site" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a></li>
+        <li><a href="https://www.facebook.com/share/1CK67vfqqX/?mibextid=wwXIfr" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <p class="footer-bottom">© 2026 Marketing with Nikhil — All Rights Reserved</p>
 </footer>
 
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919805647008" class="floating-wp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 <script>
-const cursor = document.querySelector(".cursor");
+document.addEventListener('DOMContentLoaded', function() {
 
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
+  // ===== STICKY HEADER =====
+  window.addEventListener('scroll', function() {
+    var h = document.getElementById('header');
+    if (h) h.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // ===== HAMBURGER =====
+  var hamburger = document.getElementById('hamburger');
+  var nav = document.getElementById('nav');
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', function() {
+      var open = nav.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    nav.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        nav.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // ===== CUSTOM CURSOR =====
+  var cursor = document.getElementById('cursor');
+  var ring   = document.getElementById('cursorRing');
+  if (cursor && ring && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    cursor.style.display = 'block';
+    ring.style.display   = 'block';
+    var mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY; });
+    (function tick(){
+      cursor.style.left = mx+'px'; cursor.style.top = my+'px';
+      rx += (mx-rx)*0.15; ry += (my-ry)*0.15;
+      ring.style.left = rx+'px'; ring.style.top = ry+'px';
+      requestAnimationFrame(tick);
+    })();
+    document.addEventListener('mousedown', function(){ cursor.classList.add('active'); ring.classList.add('active'); });
+    document.addEventListener('mouseup',   function(){ cursor.classList.remove('active'); ring.classList.remove('active'); });
+  }
+
+  // ===== CARD ENTRY ANIMATION =====
+  var cards = document.querySelectorAll('.blog-card');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(function(c, i) {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(24px)';
+    c.style.transition = 'opacity 0.5s ease '+(i*0.07)+'s, transform 0.5s ease '+(i*0.07)+'s, box-shadow 0.3s, border-color 0.3s';
+    obs.observe(c);
+  });
+
+}); // end DOMContentLoaded
+
+// ===== CATEGORY FILTER =====
+function filterPosts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+
+  // Featured post
+  var feat = document.getElementById('featuredPost');
+  if (feat) {
+    feat.classList.toggle('hidden', cat !== 'all' && feat.dataset.cat !== cat);
+  }
+
+  // Grid cards
+  document.querySelectorAll('#blogGrid .blog-card').forEach(function(c) {
+    c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
+  });
+}
+
+// ===== SEARCH =====
+function doSearch() {
+  var q = document.getElementById('searchInput').value.toLowerCase().trim();
+  if (!q) { filterPosts('all', document.querySelector('.filter-btn')); return; }
+
+  var feat = document.getElementById('featuredPost');
+  if (feat) {
+    var featText = feat.innerText.toLowerCase();
+    feat.classList.toggle('hidden', !featText.includes(q));
+  }
+
+  document.querySelectorAll('#blogGrid .blog-card').forEach(function(c) {
+    c.classList.toggle('hidden', !c.innerText.toLowerCase().includes(q));
+  });
+}
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doSearch();
 });
 
-document.addEventListener("mousedown", () => {
-  cursor.classList.add("active");
-});
-
-document.addEventListener("mouseup", () => {
-  cursor.classList.remove("active");
-});
+// ===== NEWSLETTER =====
+function handleNewsletter(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('button');
+  btn.textContent = '✓ Subscribed!';
+  btn.style.background = 'linear-gradient(45deg,#00cc66,#00ff88)';
+  e.target.querySelector('input').value = '';
+}
 </script>
-
 </body>
 </html>
-
-
-
